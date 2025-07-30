@@ -1,6 +1,14 @@
 import { Image } from 'lucide-react'
 
-const ProjectCard = ({ title = "Application Name", company = "Company Name" }) => {
+type ProjectCardProps = {
+  title?: string
+  company?: string
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  title = "Application Name",
+  company = "Company Name"
+}) => {
   return (
     <div className="bg-gray-600 rounded-lg p-6 h-48 flex flex-col justify-between hover:bg-gray-500 transition-colors cursor-pointer">
       {/* Placeholder Image Icon */}
@@ -9,7 +17,7 @@ const ProjectCard = ({ title = "Application Name", company = "Company Name" }) =
           <Image className="w-8 h-8 text-gray-400" />
         </div>
       </div>
-      
+
       {/* Project Info */}
       <div className="text-white">
         <h3 className="font-semibold text-sm mb-1">{title}</h3>
@@ -20,4 +28,3 @@ const ProjectCard = ({ title = "Application Name", company = "Company Name" }) =
 }
 
 export default ProjectCard
-

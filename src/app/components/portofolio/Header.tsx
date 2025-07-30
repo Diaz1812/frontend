@@ -1,8 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import { Button } from "../ui/button.jsx";
+// components/Header.tsx
+import Link from "next/link"
+import { Button } from "../ui/button"
+import type { FC } from "react"
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className="w-full bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +42,7 @@ const Header = () => {
                 href="/portofolio"
                 className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
               >
-                portofolio
+                Portfolio
               </Link>
               <Link
                 href="/career"
@@ -70,7 +71,10 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+            <button
+              className="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900"
+              aria-label="Open menu"
+            >
               <svg
                 className="h-6 w-6"
                 fill="none"
@@ -89,7 +93,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

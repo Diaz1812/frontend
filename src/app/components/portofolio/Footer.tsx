@@ -1,6 +1,8 @@
+// components/Footer.tsx
 import { Mail, Instagram, Twitter, Globe } from 'lucide-react'
+import type { FC } from 'react'
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <footer className="bg-gray-800 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +57,7 @@ const Footer = () => {
           <div className="flex items-center mb-4 md:mb-0">
             <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full flex items-center justify-center mr-3">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
+                <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z" />
               </svg>
             </div>
             <span className="text-white font-semibold">MICRODATA</span>
@@ -72,4 +74,3 @@ const Footer = () => {
 }
 
 export default Footer
-

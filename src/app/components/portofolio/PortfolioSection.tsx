@@ -1,16 +1,23 @@
 "use client"
+
 import { useState } from 'react'
-import { Button } from '../ui/button.jsx'
+import { Button } from '../ui/button'
 import { TrendingUp } from 'lucide-react'
 import ProjectCard from './ProjectCard'
 
+type Project = {
+  id: number
+  title: string
+  company: string
+  category: string
+}
+
 const PortfolioSection = () => {
-  const [activeFilter, setActiveFilter] = useState('Semua')
-  
-  const filters = ['Semua', 'Mobile', 'Web', 'Graphic Design']
-  
-  // Sample project data - 8 projects for 4x2 grid
-  const projects = [
+  const [activeFilter, setActiveFilter] = useState<string>('Semua')
+
+  const filters: string[] = ['Semua', 'Mobile', 'Web', 'Graphic Design']
+
+  const projects: Project[] = [
     { id: 1, title: "Application Name", company: "Company Name", category: "Mobile" },
     { id: 2, title: "Application Name", company: "Company Name", category: "Web" },
     { id: 3, title: "Application Name", company: "Company Name", category: "Mobile" },
@@ -20,6 +27,10 @@ const PortfolioSection = () => {
     { id: 7, title: "Application Name", company: "Company Name", category: "Graphic Design" },
     { id: 8, title: "Application Name", company: "Company Name", category: "Web" },
   ]
+
+  const filteredProjects = activeFilter === 'Semua'
+    ? projects
+    : projects.filter(project => project.category === activeFilter)
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -33,7 +44,7 @@ const PortfolioSection = () => {
               yang inovatif, fungsional dan dapat diakses secara konsisten oleh...
             </p>
           </div>
-          
+
           {/* Icon on the right */}
           <div className="ml-8 mt-4">
             <div className="w-16 h-16 border-2 border-gray-300 rounded-lg flex items-center justify-center">
@@ -43,38 +54,37 @@ const PortfolioSection = () => {
         </div>
 
         {/* Selected Project subtitle */}
-       <div className="mb-8">
-  <div className="flex flex-wrap items-center justify-between mb-6">
-    <h2 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'cursive' }}>
-      Selected Project
-    </h2>
+        <div className="mb-8">
+          <div className="flex flex-wrap items-center justify-between mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'cursive' }}>
+              Selected Project
+            </h2>
 
-    {/* Filter Buttons */}
-    <div className="flex flex-wrap gap-3">
-      {filters.map((filter) => (
-        <Button
-          key={filter}
-          onClick={() => setActiveFilter(filter)}
-          variant={activeFilter === filter ? "default" : "outline"}
-          className={`
-            ${activeFilter === filter 
-              ? 'bg-orange-500 hover:bg-orange-600 text-white border-orange-500' 
-              : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-            }
-            px-6 py-2 rounded-full
-          `}
-        >
-          {filter}
-        </Button>
-      ))}
-    </div>
-  </div>
-</div>
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-3">
+              {filters.map((filter) => (
+                <Button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  variant={activeFilter === filter ? "default" : "outline"}
+                  className={`
+                    ${activeFilter === filter 
+                      ? 'bg-orange-500 hover:bg-orange-600 text-white border-orange-500' 
+                      : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
+                    }
+                    px-6 py-2 rounded-full
+                  `}
+                >
+                  {filter}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
 
-
-        {/* Project Grid - 4x2 layout */}
+        {/* Project Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
               title={project.title}
@@ -88,4 +98,3 @@ const PortfolioSection = () => {
 }
 
 export default PortfolioSection
-

@@ -1,7 +1,12 @@
-import { Database, Code, Smartphone, Palette, Globe } from 'lucide-react'
+import { Database, Code, Smartphone, Palette, Globe, LucideIcon } from 'lucide-react'
 
-const TechnologySection = () => {
-  const technologies = [
+type Technology = {
+  icon: LucideIcon
+  name: string
+}
+
+const TechnologySection: React.FC = () => {
+  const technologies: Technology[] = [
     { icon: Code, name: "Development" },
     { icon: Database, name: "MySQL" },
     { icon: Globe, name: "Node.js" },
@@ -15,11 +20,11 @@ const TechnologySection = () => {
         <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
           Teknologi Yang Digunakan
         </h2>
-        
+
         {/* Technology Icons */}
         <div className="flex justify-center items-center space-x-12 flex-wrap gap-8">
           {technologies.map((tech, index) => (
-            <div 
+            <div
               key={index}
               className="flex flex-col items-center group cursor-pointer"
             >
@@ -38,4 +43,3 @@ const TechnologySection = () => {
 }
 
 export default TechnologySection
-
