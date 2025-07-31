@@ -1,9 +1,14 @@
-"use client"
+// src/app/components/portofolio/PortfolioSection.tsx
+"use client" // Penting untuk Next.js App Router jika menggunakan Hooks seperti useState
 
-import { useState } from 'react'
-import { Button } from '../ui/button'
-import { TrendingUp } from 'lucide-react'
-import ProjectCard from './ProjectCard'
+import { useState } from "react"
+// Pastikan path ini benar berdasarkan lokasi file ui/button
+// import { Button } from "../ui/button" // Button tidak digunakan di sini, bisa dihapus jika tidak dipakai
+// Pastikan path ini benar
+import ProjectCard from "./ProjectCard"
+import { Dancing_Script } from "next/font/google"
+
+const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["600"] })
 
 type Project = {
   id: number
@@ -13,9 +18,9 @@ type Project = {
 }
 
 const PortfolioSection = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('Semua')
+  const [activeFilter, setActiveFilter] = useState<string>("Semua")
 
-  const filters: string[] = ['Semua', 'Mobile', 'Web', 'Graphic Design']
+  const filters: string[] = ["Semua", "Mobile", "Web", "Graphic Design"]
 
   const projects: Project[] = [
     { id: 1, title: "Application Name", company: "Company Name", category: "Mobile" },
@@ -28,70 +33,48 @@ const PortfolioSection = () => {
     { id: 8, title: "Application Name", company: "Company Name", category: "Web" },
   ]
 
-  const filteredProjects = activeFilter === 'Semua'
-    ? projects
-    : projects.filter(project => project.category === activeFilter)
+  const filteredProjects =
+    activeFilter === "Semua"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter)
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header with title and icon */}
-        <div className="flex justify-between items-start mb-8">
-          <div className="flex-1">
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">Portofolio</h1>
-            <p className="text-gray-600 text-lg max-w-2xl">
-              Dengan pengalaman 15+ tahun, kami terus menghadirkan produk digital 
-              yang inovatif, fungsional dan dapat diakses secara konsisten oleh...
-            </p>
-          </div>
+    // Menyesuaikan padding-top untuk jarak dari hero section
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[60px] pb-[100px] bg-white">
+      {/* Subtitle and Filter */}
+      <div className="flex flex-col sm:flex-row items-center justify-between mb-12 sm:mb-8 gap-4">
+        <h2 className={`${dancingScript.className} text-3xl text-gray-800 font-semibold`}>
+          Selected Project
+        </h2>
 
-          {/* Icon on the right */}
-          <div className="ml-8 mt-4">
-            <div className="w-16 h-16 border-2 border-gray-300 rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-8 h-8 text-gray-400" />
-            </div>
-          </div>
-        </div>
-
-        {/* Selected Project subtitle */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'cursive' }}>
-              Selected Project
-            </h2>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-3">
-              {filters.map((filter) => (
-                <Button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  variant={activeFilter === filter ? "default" : "outline"}
-                  className={`
-                    ${activeFilter === filter 
-                      ? 'bg-orange-500 hover:bg-orange-600 text-white border-orange-500' 
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400'
-                    }
-                    px-6 py-2 rounded-full
-                  `}
-                >
-                  {filter}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              company={project.company}
-            />
+        <div className="flex flex-wrap justify-center gap-3">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-5 py-1.5 text-sm rounded-full font-medium border
+                ${
+                  activeFilter === filter
+                    ? "bg-orange-500 text-white border-orange-500"
+                    : "bg-white text-orange-500 border-orange-300 hover:bg-orange-50"
+                }`}
+            >
+              {filter}
+            </button>
           ))}
         </div>
+      </div>
+
+      {/* Project Grid */}
+      {/* Mengatur gap horizontal (gap-x) dan vertikal (gap-y) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-[30px] gap-y-[40px] justify-items-center">
+        {filteredProjects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            title={project.title}
+            company={project.company}
+          />
+        ))}
       </div>
     </section>
   )
