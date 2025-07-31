@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
 // Define interface for ServiceCard props
 interface ServiceCardProps {
@@ -13,13 +13,13 @@ interface ServiceCardProps {
 }
 
 // ServiceCard Component
-const ServiceCard: React.FC<ServiceCardProps> = ({ 
-  title, 
-  description, 
-  icon, 
-  number, 
-  buttonText = "Lihat Portfolio", 
-  isEven = false 
+const ServiceCard: React.FC<ServiceCardProps> = ({
+  title,
+  description,
+  icon,
+  number,
+  buttonText = "Lihat Portfolio",
+  isEven = false,
 }) => {
   if (isEven) {
     // Layout untuk nomor genap (02, 04, dst) - konten di kiri, icon di kanan
@@ -30,24 +30,36 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <div className="flex-1">
             <div className="mb-4">
               <span className="text-sm text-gray-500">{number}</span>
-              <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">{title}</h3>
+              <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">
+                {title}
+              </h3>
             </div>
-            
+
             <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-md">
               {description}
             </p>
-            
+
             <button className="px-6 py-2 border border-orange-400 text-orange-500 rounded-full text-sm hover:bg-orange-50 transition-colors">
               {buttonText}
             </button>
           </div>
-          
+
           {/* Icon Right */}
           <div className="ml-8">
             <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center">
               {icon || (
-                <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <svg
+                  className="w-10 h-10 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
                 </svg>
               )}
             </div>
@@ -65,18 +77,30 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <div className="mr-8">
           <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center">
             {icon || (
-              <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <svg
+                className="w-10 h-10 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
             )}
           </div>
         </div>
-        
+
         {/* Content Right */}
         <div className="flex-1 text-right">
           <div className="mb-4">
             <span className="text-sm text-gray-500">{number}</span>
-            <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">{title}</h3>
+            <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">
+              {title}
+            </h3>
           </div>
 
           <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-md ml-auto">
@@ -104,33 +128,39 @@ const Page: React.FC = () => {
     {
       number: "01",
       title: "Mobile Technology",
-      description: "Mengembangkan aplikasi mobile yang responsif dan user-friendly untuk mendukung kemudahan akses bisnis Anda di berbagai perangkat."
+      description:
+        "Mengembangkan aplikasi mobile yang responsif dan user-friendly untuk mendukung kemudahan akses bisnis Anda di berbagai perangkat.",
     },
     {
-      number: "02", 
+      number: "02",
       title: "Digital Marketing",
-      description: "Strategi pemasaran digital yang terkini untuk meningkatkan visibilitas, menjangkau audiens yang tepat, dan mendorong penjualan."
+      description:
+        "Strategi pemasaran digital yang terkini untuk meningkatkan visibilitas, menjangkau audiens yang tepat, dan mendorong penjualan.",
     },
     {
       number: "03",
       title: "Desktop Technology",
-      description: "Pembuatan perangkat lunak desktop yang andal dan aman untuk mendukung kebutuhan operasional bisnis secara maksimal."
+      description:
+        "Pembuatan perangkat lunak desktop yang andal dan aman untuk mendukung kebutuhan operasional bisnis secara maksimal.",
     },
     {
-      number: "04", 
+      number: "04",
       title: "Graphic Desain",
-      description: "Desain gratis kreatif dan profesional untuk memperkuat identitas visual dan citra brand Anda."
+      description:
+        "Desain gratis kreatif dan profesional untuk memperkuat identitas visual dan citra brand Anda.",
     },
     {
       number: "05",
       title: "Interior Design",
-      description: "Perencanaan interior yang fungsional dan estetis untuk menciptakan ruang kerja yang nyaman dan produktif."
+      description:
+        "Perencanaan interior yang fungsional dan estetis untuk menciptakan ruang kerja yang nyaman dan produktif.",
     },
     {
-      number: "06", 
+      number: "06",
       title: "Commercial Photography",
-      description: "Fotografi komersial berkualitas tinggi untuk mendukung promosi produk, profil perusahaan, dan kebutuhan branding visual."
-    }
+      description:
+        "Fotografi komersial berkualitas tinggi untuk mendukung promosi produk, profil perusahaan, dan kebutuhan branding visual.",
+    },
   ];
 
   return (
@@ -140,7 +170,10 @@ const Page: React.FC = () => {
         <section className="bg-white py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-left">
-              <p className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'cursive' }}>
+              <p
+                className="text-2xl font-semibold text-gray-900"
+                style={{ fontFamily: "cursive" }}
+              >
                 Our Service
               </p>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">

@@ -1,34 +1,71 @@
-// components/TeamSection.tsx
-import React from "react";
+import Image from "next/image";
 
-const teamMembers = Array(6).fill({
-  name: "Nama Orang",
-  position: "Jabatan/Posisi",
-});
+const teamMembers = [
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+  {
+    name: "Nama Orang",
+    position: "Jabatan/Posisi",
+    img: "/images/image.jpg",
+  },
+];
 
-const TeamSection = () => {
+export default function TeamSection() {
   return (
-    <section className="bg-gray-50 py-16 px-4">
+    <section className="w-full py-16 px-6 bg-gradient-to-r from-[#FFE9DF] to-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-left max-w-xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-            Jadilah Bagian <span className="italic font-normal">dari</span>
+        {/* Judul */}
+        <div className="text-left mb-10">
+          <h2 className="text-4xl font-bold text-orange-500">
+            Jadilah Bagian{" "}
+            <span className="italic font-normal text-gray-700">dari</span>
           </h2>
-          <p className="text-2xl text-gray-800 mt-1">Tim Kami</p>
-          <p className="mt-4 text-sm sm:text-base text-gray-600">
+          <h3 className="text-3xl text-gray-800 font-light">Tim Kami</h3>
+          <p className="text-gray-600 mt-4 max-w-2xl text-sm">
             Mari bergabung bersama tim yang berkomitmen menciptakan produk
             digital inovatif. Kami membuka kesempatan bagi Anda yang ingin
             tumbuh dan berkontribusi dalam proyek-proyek yang berarti.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 mt-12">
+        {/* Grid Anggota Tim */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-6 justify-items-center">
           {teamMembers.map((member, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <div className="w-24 h-24 bg-gray-300 rounded-full" />
-              <p className="mt-4 font-medium text-sm text-gray-800">
-                {member.name}
-              </p>
+            <div key={index} className="text-center">
+              <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
+                <Image
+                  src={member.img}
+                  alt={member.name}
+                  width={96}
+                  height={96}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <p className="text-sm font-medium mt-2">{member.name}</p>
               <p className="text-xs text-gray-500">{member.position}</p>
             </div>
           ))}
@@ -36,6 +73,4 @@ const TeamSection = () => {
       </div>
     </section>
   );
-};
-
-export default TeamSection;
+}

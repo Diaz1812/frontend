@@ -1,4 +1,4 @@
-import Header from "../components/portofolio/Header";
+import Header from "../components/career/Header";
 import PortfolioSection from "../components/portofolio/PortfolioSection";
 import TechnologySection from "../components/portofolio/TechnologySection";
 import Footer from "../components/portofolio/Footer";

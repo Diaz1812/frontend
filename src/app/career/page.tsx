@@ -1,11 +1,11 @@
-import Header from "@/app/components/career/Header";
-import TeamSection from "@/app/components/career/TeamSection";
-import WhyWorkWithUs from "@/app/components/career/WhyWorkWithUs";
-import CareerOpportunities from "@/app/components/career/CareerOpportunities";
-import Footer from "@/app/components/career/Footer";
-import "../globals.css";
+import Header from "../components/career/Header";
+import WhyWorkWithUs from "../components/career/WhyWorkWithUs";
+import TeamSection from "../components/career/TeamSection";
+import CareerOpportunities from "../components/career/CareerOpportunities";
+import FullTimePositions from "../components/career/FullTimePositions";
+import Footer from "../components/career/Footer";
 
-export default function CareerPage() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -13,6 +13,7 @@ export default function CareerPage() {
         <TeamSection />
         <WhyWorkWithUs />
         <CareerOpportunities />
+        <FullTimePositions />
       </main>
       <Footer />
     </div>

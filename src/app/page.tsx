@@ -1,6 +1,7 @@
 import Header from "./components/home/Header";
 import WhyWorkWithUs from "./components/career/WhyWorkWithUs";
-import CareerOpportunities from "./components/career/CareerOpportunities";
+import TeamSection from "./components/career/TeamSection";
+import FullTimePositions from "./components/career/FullTimePositions";
 import Footer from "./components/career/Footer";
 
 export default function Home() {
@@ -9,7 +10,8 @@ export default function Home() {
       <Header />
       <main>
         <WhyWorkWithUs />
-        <CareerOpportunities />
+        <TeamSection />
+        <FullTimePositions />
       </main>
       <Footer />
     </div>

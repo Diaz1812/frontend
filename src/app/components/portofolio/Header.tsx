@@ -1,7 +1,7 @@
 // components/Header.tsx
-import Link from "next/link"
-import { Button } from "../ui/button"
-import type { FC } from "react"
+import Link from "next/link";
+import { Button } from "../ui/button";
+import type { FC } from "react";
 
 const Header: FC = () => {
   return (
@@ -27,7 +27,7 @@ const Header: FC = () => {
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link
-                href="/"
+                href="/home"
                 className="text-gray-900 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
               >
                 Home
@@ -93,7 +93,7 @@ const Header: FC = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
