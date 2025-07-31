@@ -1,5 +1,9 @@
 // src/app/components/portofolio/Header.tsx
+<<<<<<< HEAD
 "use client"; // Penting untuk Next.js App Router jika ada interaktivitas atau client-side hooks
+=======
+'use client'; // Penting untuk Next.js App Router jika ada interaktivitas atau client-side hooks
+>>>>>>> 61c9d011739bc6d43a0fc55f65fcbdf6a87b55f2
 
 import React from "react";
 import Link from "next/link";
@@ -26,6 +30,7 @@ const Header: React.FC = () => {
 
           {/* Navigation */}
           {/* Mengubah struktur nav agar lebih sederhana dan sesuai dengan layout horizontal */}
+<<<<<<< HEAD
           <nav className="hidden md:flex space-x-6 text-sm font-medium items-center">
             {" "}
             {/* flex dan items-center */}
@@ -51,15 +56,27 @@ const Header: React.FC = () => {
             <Link href="/blog" className="hover:text-orange-500 transition">
               Blog
             </Link>
+=======
+          <nav className="hidden md:flex space-x-6 text-sm font-medium items-center"> {/* flex dan items-center */}
+            <Link href="/" className="hover:text-orange-500 transition">Home</Link>
+            <Link href="/our-service" className="hover:text-orange-500 transition">Our Service</Link>
+            <Link href="/portofolio" className="hover:text-orange-500 transition">Portofolio</Link> {/* Pastikan tulisan 'Portofolio' di sini juga benar */}
+            <Link href="/career" className="hover:text-orange-500 transition">Career</Link>
+            <Link href="/blog" className="hover:text-orange-500 transition">Blog</Link>
+>>>>>>> 61c9d011739bc6d43a0fc55f65fcbdf6a87b55f2
           </nav>
 
           {/* Contact Us Button/Link - Diletakkan sejajar dengan Logo dan Navigasi */}
           {/* Ini adalah elemen terpisah di sisi paling kanan */}
           <div>
+<<<<<<< HEAD
             <Link
               href="/contact"
               className="text-sm text-white hover:text-orange-500 transition px-4 py-2 border border-white rounded-full"
             >
+=======
+            <Link href="/contact" className="text-sm text-white hover:text-orange-500 transition px-4 py-2 border border-white rounded-full">
+>>>>>>> 61c9d011739bc6d43a0fc55f65fcbdf6a87b55f2
               Contact Us
             </Link>
           </div>
@@ -96,4 +113,8 @@ const Header: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Header;
+=======
+export default Header;
+>>>>>>> 61c9d011739bc6d43a0fc55f65fcbdf6a87b55f2
