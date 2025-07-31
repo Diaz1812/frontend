@@ -1,35 +1,32 @@
-<<<<<<< HEAD
-import Header from "../components/career/Header";
-=======
 // src/app/portfolio/page.tsx
-// Pastikan path impor sesuai dengan struktur Anda
-import Header from "../components/portofolio/Header";
->>>>>>> 507997140d621ab12fe7996390358abaae3e71cf
+
+// Mengimpor komponen-komponen yang dibutuhkan
+import Header from "../components/portofolio/Header"; // Header sekarang sudah mencakup Hero Section untuk halaman portofolio
 import PortfolioSection from "../components/portofolio/PortfolioSection";
 import TechnologySection from "../components/portofolio/TechnologySection";
 import Footer from "../components/portofolio/Footer";
-// Import globals.css di _app.tsx (Next.js Pages Router) atau layout.tsx (Next.js App Router)
-// Mengimpornya di sini seperti yang Anda lakukan sebelumnya kadang bisa berfungsi,
-// tapi lebih baik di titik masuk aplikasi yang lebih tinggi.
-// Jika Anda masih ingin mengimpor di sini, ini adalah kode Anda:
+
+// Mengimpor global CSS. Biasanya ini dilakukan di `layout.tsx` atau `_app.tsx` (untuk Pages Router).
+// Jika sudah diimpor di `layout.tsx`, baris ini bisa dihapus untuk menghindari duplikasi impor.
 import "../../app/globals.css";
 
-
-function PortfolioPage() { // Ubah nama fungsi menjadi PascalCase sesuai konvensi komponen React
+// Definisi komponen halaman PortfolioPage
+function PortfolioPage() {
   return (
     <div className="min-h-screen bg-white">
+      {/* Header komponen yang sudah termasuk navigasi dan hero section Portofolio */}
       <Header />
 
-      {/* Main Content */}
+      {/* Konten utama halaman Portofolio */}
       <main>
-        {/* Portfolio Section */}
+        {/* Bagian Selected Project */}
         <PortfolioSection />
 
-        {/* Technology Section */}
+        {/* Bagian Teknologi Yang Digunakan */}
         <TechnologySection />
       </main>
 
-      {/* Footer */}
+      {/* Footer halaman */}
       <Footer />
     </div>
   );

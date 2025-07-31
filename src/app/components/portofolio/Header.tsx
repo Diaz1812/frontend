@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-// components/Header.tsx
-import Link from "next/link";
-import { Button } from "../ui/button";
-import type { FC } from "react";
-=======
 // src/app/components/portofolio/Header.tsx
 'use client'; // Penting untuk Next.js App Router jika ada interaktivitas atau client-side hooks
->>>>>>> 507997140d621ab12fe7996390358abaae3e71cf
 
 import React from 'react';
 import Link from 'next/link';
@@ -15,7 +8,6 @@ import { Image as LucideImage } from 'lucide-react'; // Import LucideImage untuk
 
 const Header: React.FC = () => {
   return (
-    // Menggunakan Fragment <> untuk mengelompokkan Header navigasi dan Hero Section
     <>
       {/* Bagian Header Utama (Navigasi) */}
       <header className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white">
@@ -26,67 +18,24 @@ const Header: React.FC = () => {
             <Image src="/microdata.png" alt="Logo Microdata" width={120} height={48} className="object-contain" />
           </div>
 
-<<<<<<< HEAD
-          {/* Navigation Menu */}
-          <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <Link
-                href="/home"
-                className="text-gray-900 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/service"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Our Service
-              </Link>
-              <Link
-                href="/portofolio"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/career"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Career
-              </Link>
-              <Link
-                href="/blog"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Blog
-              </Link>
-            </div>
-=======
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-6 text-sm font-medium">
+          {/* Mengubah struktur nav agar lebih sederhana dan sesuai dengan layout horizontal */}
+          <nav className="hidden md:flex space-x-6 text-sm font-medium items-center"> {/* flex dan items-center */}
             <Link href="/" className="hover:text-orange-500 transition">Home</Link>
             <Link href="/our-service" className="hover:text-orange-500 transition">Our Service</Link>
-            <Link href="/portofolio" className="hover:text-orange-500 transition">Portofolio</Link>
+            <Link href="/portofolio" className="hover:text-orange-500 transition">Portofolio</Link> {/* Pastikan tulisan 'Portofolio' di sini juga benar */}
             <Link href="/career" className="hover:text-orange-500 transition">Career</Link>
             <Link href="/blog" className="hover:text-orange-500 transition">Blog</Link>
->>>>>>> 507997140d621ab12fe7996390358abaae3e71cf
           </nav>
 
-          {/* Contact Us */}
+          {/* Contact Us Button/Link - Diletakkan sejajar dengan Logo dan Navigasi */}
+          {/* Ini adalah elemen terpisah di sisi paling kanan */}
           <div>
-            <Link href="/contact" className="text-sm text-white hover:text-orange-500 transition">
+            <Link href="/contact" className="text-sm text-white hover:text-orange-500 transition px-4 py-2 border border-white rounded-full">
               Contact Us
             </Link>
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-    </header>
-  );
-};
-
-export default Header;
-=======
       </header>
 
       {/* Bagian Hero / Banner untuk halaman Portofolio */}
@@ -95,7 +44,7 @@ export default Header;
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between w-full h-full">
           {/* Konten Kiri: Judul dan Deskripsi */}
           <div className="flex flex-col items-start text-gray-900 md:w-1/2 lg:w-2/3 pr-0 md:pr-12 text-center md:text-left mb-8 md:mb-0">
-            {/* Mengubah warna teks Portofolio menjadi orange-500 */}
+            {/* Warna teks Portofolio menjadi orange-500 */}
             <h1 className="font-poppins font-bold text-5xl md:text-6xl mb-4 leading-tight text-orange-500">
               Portofolio
             </h1>
@@ -116,4 +65,3 @@ export default Header;
 };
 
 export default Header;
->>>>>>> 507997140d621ab12fe7996390358abaae3e71cf
