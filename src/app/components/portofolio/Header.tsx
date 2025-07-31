@@ -1,99 +1,66 @@
-// components/Header.tsx
-import Link from "next/link"
-import { Button } from "../ui/button"
-import type { FC } from "react"
+// src/app/components/portofolio/Header.tsx
+'use client'; // Penting untuk Next.js App Router jika ada interaktivitas atau client-side hooks
 
-const Header: FC = () => {
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image'; // Import next/image untuk logo
+import { Image as LucideImage } from 'lucide-react'; // Import LucideImage untuk placeholder di hero section
+
+const Header: React.FC = () => {
   return (
-    <header className="w-full bg-white border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    // Menggunakan Fragment <> untuk mengelompokkan Header navigasi dan Hero Section
+    <>
+      {/* Bagian Header Utama (Navigasi) */}
+      <header className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z" />
-                </svg>
-              </div>
-            </div>
+          <div className="flex items-center space-x-2">
+            {/* Pastikan '/microdata.png' ada di folder 'public' */}
+            <Image src="/microdata.png" alt="Logo Microdata" width={120} height={48} className="object-contain" />
           </div>
 
-          {/* Navigation Menu */}
-          <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <Link
-                href="/"
-                className="text-gray-900 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/service"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Our Service
-              </Link>
-              <Link
-                href="/portofolio"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/career"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Career
-              </Link>
-              <Link
-                href="/blog"
-                className="text-gray-600 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
-              >
-                Blog
-              </Link>
-            </div>
+          {/* Navigation */}
+          <nav className="hidden md:flex space-x-6 text-sm font-medium">
+            <Link href="/" className="hover:text-orange-500 transition">Home</Link>
+            <Link href="/our-service" className="hover:text-orange-500 transition">Our Service</Link>
+            <Link href="/portofolio" className="hover:text-orange-500 transition">Portofolio</Link>
+            <Link href="/career" className="hover:text-orange-500 transition">Career</Link>
+            <Link href="/blog" className="hover:text-orange-500 transition">Blog</Link>
           </nav>
 
-          {/* Contact Button */}
-          <div className="hidden md:block">
-            <Button
-              variant="outline"
-              className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400"
-            >
+          {/* Contact Us */}
+          <div>
+            <Link href="/contact" className="text-sm text-white hover:text-orange-500 transition">
               Contact Us
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              className="text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900"
-              aria-label="Open menu"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+            </Link>
           </div>
         </div>
-      </div>
-    </header>
-  )
-}
+      </header>
 
-export default Header
+      {/* Bagian Hero / Banner untuk halaman Portofolio */}
+      <section className="w-full h-[486px] bg-gradient-to-r from-orange-100 to-white flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        {/* Kontainer internal untuk konten (judul, deskripsi, gambar) */}
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between w-full h-full">
+          {/* Konten Kiri: Judul dan Deskripsi */}
+          <div className="flex flex-col items-start text-gray-900 md:w-1/2 lg:w-2/3 pr-0 md:pr-12 text-center md:text-left mb-8 md:mb-0">
+            {/* Mengubah warna teks Portofolio menjadi orange-500 */}
+            <h1 className="font-poppins font-bold text-5xl md:text-6xl mb-4 leading-tight text-orange-500">
+              Portofolio
+            </h1>
+            <p className="font-poppins font-normal text-base md:text-lg leading-normal text-gray-700 max-w-lg" style={{ lineHeight: '120%' }}>
+              Dengan pengalaman 15+ tahun, kami terus menghadirkan produk digital
+              yang relevan, fungsional, dan siap pakai sesuai kebutuhan klien.
+            </p>
+          </div>
+
+          {/* Konten Kanan: Placeholder Gambar */}
+          <div className="flex-shrink-0 w-48 h-48 md:w-60 md:h-60 bg-gray-200 border border-gray-400 rounded-lg flex items-center justify-center">
+            <LucideImage className="w-24 h-24 text-gray-500" />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Header;
