@@ -111,9 +111,7 @@ const Page: React.FC = () => {
         {/* Bagian Hero */}
         <section className="bg-[#0D0D0D] py-20 text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <p className="text-xl md:text-2xl text-[#FD7014] font-semibold mb-2" style={{ fontFamily: "Dancing Script" }}>
-              Our Service
-            </p>
+            <span className="text-2xl text-orange-500 text-500 italic" style={{ fontFamily: 'Dancing Script' }}>Our Service</span><br />
             <h2 className="text-2xl md:text-4xl font-bold text-white">
               Layanan Terbaik untuk Kebutuhan Digital Anda
             </h2>
