@@ -4,7 +4,7 @@ import React from 'react';
 
 const AboutAction: React.FC = () => {
   return (
-    <section className="py-16 px-8 md:px-16 bg-white text-gray-900">
+    <section className="px-[120px] py-16 bg-white text-gray-900">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         {/* Left Content */}
         <div>
@@ -40,16 +40,7 @@ const AboutAction: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Client Logos */}
-      <div className="flex flex-wrap justify-center gap-8 mt-12">
-        {[1, 2, 3, 4, 5].map((i: number) => (
-          <div key={i} className="flex items-center space-x-2 text-gray-700">
-            <span className="text-xl">🖼️</span>
-            <span className="font-semibold">Client Logo</span>
-          </div>
-        ))}
-      </div>
+      
     </section>
   );
 };
