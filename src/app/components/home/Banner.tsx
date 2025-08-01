@@ -8,7 +8,7 @@ const HeroBanner: React.FC = () => {
     <section className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white py-24">
       <div className="container mx-auto px-6">
         <h1 className="text-4xl md:text-5xl leading-tight mb-6">
-          Membangun <span className="text-500 italic" style={{ fontFamily: 'Great Vibes' }}>Solusi Digital</span><br />
+          Membangun <span className="text-500 italic" style={{ fontFamily: 'Dancing Script' }}>Solusi Digital</span><br />
           yang mendukung perkembangan bisnis <span className="text-white">Anda.</span>
         </h1>
         <p className="text-gray-300 max-w-2xl mb-8">

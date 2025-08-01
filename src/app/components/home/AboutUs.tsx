@@ -8,7 +8,7 @@ const AboutAction: React.FC = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         {/* Left Content */}
         <div>
-          <h4 className="text-2xl text-grey italic" style={{ fontFamily: 'Great Vibes' }}>
+          <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>
             About Us
           </h4>
           <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-4">
@@ -23,19 +23,19 @@ const AboutAction: React.FC = () => {
         {/* Right Content - Horizontal Statistics */}
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="text-center">
-            <p className="text-2xl font-bold">15+</p>
+            <p className="text-2xl text-orange-500 font-bold">15+</p>
             <p className="text-sm text-gray-600">Tahun Pengalaman</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">50+</p>
+            <p className="text-2xl text-orange-500 font-bold">50+</p>
             <p className="text-sm text-gray-600">Klien Puas</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">100+</p>
+            <p className="text-2xl text-orange-500 font-bold">100+</p>
             <p className="text-sm text-gray-600">Proyek Tuntas</p>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold">20</p>
+            <p className="text-2xl text-orange-500 font-bold">20</p>
             <p className="text-sm text-gray-600">Tim Profesional</p>
           </div>
         </div>

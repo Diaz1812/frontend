@@ -2,7 +2,7 @@
 
 import React from "react";
 
-// Define interface for ServiceCard props
+// Definisikan antarmuka untuk props ServiceCard
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -10,194 +10,141 @@ interface ServiceCardProps {
   number: string;
   buttonText?: string;
   isEven?: boolean;
+  className?: string; // Tambahkan className sebagai prop opsional
 }
 
-// ServiceCard Component
+// Komponen ServiceCard
 const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
   description,
   icon,
   number,
   buttonText = "Lihat Portfolio",
-  isEven = false,
+  className = "", // Default value untuk className
 }) => {
-  if (isEven) {
-    // Layout untuk nomor genap (02, 04, dst) - konten di kiri, icon di kanan
-    return (
-      <div className="bg-white border border-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
-        <div className="flex items-center justify-between">
-          {/* Content Left */}
-          <div className="flex-1">
-            <div className="mb-4">
-              <span className="text-sm text-gray-500">{number}</span>
-              <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">
-                {title}
-              </h3>
-            </div>
+  return (
+    <div className={`relative bg-transparent flex flex-col gap-4 ${className}`}>
+      {/* Nomor */}
+      <span className="absolute -top-4 left-0 text-white/40 text-sm font-mono">
+        {number}.
+      </span>
 
-            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-md">
-              {description}
-            </p>
-
-            <button className="px-6 py-2 border border-orange-400 text-orange-500 rounded-full text-sm hover:bg-orange-50 transition-colors">
-              {buttonText}
-            </button>
-          </div>
-
-          {/* Icon Right */}
-          <div className="ml-8">
-            <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center">
-              {icon || (
-                <svg
-                  className="w-10 h-10 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              )}
-            </div>
-          </div>
+      {/* Gambar */}
+      <div className="flex justify-end">
+        <div className="w-[220px] h-auto shadow-lg rounded overflow-hidden">
+          {icon || <div className="w-full h-[120px] bg-white" />}
         </div>
       </div>
-    );
-  }
 
-  // Layout untuk nomor ganjil (01, 03, dst) - center aligned
-  return (
-    <div className="bg-white border border-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
-      <div className="flex items-center justify-between">
-        {/* Icon Left */}
-        <div className="mr-8">
-          <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center">
-            {icon || (
-              <svg
-                className="w-10 h-10 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            )}
-          </div>
-        </div>
-
-        {/* Content Right */}
-        <div className="flex-1 text-right">
-          <div className="mb-4">
-            <span className="text-sm text-gray-500">{number}</span>
-            <h3 className="text-xl font-semibold text-gray-900 ml-2 inline">
-              {title}
-            </h3>
-          </div>
-
-          <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-md ml-auto">
-            {description}
-          </p>
-          <button className="px-6 py-2 border border-orange-400 text-orange-500 rounded-full text-sm hover:bg-orange-50 transition-colors">
-            {buttonText}
-          </button>
-        </div>
+      {/* Konten */}
+      <div className="text-left mt-2 px-2">
+        <h3 className="text-white text-xl font-semibold mb-2">{title}</h3>
+        <p className="text-white/70 text-sm leading-relaxed mb-4">
+          {description}
+        </p>
+        <button className="px-5 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
+          {buttonText}
+        </button>
       </div>
     </div>
   );
 };
 
-// Define interface for service data
+// Definisikan antarmuka untuk data layanan
 interface Service {
   number: string;
   title: string;
   description: string;
+  image: string;
 }
 
-// Main Page Component
+// Komponen Utama Halaman
 const Page: React.FC = () => {
-  const services: Service[] = [
+  const services = [
     {
       number: "01",
       title: "Mobile Technology",
       description:
         "Mengembangkan aplikasi mobile yang responsif dan user-friendly untuk mendukung kemudahan akses bisnis Anda di berbagai perangkat.",
+      image: "/images/mobile technology.jpg",
     },
     {
       number: "02",
       title: "Digital Marketing",
       description:
-        "Strategi pemasaran digital yang terkini untuk meningkatkan visibilitas, menjangkau audiens yang tepat, dan mendorong penjualan.",
+        "Strategi pemasaran digital yang terukur untuk meningkatkan visibilitas, menjangkau audiens yang tepat, dan mendorong penjualan.",
+      image: "/images/digital marketing.jpg",
     },
     {
       number: "03",
       title: "Desktop Technology",
       description:
-        "Pembuatan perangkat lunak desktop yang andal dan aman untuk mendukung kebutuhan operasional bisnis secara maksimal.",
+        "Pembuatan aplikasi desktop yang andal dan aman untuk mendukung kemudahan operasional bisnis secara maksimal.",
+      image: "/images/desktop technology.jpeg",
     },
     {
       number: "04",
-      title: "Graphic Desain",
+      title: "Graphic Design",
       description:
-        "Desain gratis kreatif dan profesional untuk memperkuat identitas visual dan citra brand Anda.",
+        "Desain grafis kreatif dan profesional untuk meningkatkan identitas visual dan citra brand Anda.",
+      image: "/images/graphic design.jpg",
     },
     {
       number: "05",
       title: "Interior Design",
       description:
         "Perencanaan interior yang fungsional dan estetis untuk menciptakan ruang kerja yang nyaman dan produktif.",
+      image: "/images/interior design.jpg",
     },
     {
       number: "06",
       title: "Commercial Photography",
       description:
         "Fotografi komersial berkualitas tinggi untuk mendukung promosi produk, profil perusahaan, dan kebutuhan branding visual.",
+      image: "/images/commercial photography.jpg",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0D0D0D]">
       <main className="pt-16">
-        {/* Hero Section */}
-        <section className="bg-white py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-left">
-              <p
-                className="text-2xl font-semibold text-gray-900"
-                style={{ fontFamily: "cursive" }}
-              >
-                Our Service
-              </p>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Kami Hadirkan Teknologi yang Membuat <br />
-                Bisnis Anda Berkembang
-              </h1>
-            </div>
+        {/* Bagian Hero */}
+        <section className="bg-[#0D0D0D] py-20 text-center">
+          <div className="max-w-4xl mx-auto px-4">
+            <p className="text-xl md:text-2xl text-[#FD7014] font-semibold mb-2" style={{ fontFamily: "Dancing Script" }}>
+              Our Service
+            </p>
+            <h2 className="text-2xl md:text-4xl font-bold text-white">
+              Layanan Terbaik untuk Kebutuhan Digital Anda
+            </h2>
           </div>
         </section>
 
-        {/* Services Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="space-y-8">
-              {services.map((service, index) => (
-                <ServiceCard
-                  key={index}
-                  number={service.number}
-                  title={service.title}
-                  description={service.description}
-                  isEven={parseInt(service.number) % 2 === 0}
-                />
-              ))}
-            </div>
+        {/* Bagian Layanan */}
+        <section className="relative bg-[radial-gradient(circle_at_center,rgba(253,112,20,0.2)_0%,rgba(255,215,0,0.1)_10%,transparent_20%),linear-gradient(to_top_left,rgba(253,112,20,0.1)_0%,rgba(255,215,0,0.05)_30%,#0D0D0D_50%)] py-20">
+          {/* Garis Vertikal Tengah dengan Garis Putus-Putus */}
+          <div className="absolute top-0 bottom-0 right-1/2 w-px bg-transparent border-l border-dashed border-white/10 transform translate-x-1/2" />
+          {/* Elemen untuk menciptakan celah antara pasangan */}
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "400px", height: "64px" }} />
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "864px", height: "64px" }} />
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "1328px", height: "64px" }} />
+          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16">
+            {services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                number={service.number}
+                title={service.title}
+                description={service.description}
+                icon={
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-auto object-cover"
+                  />
+                }
+                className={index === 1 || index === 3 || index === 5 ? "mt-40" : ""}
+              />
+            ))}
           </div>
         </section>
       </main>
