@@ -17,7 +17,7 @@ const Header = () => {
 
       {/* Menu Tengah */}
       <nav className="hidden md:flex space-x-6 text-gray-700">
-        <Link href="/home">Home</Link>
+        <Link href="/">home</Link>
         <Link href="/service">Our Service</Link>
         <Link href="/portofolio">Portfolio</Link>
         <Link href="/career" className="border-b-2 border-gray-400">
