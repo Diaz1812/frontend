@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
@@ -13,17 +13,30 @@ const Header: React.FC = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="hidden md:flex space-x-6 text-sm font-medium">
-          <Link href="/" className="hover:text-orange-500 transition">Home</Link>
-          <Link href="/service" className="hover:text-orange-500 transition">Our Service</Link>
-          <Link href="/portofolio" className="hover:text-orange-500 transition">Portofolio</Link>
-          <Link href="/career" className="hover:text-orange-500 transition">Career</Link>
-          <Link href="/blog" className="hover:text-orange-500 transition">Blog</Link>
+        <nav className="hidden md:flex space-x-6  text-sm font-medium text-[#686D76]">
+          <Link href="/" className="hover:text-orange-500 transition">
+            Home
+          </Link>
+          <Link href="/service" className="hover:text-orange-500 transition">
+            Our Service
+          </Link>
+          <Link href="/portofolio" className="hover:text-orange-500 transition">
+            Portofolio
+          </Link>
+          <Link href="/career" className="hover:text-orange-500 transition">
+            Career
+          </Link>
+          <Link href="/blog" className="hover:text-orange-500 transition">
+            Blog
+          </Link>
         </nav>
 
         {/* Contact Us */}
         <div>
-          <Link href="/contact" className="text-sm text-white hover:text-orange-500 transition">
+          <Link
+            href="/contact"
+            className="text-[#686D76] hover:text-orange-500 transition"
+          >
             Contact Us
           </Link>
         </div>
