@@ -8,6 +8,7 @@ type Project = {
   title: string
   company: string
   category: string
+  image: string // Tambahkan properti image
 }
 
 const HomeSection = () => {
@@ -16,12 +17,12 @@ const HomeSection = () => {
   const filters: string[] = ['Semua', 'Mobile', 'Web', 'Graphic Design']
 
   const projects: Project[] = [
-    { id: 1, title: "Application Name", company: "Company Name", category: "Mobile" },
-    { id: 2, title: "Application Name", company: "Company Name", category: "Web" },
-    { id: 3, title: "Application Name", company: "Company Name", category: "Mobile" },
-    { id: 4, title: "Application Name", company: "Company Name", category: "Graphic Design" },
-    { id: 5, title: "Application Name", company: "Company Name", category: "Web" },
-    { id: 6, title: "Application Name", company: "Company Name", category: "Mobile" },
+    { id: 1, title: "Mobile App 1", company: "Company A", category: "Mobile", image: "/projects/mobile1.jpg" },
+    { id: 2, title: "Web App 1", company: "Company B", category: "Web", image: "/projects/web1.jpg" },
+    { id: 3, title: "Mobile App 2", company: "Company C", category: "Mobile", image: "/projects/mobile2.jpg" },
+    { id: 4, title: "Graphic Design", company: "Company D", category: "Graphic Design", image: "/projects/design1.jpg" },
+    { id: 5, title: "Web App 2", company: "Company E", category: "Web", image: "/projects/web2.jpg" },
+    { id: 6, title: "Mobile App 3", company: "Company F", category: "Mobile", image: "/projects/mobile3.jpg" },
   ]
 
   return (
@@ -31,7 +32,7 @@ const HomeSection = () => {
         <div className="flex justify-between items-start mb-8">
           <div className="flex-1">
             <h2
-              className="text-4xl text-black italic"
+              className="text-4xl text-orange-500 italic"
               style={{ fontFamily: 'Great Vibes' }}
             >
               Portofolio
@@ -44,7 +45,10 @@ const HomeSection = () => {
           {/* Tombol & Icon */}
           <div className="flex flex-col items-end gap-4">
             <Button
-              className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium py-2 px-5 rounded-full transition" variant={undefined} size={undefined}            >
+              className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium py-2 px-5 rounded-full transition"
+              variant={undefined}
+              size={undefined}
+            >
               Lihat lainnya
             </Button>
           </div>
@@ -61,10 +65,12 @@ const HomeSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
             >
-              <div className="aspect-square bg-gray-700 rounded-md flex items-center justify-center hover:scale-105 transition-transform duration-300">
-                <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 15V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h4l2 3 2-3h6a2 2 0 002-2z" />
-                </svg>
+              <div className="aspect-square bg-gray-100 rounded-md overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
               </div>
               <div className="mt-4 text-center">
                 <h3 className="font-semibold text-sm text-gray-800">{project.title}</h3>

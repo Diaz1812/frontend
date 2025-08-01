@@ -47,9 +47,9 @@ const services: Service[] = [
 
 const OurServices: React.FC = () => {
   return (
-    <section className="py-16 px-6 md:px-16 bg-gray-100 text-gray-900">
+    <section className="py-16 px-6 md:px-16 bg-orange-50 text-gray-900">
       <div className="max-w-6xl mx-auto text-center">
-        <h4 className="text-2xl text-grey italic" style={{ fontFamily: 'Great Vibes' }}>
+        <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Great Vibes' }}>
           Our Service
         </h4>
         <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-10">
@@ -60,7 +60,7 @@ const OurServices: React.FC = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="p-6 border-b border-r border-gray-300 text-left space-y-2 bg-white"
+              className="p-6 border-b border-r border-gray-300 text-left space-y-2 "
             >
               <p className="text-sm font-semibold text-gray-500">{service.id}</p>
               <h3 className="text-lg font-semibold">{service.title}</h3>
