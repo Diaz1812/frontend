@@ -9,60 +9,32 @@ import { Image as LucideImage } from "lucide-react"; // Import LucideImage untuk
 const Header: React.FC = () => {
   return (
     <>
-      {/* Bagian Header Utama (Navigasi) */}
-      <header className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            {/* Pastikan '/microdata.png' ada di folder 'public' */}
-            <Image
-              src="/microdata.png"
-              alt="Logo Microdata"
-              width={120}
-              height={48}
-              className="object-contain"
-            />
-          </div>
+      <header className="bg-gradient-to-r from-orange-100 to-white shadow-md py-4 px-8 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <img
+            src="/microdata.png"
+            alt="Microdata Logo"
+            className="w-30 h-12 mb-10 md:mb-0"
+          />
+        </div>
 
-          {/* Navigation */}
-          {/* Mengubah struktur nav agar lebih sederhana dan sesuai dengan layout horizontal */}
-          <nav className="hidden md:flex space-x-6 text-sm font-medium items-center">
-            {" "}
-            {/* flex dan items-center */}
-            <Link href="/" className="hover:text-orange-500 transition">
-              Home
-            </Link>
-            <Link
-              href="/our-service"
-              className="hover:text-orange-500 transition"
-            >
-              Our Service
-            </Link>
-            <Link
-              href="/portofolio"
-              className="hover:text-orange-500 transition"
-            >
-              Portofolio
-            </Link>{" "}
-            {/* Pastikan tulisan 'Portofolio' di sini juga benar */}
-            <Link href="/career" className="hover:text-orange-500 transition">
-              Career
-            </Link>
-            <Link href="/blog" className="hover:text-orange-500 transition">
-              Blog
-            </Link>
-          </nav>
+        {/* Menu Tengah */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
+          <Link href="/">Home</Link>
+          <Link href="/service">Our Service</Link>
+          <Link href="/portofolio">Portofolio</Link>
+          <Link href="/career" className="border-b-2 border-gray-400">
+            Carrier
+          </Link>
+          <Link href="/blog">Blog</Link>
+        </nav>
 
-          {/* Contact Us Button/Link - Diletakkan sejajar dengan Logo dan Navigasi */}
-          {/* Ini adalah elemen terpisah di sisi paling kanan */}
-          <div>
-            <Link
-              href="/contact"
-              className="text-sm text-white hover:text-orange-500 transition px-4 py-2 border border-white rounded-full"
-            >
-              Contact Us
-            </Link>
-          </div>
+        {/* Contact Us */}
+        <div className="hidden md:block">
+          <Link href="/contact">
+            <span className="text-gray-700">Contact Us</span>
+          </Link>
         </div>
       </header>
 
