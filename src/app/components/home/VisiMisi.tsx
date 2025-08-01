@@ -13,8 +13,8 @@ export default function VisiMisi() {
       <div className="flex gap-[100px]">
         {/* Visi */}
         <div className="flex-1">
-          <h2 className="text-xl font-serif italic mb-4">Visi</h2>
-          <p className="text-sm leading-relaxed">
+          <h2 className="text-xl ml-15 font-serif italic mb-4">Visi</h2>
+          <p className="text-sm ml-15 leading-relaxed">
             Memberikan pelanggan solusi layanan jasa dan produk terbaik dengan mengutamakan kepuasan pelanggan, 
             yang menjadikan PT. Micro Data Indonesia sebagai pilihan utama dalam layanan jasa Teknologi Informasi.
           </p>

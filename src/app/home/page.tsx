@@ -7,7 +7,7 @@ import HomeSection from '../components/home/Portofolio'
 import WhyMicrodata from '../components/home/WhyMicrodata'
 import ClientExperience from '../components/home/OurClient'
 import ProcessSection from '../components/home/OurProcess'
-import ContactSection from '../components/home/ContactUs'
+import VisiMisi from '../components/home/VisiMisi'
 import '../../app/globals.css'
 
 
@@ -27,6 +27,9 @@ function HomePage() {
       {/* AboutSection */}
         <AboutSection />
 
+      {/* VisiMisi */}
+        <VisiMisi />
+
       {/* OurService */}
         <OurService />
 
@@ -41,9 +44,6 @@ function HomePage() {
 
         {/* ProcessSection */}
         <ProcessSection />
-
-        {/* ContactSection */}
-        <ContactSection />
 
       </main>
 
