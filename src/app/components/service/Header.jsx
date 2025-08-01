@@ -1,62 +1,49 @@
 "use client";
 
-import { Button } from '../ui/button';
-import React from 'react';
+import React from "react";
+import Link from "next/link";
+import { Button } from "../ui/button";
 
 const Header = () => {
   return (
     <header className="w-full bg-[#1A1A1A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <img
-                src="microdata.png"
-                alt="Logo"
-                className="w-24 h-24 object-contain"
-              />
-            </div>
-          </div>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <img
+            src="/microdata.png"
+            alt="Logo"
+            className="w-[120px] h-auto object-contain"
+          />
+        </div>
 
-          {/* Navigation Menu */}
-          <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <a href="/home" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
-                Home
-              </a>
-              <a href="/service" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
-                Our Service
-              </a>
-              <a href="/#portofolio" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
-                Portfolio
-              </a>
-              <a href="/career" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
-                Career
-              </a>
-              <a href="/blog" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
-                Blog
-              </a>
-            </div>
-          </nav>
+        {/* Navigation */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
+          <Link href="/" className="hover:text-orange-500 transition">
+            Home
+          </Link>
+          <Link href="/service" className="hover:text-orange-500 transition">
+            Our Service
+          </Link>
+          <Link href="/portofolio" className="hover:text-orange-500 transition">
+            Portofolio
+          </Link>
+          <Link href="/career" className="hover:text-orange-500 transition">
+            Career
+          </Link>
+          <Link href="/blog" className="hover:text-orange-500 transition">
+            Blog
+          </Link>
+        </nav>
 
-          {/* Contact Button */}
-          <div className="hidden md:block">
-            <Button 
-              className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white"
-            >
-              Contact Us
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button className="text-[#666666] hover:text-white focus:outline-none focus:text-white">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
+        {/* Contact Us */}
+        <div>
+          <Link
+            href="/contact"
+            className="text-[#686D76] hover:text-orange-500 transition"
+          >
+            Contact Us
+          </Link>
         </div>
       </div>
     </header>
