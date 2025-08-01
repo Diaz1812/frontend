@@ -55,7 +55,7 @@ const Footer = () => {
           <div className="flex items-center mb-4 md:mb-0">
             <div className="flex-shrink-0">
               <img
-                src="/images/logomicrodata.jpg"
+                src="microdata.png"
                 alt="Microdata Logo"
                 className="w-24 h-16 object-contain" // Lebar 96 piksel, tinggi dibatasi 64 piksel
               />
