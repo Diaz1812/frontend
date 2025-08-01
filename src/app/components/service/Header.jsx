@@ -12,7 +12,7 @@ const Header = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <img
-                src="/images/logomicrodata.jpg"
+                src="microdata.png"
                 alt="Logo"
                 className="w-24 h-24 object-contain"
               />
@@ -22,7 +22,7 @@ const Header = () => {
           {/* Navigation Menu */}
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a href="/" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
+              <a href="/home" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
                 Home
               </a>
               <a href="/service" className="text-[#666666] focus:underline px-3 py-2 text-sm font-medium transition-colors hover:text-white">
