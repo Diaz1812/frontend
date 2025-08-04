@@ -1,4 +1,4 @@
-import { Mail, Instagram, Twitter, Globe } from 'lucide-react';
+import { Mail, Instagram, Twitter, Globe } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -9,8 +9,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Bandar Lampung</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Jl. Endro Suratmin No. 53A, Way Dadi,<br />
-              Kec. Sukarame, Kota Bandar Lampung,<br />
+              Jl. Endro Suratmin No. 53A, Way Dadi,
+              <br />
+              Kec. Sukarame, Kota Bandar Lampung,
+              <br />
               Lampung 35131
             </p>
           </div>
@@ -19,8 +21,10 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Jakarta</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Jl. Endro Suratmin No. 53A, Way Dadi,<br />
-              Kec. Sukarame, Kota Bandar Lampung,<br />
+              Jl. Endro Suratmin No. 53A, Way Dadi,
+              <br />
+              Kec. Sukarame, Kota Bandar Lampung,
+              <br />
               Lampung 35131
             </p>
           </div>
@@ -31,19 +35,27 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-300 text-sm">microdataindonesia@gmail.com</span>
+                <span className="text-gray-300 text-sm">
+                  microdataindonesia@gmail.com
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Instagram className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-300 text-sm">microdataindonesia</span>
+                <span className="text-gray-300 text-sm">
+                  microdataindonesia
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Twitter className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-300 text-sm">microdataindonesia</span>
+                <span className="text-gray-300 text-sm">
+                  microdataindonesia
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Globe className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-300 text-sm">microdataindonesia</span>
+                <span className="text-gray-300 text-sm">
+                  microdataindonesia
+                </span>
               </div>
             </div>
           </div>
