@@ -10,7 +10,9 @@ import ProcessSection from '../components/home/OurProcess'
 import VisiMisi from '../components/home/VisiMisi'
 import LogoSlide from '../components/home/LogoSlide'
 import Teknologi from '../components/home/Teknologi'
+import ContactUs from '../components/home/ContactUs'
 import '../../app/globals.css'
+import LiniBisnis from '../components/home/LiniBisnis'
 
 
 
@@ -52,6 +54,12 @@ function HomePage() {
 
         {/* ProcessSection */}
         <ProcessSection />
+
+        {/* ContactUs */}
+        <ContactUs />
+
+        {/* LiniBisnis */}
+        <LiniBisnis />
 
       </main>
 

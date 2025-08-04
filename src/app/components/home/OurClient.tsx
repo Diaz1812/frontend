@@ -1,51 +1,109 @@
-// components/ClientExperience.tsx
+"use client"
+import { useState } from "react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
-import React from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+type Testimonial = {
+  id: number
+  message: string
+  name: string
+  position: string
+}
 
-const ClientExperience: React.FC = () => {
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    message:
+      "Lorem ipsum dolor sit amet consectetur. Arcu justo dolor curabitur facilisis. Malesuada fames magna cursus ultrices sit amet ultricies.",
+    name: "Udin Kasbon",
+    position: "Jabatan",
+  },
+  {
+    id: 2,
+    message:
+      "Pelayanan sangat baik dan profesional. Sangat puas dengan hasil kerjanya!",
+    name: "Siti Joko",
+    position: "Manager",
+  },
+  {
+    id: 3,
+    message:
+      "Layanan sangat memuaskan, saya pasti akan kembali.",
+    name: "Rudi Hartono",
+    position: "Direktur",
+  },
+  {
+    id: 4,
+    message:
+      "Timnya sangat responsif dan cepat dalam menyelesaikan masalah.",
+    name: "Tini Wulandari",
+    position: "Customer",
+  },
+]
+
+export default function OurClient() {
+  const [startIndex, setStartIndex] = useState(0)
+  const itemsPerPage = 2
+
+  const handleNext = () => {
+    setStartIndex((prev) =>
+      prev + itemsPerPage < testimonials.length ? prev + itemsPerPage : 0
+    )
+  }
+
+  const handlePrev = () => {
+    setStartIndex((prev) =>
+      prev - itemsPerPage >= 0
+        ? prev - itemsPerPage
+        : testimonials.length - itemsPerPage
+    )
+  }
+
+  const visibleTestimonials = testimonials.slice(startIndex, startIndex + itemsPerPage)
+
   return (
-    <section className="flex justify-center items-center bg-white">
-      <div className="w-[1200px] h-[500px] px-12 py-16 flex flex-col justify-between">
-        {/* Header */}
-        <div>
-          <p className="italic text-gray-600 mb-1">Our Client</p>
-          <h2 className="text-3xl font-bold text-gray-900 leading-tight">
-            Pengalaman Klien
-            <br />
-            <span className="font-normal">Bersama Kami</span>
-          </h2>
+    <section className="bg-white pt-[160px] pr-[120px] pb-[160px] pl-[120px]">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <div className="mb-10">
+          <p className="text-2xl text-orange-500 italic font-medium" style={{ fontFamily: "Dancing Script" }}>
+            Our Client
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Pengalaman Klien</h2>
+          <p className="text-gray-500 text-lg">Bersama Kami</p>
         </div>
 
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
-          {[1, 2].map((_, index: number) => (
-            <div key={index} className="space-y-6 border-b pb-6">
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 gap-[120px]">
+          {visibleTestimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-white">
               <p className="text-gray-700 text-sm leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur. Arcu justo dolor
-                curabitur facilisis. Malesuada fames magna cursus ultrices sit
-                amet ultricies.
+                {testimonial.message}
               </p>
-              <div>
-                <p className="font-bold text-sm text-gray-900">Udin Kasbon</p>
-                <p className="text-sm text-gray-900">Jabatan</p>
+              <div className="mt-6">
+                <h4 className="font-semibold text-sm text-gray-800">{testimonial.name}</h4>
+                <p className="text-xs text-gray-500">{testimonial.position}</p>
+                <hr className="mt-2 border-gray-200" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Navigasi Panah */}
-        <div className="flex justify-end space-x-4 mt-10">
-          <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
-            <ArrowLeft size={16} />
+        {/* Tombol Navigasi */}
+        <div className="flex justify-end mt-10 gap-4">
+          <button
+            onClick={handlePrev}
+            className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+          >
+            <ArrowLeft size={18} />
           </button>
-          <button className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
-            <ArrowRight size={16} />
+          <button
+            onClick={handleNext}
+            className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+          >
+            <ArrowRight size={18} />
           </button>
         </div>
       </div>
     </section>
-  );
-};
-
-export default ClientExperience;
+  )
+}

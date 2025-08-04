@@ -44,7 +44,7 @@ const ContactSection: React.FC = () => {
 
         {/* Text */}
         <div className="w-1/3 text-left">
-          <p className="italic text-gray-700 mb-1">Contact Us</p>
+          <p className="italic text-orange-500 mb-1">Contact Us</p>
           <h2 className="text-3xl font-bold text-gray-900 leading-snug">
             Konsultasikan <br />
             <span className="font-normal">Rencana Proyek Anda</span>

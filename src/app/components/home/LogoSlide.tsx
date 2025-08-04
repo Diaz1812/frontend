@@ -2,15 +2,15 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    "/logos/komdigi.png",
-    "/logos/Komisi.png",
-    "/logos/kementrian.png",
-    "/logos/Kemendikbud.webp",
-    "/logos/Kemenkes.png",
-    "/logos/Selatan.png",
-    "/logos/waykanan.png",
-    "/logos/kadin.png",
-    // Tambahkan path logo lainnya di sini
+    { src: "/logos/komdigi.png", width: 200, height: 200 },
+    { src: "/logos/Komisi.png", width: 150, height: 190 },
+    { src: "/logos/kementrian.png", width: 110, height: 195 },
+    { src: "/logos/Kemendikbud.webp", width: 140, height: 180 },
+    { src: "/logos/Kemenkess.png", width: 250, height: 200 },
+    { src: "/logos/Selatan.png", width: 90, height: 190 },
+    { src: "/logos/waykanan.png", width: 210, height: 200 },
+    { src: "/logos/kadinn.png", width: 200 , height: 200 },
+    // Tambahkan logo lain di sini dengan width & height
   ];
 
   return (
@@ -20,12 +20,16 @@ export default function LogoSlide() {
     >
       <div className="overflow-x-auto h-full flex items-center px-8">
         <div className="flex gap-10">
-          {logos.map((src, index) => (
+          {logos.map((logo, index) => (
             <img
               key={index}
-              src={src}
+              src={logo.src}
               alt={`Logo ${index}`}
-              className="h-36 w-auto object-contain"
+              style={{
+                width: `${logo.width}px`,
+                height: `${logo.height}px`,
+                objectFit: "contain",
+              }}
             />
           ))}
         </div>

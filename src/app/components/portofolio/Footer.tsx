@@ -10,7 +10,9 @@ const Footer: FC = () => {
       className="relative w-full text-white py-16 px-6 bg-cover bg-center"
       style={{ backgroundImage: "url('/images/bg_carrier.png')" }}
     >
+      {/* Overlay agar teks tetap terbaca - Menyelesaikan konflik dengan menyisakan satu elemen yang benar */}
       <div className="bg-black bg-opacity-80 absolute inset-0 z-0"></div>
+      
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Section - Grid Locations & Contact */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
