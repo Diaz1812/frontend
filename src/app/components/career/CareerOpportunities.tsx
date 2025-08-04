@@ -2,8 +2,17 @@ import { ArrowRight } from "lucide-react";
 
 export default function CareerSection() {
   return (
-    <section className="w-full bg-black text-white py-20 px-6 relative">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-black text-white py-20 px-6 relative overflow-hidden">
+      {/* Gradasi terang di tengah bawah */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, rgba(255, 160, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%)",
+        }}
+      ></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* === Desktop Layout === */}
         <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
           {/* Konten Kiri */}
@@ -54,7 +63,6 @@ export default function CareerSection() {
 
         {/* === Mobile Layout === */}
         <div className="block md:hidden">
-          {/* Judul dan Deskripsi */}
           <h2 className="text-3xl font-bold text-orange-500 mb-2">
             Peluang Karier{" "}
             <span className="text-white font-normal">Di PT. Microdata</span>
@@ -65,7 +73,6 @@ export default function CareerSection() {
             dengan minat dan keahlianmu!
           </p>
 
-          {/* Program Magang + Gambar (sejajar) */}
           <div className="flex gap-4 items-start mb-6">
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-orange-500 mb-2">
@@ -78,13 +85,11 @@ export default function CareerSection() {
               </p>
             </div>
 
-            {/* Gambar Kecil */}
             <div className="w-24 h-24 bg-gray-900/20 border border-dashed border-gray-700 rounded-lg flex items-center justify-center">
               <span className="text-xs text-gray-500">[Gambar]</span>
             </div>
           </div>
 
-          {/* Persyaratan */}
           <h4 className="text-md font-semibold text-orange-400 mb-2">
             Requirements
           </h4>

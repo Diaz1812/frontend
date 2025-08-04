@@ -7,7 +7,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-gradient-to-r from-orange-100 to-white shadow-md py-4 px-6 flex justify-between items-center">
+    <header
+      className="shadow-md py-4 px-6 flex justify-between items-center"
+      style={{ background: "linear-gradient(to right, #fbe3d6ff, #FFFFFF)" }}
+    >
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -71,7 +74,7 @@ const Header = () => {
 
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
-        <Link href="/contact" className="hover:text-orange-500 transition">
+        <Link href="/contact">
           <span className="text-gray-700">Contact Us</span>
         </Link>
       </div>
