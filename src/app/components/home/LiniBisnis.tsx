@@ -9,9 +9,10 @@ export default function LiniBisnis() {
         Microdata terus berkembang melalui berbagai lini usaha yang saling mendukung untuk memenuhi kebutuhan bisnis dan personal Anda secara terintegrasi.
       </p>
 
-      <div className="flex gap-[120px] flex-wrap">
+      {/* Responsif wrapper */}
+      <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-start lg:gap-[120px]">
         {/* Microdata Towing */}
-        <div className="max-w-xs space-y-4">
+        <div className="max-w-xs w-full space-y-4">
           <div className="flex items-center gap-3">
             <FaTools className="text-xl text-gray-800" />
             <span className="text-lg font-semibold text-gray-900">Microdata Towing</span>
@@ -23,7 +24,7 @@ export default function LiniBisnis() {
         </div>
 
         {/* Microdata Retail */}
-        <div className="max-w-xs space-y-4">
+        <div className="max-w-xs w-full space-y-4">
           <div className="flex items-center gap-3">
             <FaLock className="text-xl text-gray-800" />
             <span className="text-lg font-semibold text-gray-900">Microdata Retail</span>
@@ -35,12 +36,12 @@ export default function LiniBisnis() {
         </div>
 
         {/* Microdata GPM Internet */}
-        <div className="max-w-xs space-y-4">
+        <div className="max-w-xs w-full space-y-4">
           <div className="flex items-center gap-3">
             <FaGlobe className="text-xl text-gray-800" />
             <span className="text-lg font-semibold text-gray-900">Microdata GPM Internet</span>
           </div>
-          <p className="text-sm text-gray-600">Internet cepat & stabil untuk rumah dan kantor.</p>
+          <p className="text-sm text-gray-600">Internet cepat & stabil untuk rumah dan kantor agar lebih efisien.</p>
           <button className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-5 rounded-full text-sm transition">
             Kunjungi Situs ↗
           </button>
