@@ -4,7 +4,7 @@ import React from 'react';
 
 const AboutAction: React.FC = () => {
   return (
-    <section className="px-[120px] py-16 bg-white text-gray-900">
+    <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
         {/* Left Content */}
         <div>
@@ -20,27 +20,27 @@ const AboutAction: React.FC = () => {
           </p>
         </div>
 
-        {/* Right Content - Horizontal Statistics */}
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <div className="text-center">
+        {/* Right Content - Statistik Sebaris */}
+        {/*grid grid-cols-2 gap-6 md:flex md:flex-wrap md:items-center md:justify-between*/}
+        <div className="flex flex-wrap justify-between md:items-center gap-6 w-full">
+          <div className="text-center min-w-[120px] flex-1">
             <p className="text-2xl text-orange-500 font-bold">15+</p>
             <p className="text-sm text-gray-600">Tahun Pengalaman</p>
           </div>
-          <div className="text-center">
+          <div className="text-center min-w-[120px] flex-1">
             <p className="text-2xl text-orange-500 font-bold">50+</p>
             <p className="text-sm text-gray-600">Klien Puas</p>
           </div>
-          <div className="text-center">
+          <div className="text-center min-w-[120px] flex-1">
             <p className="text-2xl text-orange-500 font-bold">100+</p>
             <p className="text-sm text-gray-600">Proyek Tuntas</p>
           </div>
-          <div className="text-center">
+          <div className="text-center min-w-[120px] flex-1">
             <p className="text-2xl text-orange-500 font-bold">20</p>
             <p className="text-sm text-gray-600">Tim Profesional</p>
           </div>
         </div>
       </div>
-      
     </section>
   );
 };
