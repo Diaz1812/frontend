@@ -109,9 +109,9 @@ const Page: React.FC = () => {
     <div className="min-h-screen bg-[#0D0D0D]">
       <main className="pt-16">
         {/* Bagian Hero */}
-        <section className="bg-[#0D0D0D] py-20 text-center">
+        <section className="bg-[#0D0D0D] py-20 text-left md:text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <span className="text-2xl text-orange-500 text-500 italic" style={{ fontFamily: 'Dancing Script' }}>Our Service</span><br />
+            <span className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>Our Service</span><br />
             <h2 className="text-2xl md:text-4xl font-bold text-white">
               Layanan Terbaik untuk Kebutuhan Digital Anda
             </h2>
@@ -121,11 +121,11 @@ const Page: React.FC = () => {
         {/* Bagian Layanan */}
         <section className="relative bg-[radial-gradient(circle_at_center,rgba(253,112,20,0.2)_0%,rgba(255,215,0,0.1)_10%,transparent_20%),linear-gradient(to_top_left,rgba(253,112,20,0.1)_0%,rgba(255,215,0,0.05)_30%,#0D0D0D_50%)] py-20">
           {/* Garis Vertikal Tengah dengan Garis Putus-Putus */}
-          <div className="absolute top-0 bottom-0 right-1/2 w-px bg-transparent border-l border-dashed border-white/10 transform translate-x-1/2" />
+          <div className="absolute top-0 bottom-0 right-1/2 w-px bg-transparent border-l border-dashed border-white/10 transform translate-x-1/2 md:block hidden" />
           {/* Elemen untuk menciptakan celah antara pasangan */}
-          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "400px", height: "64px" }} />
-          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "864px", height: "64px" }} />
-          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2" style={{ top: "1328px", height: "64px" }} />
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2 md:block hidden" style={{ top: "400px", height: "64px" }} />
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2 md:block hidden" style={{ top: "864px", height: "64px" }} />
+          <div className="absolute right-1/2 w-1 bg-[#0D0D0D] transform translate-x-1/2 md:block hidden" style={{ top: "1328px", height: "64px" }} />
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16">
             {services.map((service, index) => (
               <ServiceCard
@@ -140,7 +140,7 @@ const Page: React.FC = () => {
                     className="w-full h-auto object-cover"
                   />
                 }
-                className={index === 1 || index === 3 || index === 5 ? "mt-40" : ""}
+                className={index === 1 || index === 3 || index === 5 ? "mt-40 md:mt-0" : ""}
               />
             ))}
           </div>
