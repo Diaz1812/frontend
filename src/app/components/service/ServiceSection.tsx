@@ -29,7 +29,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {isEven ? (
         <span className="text-white/40 text-sm font-mono mb-2">{number}.</span>
       ) : (
-        <span className="text-white/40 text-sm font-mono mt-20">{number}.</span>
+        <span className="text-white/40 text-sm font-mono mt-4 md:mt-40">{number}.</span>
       )}
 
       {/* Gambar */}
@@ -141,9 +141,7 @@ const Page: React.FC = () => {
                     src={service.image}
                     alt={service.title}
                     className="w-full h-auto object-cover"
-                  />
-                }
-                className={index === 1 || index === 3 || index === 5 ? "mt-40 md:mt-0" : ""}
+                  />}
                 isEven={index % 2 === 0}
               />
             ))}
