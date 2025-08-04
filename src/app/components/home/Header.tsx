@@ -7,9 +7,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    /* className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white" */
-   <header className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 shadow-md py-4 px-6 flex justify-between items-center border-b border-gray-600">
-
+    <header className="bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-6 flex justify-between items-center border-b border-gray-600">
+      
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -25,7 +24,6 @@ const Header = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="text-gray-700 focus:outline-none"
         >
-          {/* Icon Hamburger */}
           <svg
             className="w-6 h-6"
             fill="none"
@@ -64,45 +62,47 @@ const Header = () => {
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
         <Link href="/contact">
-          <span className="text-gray-700">Contact Us</span>
+          <span className="text-gray-300 hover:text-white font-medium">
+            Contact Us
+          </span>
         </Link>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="absolute top-16 right-6 bg-white shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden">
+        <div className="absolute top-16 right-6 bg-gray-100 shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden text-gray-700">
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="text-gray-700 hover:text-orange-500 font-medium"
+            className="hover:text-orange-500 font-medium"
           >
             Home
           </Link>
           <Link
             href="/service"
             onClick={() => setIsOpen(false)}
-            className="text-gray-700 hover:text-orange-500 font-medium"
+            className="hover:text-orange-500 font-medium"
           >
             Our Service
           </Link>
           <Link
             href="/portofolio"
             onClick={() => setIsOpen(false)}
-            className="text-gray-700 hover:text-orange-500 font-medium"
+            className="hover:text-orange-500 font-medium"
           >
             Portofolio
           </Link>
           <Link
             href="/career"
             onClick={() => setIsOpen(false)}
-            className="text-gray-700 hover:text-orange-500 font-medium"
+            className="hover:text-orange-500 font-medium"
           >
             Career
           </Link>
           <Link
             href="/blog"
             onClick={() => setIsOpen(false)}
-            className="text-gray-700 hover:text-orange-500 font-medium"
+            className="hover:text-orange-500 font-medium"
           >
             Blog
           </Link>
