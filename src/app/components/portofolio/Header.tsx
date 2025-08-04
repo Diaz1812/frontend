@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             <Image
               src="/microdata.png"
               alt="Microdata Logo"
-              width={150} // Ukuran logo disesuaikan
+              width={150}
               height={60}
               className="w-auto h-10 md:h-12"
               priority
@@ -35,10 +35,12 @@ const Header: React.FC = () => {
 
         {/* Menu Tengah - Desktop */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
+          {/* Semua Link Navigasi */}
           <Link href="/" className="hover:text-orange-500 transition-colors">Home</Link>
           <Link href="/service" className="hover:text-orange-500 transition-colors">Our Service</Link>
           <Link href="/portofolio" className="hover:text-orange-500 transition-colors">Portofolio</Link>
-          <Link href="/career" className="hover:text-orange-500 transition-colors">Blog</Link>
+          <Link href="/career" className="hover:text-orange-500 transition-colors">Career</Link> {/* Link Career ditambahkan kembali */}
+          <Link href="/blog" className="hover:text-orange-500 transition-colors">Blog</Link>
         </nav>
 
         {/* Contact Us - Desktop */}
@@ -56,7 +58,8 @@ const Header: React.FC = () => {
             <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link href="/service" onClick={() => setIsMenuOpen(false)}>Our Service</Link>
             <Link href="/portofolio" onClick={() => setIsMenuOpen(false)}>Portofolio</Link>
-            <Link href="/career" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+            <Link href="/career" onClick={() => setIsMenuOpen(false)}>Career</Link>
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
             <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="mt-4 px-4 py-2 border border-gray-400 rounded-lg">
               Contact Us
             </Link>
