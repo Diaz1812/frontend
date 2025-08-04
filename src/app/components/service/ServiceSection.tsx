@@ -21,13 +21,16 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   number,
   buttonText = "Lihat Portfolio",
   className = "", // Default value untuk className
+  isEven,
 }) => {
   return (
     <div className={`relative bg-transparent flex flex-col gap-4 ${className}`}>
       {/* Nomor */}
-      <span className="absolute -top-4 left-0 text-white/40 text-sm font-mono">
-        {number}.
-      </span>
+      {isEven ? (
+        <span className="text-white/40 text-sm font-mono mb-2">{number}.</span>
+      ) : (
+        <span className="text-white/40 text-sm font-mono mt-20">{number}.</span>
+      )}
 
       {/* Gambar */}
       <div className="flex justify-end">
@@ -111,7 +114,7 @@ const Page: React.FC = () => {
         {/* Bagian Hero */}
         <section className="bg-[#0D0D0D] py-20 text-left md:text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <span className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>Our Service</span><br />
+            <span className="text italic text-2xl text-orange-500" style={{ fontFamily: 'Dancing Script' }}>Our Service</span>
             <h2 className="text-2xl md:text-4xl font-bold text-white">
               Layanan Terbaik untuk Kebutuhan Digital Anda
             </h2>
@@ -141,6 +144,7 @@ const Page: React.FC = () => {
                   />
                 }
                 className={index === 1 || index === 3 || index === 5 ? "mt-40 md:mt-0" : ""}
+                isEven={index % 2 === 0}
               />
             ))}
           </div>
