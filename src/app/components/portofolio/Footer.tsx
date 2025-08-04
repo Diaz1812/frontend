@@ -8,12 +8,14 @@ const Footer: FC = () => {
       className="relative w-full text-white py-16 px-6 bg-cover bg-center"
       style={{ backgroundImage: "url('/images/bg_carrier.png')" }}
     >
-      <div className="bg-black bg-opacity-80 absolute inset-0 z-0"></div>{" "}
+      
       {/* Overlay agar teks tetap terbaca */}
+      <div className="bg-black bg-opacity-80 absolute inset-0 z-0"></div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Section - Grid Locations & Contact */}
+        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Bandar Lampung Location */}
+          {/* Bandar Lampung */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">
               Bandar Lampung
@@ -27,7 +29,7 @@ const Footer: FC = () => {
             </p>
           </div>
 
-          {/* Jakarta Location */}
+          {/* Jakarta */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">Jakarta</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -39,7 +41,7 @@ const Footer: FC = () => {
             </p>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">Contact</h3>
             <div className="space-y-3">

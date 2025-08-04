@@ -25,11 +25,11 @@ const steps: Step[] = [
 
 const ProcessSection: React.FC = () => {
   return (
-    <section className="bg-gray-100 flex justify-center items-center">
+    <section className="bg-orange-50 flex justify-center items-center">
       <div className="w-[1200px] h-[600px] flex flex-col justify-center items-left text-left px-10">
         {/* Judul */}
         <div className="mb-16">
-          <p className="italic text-gray-600 mb-1">Our Process</p>
+          <p className="italic text-orange-600 mb-1">Our Process</p>
           <h2 className="text-3xl text-gray-800">
             Proses Yang <span className="font-bold">Mudah dan Cepat</span>
           </h2>
