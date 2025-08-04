@@ -16,7 +16,7 @@ const Footer: FC = () => {
         className="absolute bottom-0 left-0 w-full h-full z-10"
         style={{
           background:
-            "radial-gradient(circle at 50% 160%, rgba(255, 160, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%)",
+            "radial-gradient(circle at 50% 150%, rgba(255, 160, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%)",
         }}
       ></div>
 
