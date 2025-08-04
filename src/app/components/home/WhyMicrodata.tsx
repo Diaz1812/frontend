@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React, { JSX } from "react";
 
 interface WhyItem {
   title: string;
@@ -36,10 +36,11 @@ export default function WhyMicrodata(): JSX.Element {
             Jadi Pilihan Tepat
           </h3>
           <p className="text-sm text-gray-400 mb-6">
-            Microdata hadir sebagai partner teknologi yang mengutamakan kualitas,
-            ketepatan waktu, dan solusi yang benar-benar sesuai kebutuhan Anda.
+            Microdata hadir sebagai partner teknologi yang mengutamakan
+            kualitas, ketepatan waktu, dan solusi yang benar-benar sesuai
+            kebutuhan Anda.
           </p>
-          <button className="text-white border border-white rounded-full px-6 py-2 text-sm hover:bg-orange-50 transition w-max">
+          <button className="text-white border border-white rounded-full px-6 py-2 text-sm hover:bg-orange-500   transition w-max">
             Hubungi Kami
           </button>
         </div>
@@ -47,7 +48,10 @@ export default function WhyMicrodata(): JSX.Element {
         {/* Kanan */}
         <div className="flex flex-col justify-center space-y-8">
           {reasons.map((item, index) => (
-            <div key={index} className="flex items-start space-x-6 border-b pb-6">
+            <div
+              key={index}
+              className="flex items-start space-x-6 border-b pb-6"
+            >
               <div className="text-xl font-medium text-white w-6">
                 {index + 1}
               </div>
