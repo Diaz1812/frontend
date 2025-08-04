@@ -52,16 +52,26 @@ const Header = () => {
 
       {/* Menu (Desktop) */}
       <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
-        <Link href="/">Home</Link>
-        <Link href="/service">Our Service</Link>
-        <Link href="/portofolio">Portofolio</Link>
-        <Link href="/career">Career</Link>
-        <Link href="/blog">Blog</Link>
+        <Link href="/" className="hover:text-orange-500 transition">
+          Home{" "}
+        </Link>
+        <Link href="/service" className="hover:text-orange-500 transition">
+          Our Service
+        </Link>
+        <Link href="/portofolio" className="hover:text-orange-500 transition">
+          Portofolio
+        </Link>
+        <Link href="/career" className="hover:text-orange-500 transition">
+          Career
+        </Link>
+        <Link href="/blog" className="hover:text-orange-500 transition">
+          Blog
+        </Link>
       </nav>
 
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
-        <Link href="/contact">
+        <Link href="/contact" className="hover:text-orange-500 transition">
           <span className="text-gray-700">Contact Us</span>
         </Link>
       </div>

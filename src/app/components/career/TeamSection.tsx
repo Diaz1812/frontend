@@ -18,7 +18,12 @@ export default function TeamSection() {
         <div className="text-left mb-6">
           <h2 className="text-2xl sm:text-4xl font-bold text-orange-500">
             Jadilah Bagian{" "}
-            <span className="italic font-normal text-gray-700">dari</span>
+            <span
+              className="text-500 italic"
+              style={{ fontFamily: "Dancing Script" }}
+            >
+              Dari
+            </span>
           </h2>
           <h3 className="text-xl sm:text-3xl text-gray-800 font-light">
             Tim Kami
