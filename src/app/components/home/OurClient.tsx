@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 type Testimonial = {
@@ -42,7 +42,21 @@ const testimonials: Testimonial[] = [
 
 export default function OurClient() {
   const [startIndex, setStartIndex] = useState(0)
-  const itemsPerPage = 2
+  const [itemsPerPage, setItemsPerPage] = useState(2)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerPage(1)
+      } else {
+        setItemsPerPage(2)
+      }
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const handleNext = () => {
     setStartIndex((prev) =>
@@ -89,7 +103,7 @@ export default function OurClient() {
         </div>
 
         {/* Tombol Navigasi */}
-        <div className="flex justify-end mt-10 gap-4">
+        <div className="mt-10 flex justify-end md:justify-end gap-4 md:gap-4 sm:justify-end sm:mt-8">
           <button
             onClick={handlePrev}
             className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"

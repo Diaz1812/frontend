@@ -2,34 +2,27 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    { src: "/logos/komdigi.png", width: 200, height: 200 },
-    { src: "/logos/Komisi.png", width: 150, height: 190 },
-    { src: "/logos/kementrian.png", width: 110, height: 195 },
-    { src: "/logos/Kemendikbud.webp", width: 140, height: 180 },
-    { src: "/logos/Kemenkess.png", width: 250, height: 200 },
-    { src: "/logos/Selatan.png", width: 90, height: 190 },
-    { src: "/logos/waykanan.png", width: 210, height: 200 },
-    { src: "/logos/kadinn.png", width: 200 , height: 200 },
-    // Tambahkan logo lain di sini dengan width & height
+    { src: "/logos/Kemenkess.png" },
+    { src: "/logos/Komisi.png" },
+    { src: "/logos/kementrian.png" },
+    { src: "/logos/Kemendikbud.webp" },
+    { src: "/logos/Selatan.png" },
+    { src: "/logos/waykanan.png" },
+    { src: "/logos/komdigi.png" },
+    { src: "/logos/kadinn.png" },
   ];
 
   return (
-    <section
-      className="bg-white border border-blue-400"
-      style={{ width: "1513px", height: "422px" }}
-    >
-      <div className="overflow-x-auto h-full flex items-center px-8">
-        <div className="flex gap-10">
+    <section className="bg-white w-full py-8 px-4">
+      {/* Desktop scroll, Mobile wrap */}
+      <div className="overflow-x-auto md:overflow-x-auto overflow-hidden">
+        <div className="flex md:flex-nowrap flex-wrap justify-center items-center gap-6">
           {logos.map((logo, index) => (
             <img
               key={index}
               src={logo.src}
               alt={`Logo ${index}`}
-              style={{
-                width: `${logo.width}px`,
-                height: `${logo.height}px`,
-                objectFit: "contain",
-              }}
+              className="h-16 w-auto md:h-32 flex-shrink-0"
             />
           ))}
         </div>

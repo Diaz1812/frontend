@@ -1,23 +1,25 @@
-// components/ProcessSection.tsx
-
 import React from "react";
-import { ImageIcon } from "lucide-react";
+import { Building2, MonitorPlay, Rocket } from "lucide-react";
 
 interface Step {
+  icon: React.ReactNode;
   title: string;
   desc: string;
 }
 
 const steps: Step[] = [
   {
+    icon: <Building2 className="w-8 h-8 text-gray-500" />,
     title: "Perencanaan & Pemesanan",
     desc: "Hubungi Kami atau dapat langsung ke alamat kantor kami",
   },
   {
+    icon: <MonitorPlay className="w-8 h-8 text-gray-500" />,
     title: "Design & Produksi",
     desc: "Design kebutuhan project dan proses developing project.",
   },
   {
+    icon: <Rocket className="w-8 h-8 text-gray-500" />,
     title: "Testing & Implementasi",
     desc: "Proses Testing, Pembayaran dan Implementasi",
   },
@@ -25,30 +27,28 @@ const steps: Step[] = [
 
 const ProcessSection: React.FC = () => {
   return (
-    <section className="bg-orange-50 flex justify-center items-center">
-      <div className="w-[1200px] h-[600px] flex flex-col justify-center items-left text-left px-10">
+    <section className="bg-orange-50 flex justify-center items-center px-4 py-16">
+      <div className="w-full max-w-[1200px]">
         {/* Judul */}
-        <div className="mb-16">
-          <p className="italic text-orange-600 mb-1">Our Process</p>
-          <h2 className="text-3xl text-gray-800">
+        <div className="mb-12">
+          <p className="italic text-orange-600 mb-1 text-center sm:text-left">
+            Our Process
+          </p>
+          <h2 className="text-2xl sm:text-3xl text-gray-800 text-center sm:text-left">
             Proses Yang <span className="font-bold">Mudah dan Cepat</span>
           </h2>
         </div>
 
         {/* Langkah-langkah */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+        <div className="flex flex-col gap-8 sm:grid sm:grid-cols-3 sm:gap-12">
           {steps.map((step, i) => (
-            <div key={i} className="space-y-4 max-w-xs">
-              <div className="flex justify-left">
-                <div className="w-10 h-10 rounded-md flex items-center justify-center">
-                  <ImageIcon className="w-30 h-30 text-gray-400" />
-                </div>
-              </div>
+            <div key={i} className="flex gap-4 items-start text-left">
+              <div>{step.icon}</div>
               <div>
-                <h4 className="font-semibold text-gray-900 text-sm">
+                <h4 className="font-semibold text-gray-900 text-sm mb-1">
                   {step.title}
                 </h4>
-                <p className="text-xs text-gray-600">{step.desc}</p>
+                <p className="text-sm text-gray-600">{step.desc}</p>
               </div>
             </div>
           ))}
