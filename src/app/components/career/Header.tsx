@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header
-      className="w-screen shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
+      className="w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
       style={{ background: "linear-gradient(to right, #fbe3d6ff, #FFFFFF)" }}
     >
       {/* Logo */}
