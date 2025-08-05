@@ -31,8 +31,11 @@ const ProcessSection: React.FC = () => {
       <div className="w-full max-w-7xl">
         {/* Judul */}
         <div className="mb-12">
-          <p className="italic text-orange-600 mb-1 text-center sm:text-left">
-            Our Process
+          <p
+            className="text-2xl text-orange-500 italic font-medium"
+            style={{ fontFamily: "Dancing Script" }}
+          >
+            Our Proses
           </p>
           <h2 className="text-2xl sm:text-3xl text-gray-800 text-center sm:text-left">
             Proses Yang <span className="font-bold">Mudah dan Cepat</span>

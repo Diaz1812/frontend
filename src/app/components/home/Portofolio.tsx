@@ -1,46 +1,82 @@
-"use client"
-import { useState, useEffect } from 'react'
-import { Button } from '../ui/button'
-import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+"use client";
+import { useState, useEffect } from "react";
+import { Button } from "../ui/button";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 type Project = {
-  id: number
-  title: string
-  company: string
-  category: string
-  image: string
-}
+  id: number;
+  title: string;
+  company: string;
+  category: string;
+  image: string;
+};
 
 const HomeSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   const projects: Project[] = [
-    { id: 1, title: "Mobile App 1", company: "Company A", category: "Mobile", image: "/projects/mobile1.jpg" },
-    { id: 2, title: "Web App 1", company: "Company B", category: "Web", image: "/projects/web1.jpg" },
-    { id: 3, title: "Mobile App 2", company: "Company C", category: "Mobile", image: "/projects/mobile2.jpg" },
-    { id: 4, title: "Graphic Design", company: "Company D", category: "Graphic Design", image: "/projects/design1.jpg" },
-    { id: 5, title: "Web App 2", company: "Company E", category: "Web", image: "/projects/web2.jpg" },
-    { id: 6, title: "Mobile App 3", company: "Company F", category: "Mobile", image: "/projects/mobile3.jpg" },
-  ]
+    {
+      id: 1,
+      title: "Mobile App 1",
+      company: "Company A",
+      category: "Mobile",
+      image: "/projects/mobile1.jpg",
+    },
+    {
+      id: 2,
+      title: "Web App 1",
+      company: "Company B",
+      category: "Web",
+      image: "/projects/web1.jpg",
+    },
+    {
+      id: 3,
+      title: "Mobile App 2",
+      company: "Company C",
+      category: "Mobile",
+      image: "/projects/mobile2.jpg",
+    },
+    {
+      id: 4,
+      title: "Graphic Design",
+      company: "Company D",
+      category: "Graphic Design",
+      image: "/projects/design1.jpg",
+    },
+    {
+      id: 5,
+      title: "Web App 2",
+      company: "Company E",
+      category: "Web",
+      image: "/projects/web2.jpg",
+    },
+    {
+      id: 6,
+      title: "Mobile App 3",
+      company: "Company F",
+      category: "Mobile",
+      image: "/projects/mobile3.jpg",
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % projects.length)
-  }
+    setActiveIndex((prev) => (prev + 1) % projects.length);
+  };
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
-  }
+    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
@@ -48,7 +84,10 @@ const HomeSection = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
           <div className="flex-1">
-            <h2 className="text-3xl sm:text-4xl text-orange-500 italic" style={{ fontFamily: 'Great Vibes' }}>
+            <h2
+              className="text-3xl sm:text-4xl text-orange-500 italic"
+              style={{ fontFamily: "Dancing Script" }}
+            >
               Portofolio
             </h2>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mt-2 text-black">
@@ -84,8 +123,12 @@ const HomeSection = () => {
                 />
               </div>
               <div className="mt-4 text-center">
-                <h3 className="font-semibold text-base text-gray-800">{projects[activeIndex].title}</h3>
-                <p className="text-sm text-gray-500">{projects[activeIndex].company}</p>
+                <h3 className="font-semibold text-base text-gray-800">
+                  {projects[activeIndex].title}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {projects[activeIndex].company}
+                </p>
               </div>
             </motion.div>
 
@@ -134,7 +177,9 @@ const HomeSection = () => {
                   />
                 </div>
                 <div className="mt-4 text-center">
-                  <h3 className="font-semibold text-base text-gray-800">{project.title}</h3>
+                  <h3 className="font-semibold text-base text-gray-800">
+                    {project.title}
+                  </h3>
                   <p className="text-sm text-gray-500">{project.company}</p>
                 </div>
               </motion.div>
@@ -143,7 +188,7 @@ const HomeSection = () => {
         )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HomeSection
+export default HomeSection;
