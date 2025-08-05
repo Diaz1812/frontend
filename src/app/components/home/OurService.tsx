@@ -49,7 +49,7 @@ const OurServices: React.FC = () => {
   return (
     <section className="py-16 px-6 md:px-16 bg-orange-50 text-gray-900">
       <div className="max-w-7xl mx-auto text-center">
-        <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Great Vibes' }}>
+        <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>
           Our Service
         </h4>
         <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-10">
