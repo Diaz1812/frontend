@@ -110,12 +110,12 @@ const Page: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0D0D0D]">
-      <main className="pt-16">
+      <main className="pt-5">
         {/* Bagian Hero */}
         <section className="bg-[#0D0D0D] py-20 text-left md:text-center">
           <div className="max-w-4xl mx-auto px-4">
             <span className="text italic text-2xl text-orange-500" style={{ fontFamily: 'Dancing Script' }}>Our Service</span>
-            <h2 className="text-2xl md:text-4xl font-bold text-white">
+            <h2 className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: 'Poppins' }}>
               Layanan Terbaik untuk Kebutuhan Digital Anda
             </h2>
           </div>

@@ -1,11 +1,10 @@
 // components/ContactSection.tsx
-import React from 'react';
+import React from "react";
 
 const ContactSection: React.FC = () => {
   return (
     <section className="bg-white flex justify-center items-center">
       <div className="w-full max-w-7xl py-16 flex flex-col-reverse sm:flex-row items-center justify-between gap-12 sm:gap-0">
-        
         {/* Form */}
         <form className="w-full sm:w-1/2 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -45,7 +44,12 @@ const ContactSection: React.FC = () => {
 
         {/* Text */}
         <div className="w-full sm:w-1/3 text-left">
-          <p className="italic text-orange-500 mb-1">Contact Us</p>
+          <p
+            className="text-2xl text-orange-500 italic font-medium"
+            style={{ fontFamily: "Dancing Script" }}
+          >
+            Contact Us
+          </p>
           <h2 className="text-3xl font-bold text-gray-900 leading-snug">
             Konsultasikan <br />
             <span className="font-normal">Rencana Proyek Anda</span>

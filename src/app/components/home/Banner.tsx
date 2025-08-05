@@ -5,15 +5,14 @@ import React from "react";
 import { Poppins } from "next/font/google";
 import { Dancing_Script } from "next/font/google";
 
-// ✅ Load font dari Google via Next.js font loader
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // atur sesuai kebutuhan
+  weight: ["400", "500", "700"],
 });
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
-  weight: ["400", "700"], // atur sesuai kebutuhan
+  weight: ["400", "700"],
 });
 
 const HeroBanner: React.FC = () => {

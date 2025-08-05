@@ -1,7 +1,9 @@
+// src/app/components/portofolio/Header.tsx
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Image as LucideImage } from "lucide-react";
 
 const Header: React.FC = () => {
@@ -10,14 +12,15 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header (Navigasi) */}
-      <header className="bg-gradient-to-r from-orange-100 to-white relative z-10">
-        {/* Kontainer untuk membatasi lebar dan menerapkan padding sesuai desain Figma */}
-        <div className="max-w-[1514px] mx-auto py-[20px] px-[120px] flex justify-between items-center">
+      <header className="w-full bg-gradient-to-r from-orange-100 to-white relative z-20">
+        <div className="max-w-7xl mx-auto py-[14px] px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <img
+            <Image
               src="/microdata.png"
               alt="Microdata Logo"
+              width={112}
+              height={42}
               className="w-28 h-auto"
             />
           </div>
@@ -76,49 +79,54 @@ const Header: React.FC = () => {
           {/* Contact Us (Desktop) */}
           <div className="hidden md:block">
             <Link href="/contact">
-              <span className="text-gray-700">Contact Us</span>
+              <span className="text-gray-700 hover:text-orange-500 transition font-medium">
+                Contact Us
+              </span>
             </Link>
           </div>
         </div>
 
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
-          <div className="absolute top-full right-0 bg-white shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden z-20">
+          <div className="absolute top-[68px] right-4 bg-white shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden z-10">
             {[
               { href: "/", text: "Home" },
               { href: "/service", text: "Our Service" },
               { href: "/portofolio", text: "Portofolio" },
               { href: "/career", text: "Career" },
               { href: "/blog", text: "Blog" },
-              { href: "/contact", text: "Contact Us", special: true },
             ].map((item, idx) => (
               <Link
                 key={idx}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`${
-                  item.special
-                    ? "text-orange-600 font-semibold"
-                    : "text-gray-700 hover:text-orange-500 font-medium"
-                }`}
+                className="text-gray-700 hover:text-orange-500 font-medium"
               >
                 {item.text}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="text-orange-600 font-semibold mt-4 pt-4 border-t border-gray-200"
+            >
+              Contact Us
+            </Link>
           </div>
         )}
       </header>
 
       {/* Hero Section */}
-      <section className="w-full min-h-[486px] py-[100px] bg-gradient-to-r from-orange-100 to-white flex items-center justify-center">
-        <div className="max-w-[1512px] mx-auto flex flex-col md:flex-row items-center justify-between w-full px-[120px]">
-          {/* Konten Kiri */}
-          <div className="flex flex-col items-center md:items-start text-gray-900 pr-0 mb-8 md:mb-0 text-center md:text-left">
+      <section className="w-full bg-gradient-to-r from-orange-100 to-white flex items-center justify-center relative md:min-h-[486px]">
+        <div className="max-w-7xl mx-auto py-[40px] px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center w-full md:justify-between">
+          {/* Konten Kiri (Teks) */}
+          {/* Mengatur lebar agar teks 2 baris di desktop dan 3 baris di mobile */}
+          <div className="flex flex-col text-gray-900 w-full sm:w-[350px] md:w-[448px] mb-8 md:mb-0">
             <h1 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl mb-4 leading-tight text-orange-500">
               Portofolio
             </h1>
             <p
-              className="font-poppins font-normal text-sm md:text-base leading-normal text-[#686D76] max-w-sm sm:max-w-md md:max-w-lg"
+              className="font-poppins font-normal text-sm md:text-base leading-normal text-[#686D76]"
               style={{ lineHeight: "150%" }}
             >
               Dengan pengalaman 15+ tahun, kami terus menghadirkan produk
@@ -126,10 +134,16 @@ const Header: React.FC = () => {
               klien.
             </p>
           </div>
-          {/* Konten Kanan: Gambar Placeholder */}
-          <div className="flex-shrink-0 w-36 h-36 sm:w-48 sm:h-48 md:w-60 md:h-60 bg-gray-200 border border-gray-400 rounded-lg flex items-center justify-center">
-            <LucideImage className="w-16 h-16 sm:w-24 sm:h-24 text-gray-500" />
+          
+          {/* Placeholder Gambar Desktop */}
+          <div className="hidden md:flex flex-shrink-0 w-[150px] h-[137.69px] rounded-lg items-center justify-center ml-auto">
+            <LucideImage className="w-full h-full text-gray-500" />
           </div>
+        </div>
+
+        {/* Gambar mobile yang diposisikan absolut */}
+        <div className="absolute top-[16px] right-4 sm:right-6 lg:hidden w-[50px] h-[45.9px] p-2">
+            <LucideImage className="w-full h-full text-gray-500" />
         </div>
       </section>
     </>
