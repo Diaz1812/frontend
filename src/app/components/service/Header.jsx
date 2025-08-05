@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="q-full bg-[#1A1A1A] shadow-md py-4 px-6 flex justify-between items-center">
+    <header className="w-screen bg-[#1A1A1A] shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border">
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -21,9 +21,8 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-700 focus:outline-none"
+          className="text-gray-300 focus:outline-none"
         >
-          {/* Icon Hamburger */}
           <svg
             className="w-6 h-6"
             fill="none"
@@ -51,18 +50,30 @@ const Header = () => {
       </div>
 
       {/* Menu (Desktop) */}
-      <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
-        <Link href="/">Home</Link>
-        <Link href="/service">Our Service</Link>
-        <Link href="/portofolio">Portofolio</Link>
-        <Link href="/career">Career</Link>
-        <Link href="/blog">Blog</Link>
+      <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-400">
+        <Link href="/" className="hover:text-orange-500 transition">
+          Home
+        </Link>
+        <Link href="/service" className="hover:text-orange-500 transition">
+          Our Service
+        </Link>
+        <Link href="/portofolio" className="hover:text-orange-500 transition">
+          Portofolio
+        </Link>
+        <Link href="/career" className="hover:text-orange-500 transition">
+          Career
+        </Link>
+        <Link href="/blog" className="hover:text-orange-500 transition">
+          Blog
+        </Link>
       </nav>
 
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
         <Link href="/contact">
-          <span className="text-gray-700">Contact Us</span>
+          <span className="text-gray-300 hover:text-orange-500 transition font-medium">
+            Contact Us
+          </span>
         </Link>
       </div>
 
