@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header
-      className="shadow-md py-4 px-6 flex justify-between items-center"
+      className="w-screen shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
       style={{ background: "linear-gradient(to right, #fbe3d6ff, #FFFFFF)" }}
     >
       {/* Logo */}
@@ -26,7 +26,6 @@ const Header = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="text-gray-700 focus:outline-none"
         >
-          {/* Icon Hamburger */}
           <svg
             className="w-6 h-6"
             fill="none"
@@ -56,7 +55,7 @@ const Header = () => {
       {/* Menu (Desktop) */}
       <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
         <Link href="/" className="hover:text-orange-500 transition">
-          Home{" "}
+          Home
         </Link>
         <Link href="/service" className="hover:text-orange-500 transition">
           Our Service
