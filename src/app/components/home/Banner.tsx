@@ -1,25 +1,43 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
+import { Poppins } from "next/font/google";
+import { Dancing_Script } from "next/font/google";
+
+// ✅ Load font dari Google via Next.js font loader
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // atur sesuai kebutuhan
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "700"], // atur sesuai kebutuhan
+});
 
 const HeroBanner: React.FC = () => {
   return (
     <section className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white py-16 md:py-24">
       <div className="container mx-auto px-[120px] pt-[40px] md:pt-[20px] pb-[10px] md:pb-[5px] flex flex-col gap-[100px]">
-
         <div className="max-w-6xl text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-snug mb-6" style={{ fontFamily: 'Poppins' }}>
-            Membangun{' '}
-            <span className="text-white italic" style={{ fontFamily: 'Dancing Script' }}>
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl font-medium leading-snug mb-6 ${poppins.className}`}
+          >
+            Membangun{" "}
+            <span className={`text-white italic ${dancingScript.className}`}>
               Solusi Digital
             </span>
             <br />
-            yang mendukung perkembangan bisnis <span className="text-white">Anda.</span>
+            yang mendukung perkembangan bisnis{" "}
+            <span className="text-white">Anda.</span>
           </h1>
 
-          <p className="text-gray-300 max-w-6xl mb-30 text-base md:text-lg" style={{ fontFamily: 'Poppins' }}>
-            Layanan konsultasi IT dan pengembangan sistem terintegrasi yang dirancang untuk efisiensi, inovasi, dan dampak nyata
+          <p
+            className={`text-gray-300 max-w-6xl mb-30 text-base md:text-lg ${poppins.className}`}
+          >
+            Layanan konsultasi IT dan pengembangan sistem terintegrasi yang
+            dirancang untuk efisiensi, inovasi, dan dampak nyata
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
