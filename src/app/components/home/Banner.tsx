@@ -6,7 +6,7 @@ import React from 'react';
 const HeroBanner: React.FC = () => {
   return (
     <section className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white py-16 md:py-24">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 pt-[40px] md:pt-[20px] pb-[10px] md:pb-[5 px] flex flex-col gap-[8px] sm:gap-[10px] md:gap-[16px]">
+      <div className="container mx-auto px-4 sm:px-6 md:px-1 pt-[40px] md:pt-[20px] pb-[10px] md:pb-[5 px] flex flex-col gap-[8px] sm:gap-[10px] md:gap-[16px]">
 
         <div className="max-w-6xl text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-snug mb-6" style={{ fontFamily: 'Poppins' }}>

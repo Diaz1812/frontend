@@ -7,8 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-6 flex justify-between items-center border-b border-gray-500">
-      
+    <header className="w-screen bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center border-b border-gray-500 box-border">
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -22,7 +21,7 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-700 focus:outline-none"
+          className="text-gray-300 focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -51,18 +50,28 @@ const Header = () => {
       </div>
 
       {/* Menu (Desktop) */}
-      <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
-        <Link href="/">Home</Link>
-        <Link href="/service">Our Service</Link>
-        <Link href="/portofolio">Portofolio</Link>
-        <Link href="/career">Career</Link>
-        <Link href="/blog">Blog</Link>
+      <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+        <Link href="/" className="hover:text-orange-500 transition">
+          Home
+        </Link>
+        <Link href="/service" className="hover:text-orange-500 transition">
+          Our Service
+        </Link>
+        <Link href="/portofolio" className="hover:text-orange-500 transition">
+          Portofolio
+        </Link>
+        <Link href="/career" className="hover:text-orange-500 transition">
+          Career
+        </Link>
+        <Link href="/blog" className="hover:text-orange-500 transition">
+          Blog
+        </Link>
       </nav>
 
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
         <Link href="/contact">
-          <span className="text-gray-300 hover:text-white font-medium">
+          <span className="text-gray-300 hover:text-orange-500 transition font-medium">
             Contact Us
           </span>
         </Link>

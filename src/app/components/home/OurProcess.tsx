@@ -28,7 +28,7 @@ const steps: Step[] = [
 const ProcessSection: React.FC = () => {
   return (
     <section className="bg-orange-50 flex justify-center items-center px-4 py-16">
-      <div className="w-full max-w-[1200px]">
+      <div className="w-full max-w-7xl">
         {/* Judul */}
         <div className="mb-12">
           <p className="italic text-orange-600 mb-1 text-center sm:text-left">

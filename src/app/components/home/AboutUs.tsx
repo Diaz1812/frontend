@@ -5,7 +5,7 @@ import React from 'react';
 const AboutAction: React.FC = () => {
   return (
     <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Left Content */}
         <div>
           <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>

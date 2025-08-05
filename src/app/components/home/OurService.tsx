@@ -48,7 +48,7 @@ const services: Service[] = [
 const OurServices: React.FC = () => {
   return (
     <section className="py-16 px-6 md:px-16 bg-orange-50 text-gray-900">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto text-center">
         <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Great Vibes' }}>
           Our Service
         </h4>

@@ -26,7 +26,7 @@ export default function WhyMicrodata(): JSX.Element {
 
   return (
     <section className="bg-black flex justify-center items-center px-4 py-16">
-      <div className="w-full max-w-screen-xl grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Kiri: Judul dan tombol */}
         <div className="flex flex-col justify-center text-left md:text-left">
           <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-2">
