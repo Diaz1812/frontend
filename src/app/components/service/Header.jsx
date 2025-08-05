@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-screen bg-[#1A1A1A] shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border">
+    <header className="w-full bg-[#1A1A1A] shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border">
       {/* Logo */}
       <div className="flex items-center">
         <img
