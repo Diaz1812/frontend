@@ -19,13 +19,9 @@ const dancingScript = Dancing_Script({
 const HeroBanner: React.FC = () => {
   return (
     <section className="bg-gradient-to-r from-[#0f0f0f] via-[#0f0f0f] to-orange-900 text-white py-16 md:py-24">
-<<<<<<< HEAD
+
       <div className="container mx-auto px-4 sm:px-6 md:px-[120px] pt-[40px] md:pt-[20px] pb-[10px] md:pb-[5px] flex flex-col gap-[100px]">
-
-
-=======
-      <div className="container mx-auto px-[120px] pt-[40px] md:pt-[20px] pb-[10px] md:pb-[5px] flex flex-col gap-[100px]">
->>>>>>> 2abf039fa6b116e135b6734eeaaa46233f8ff13b
+        
         <div className="max-w-6xl text-left">
           <h1
             className={`text-3xl sm:text-4xl md:text-5xl font-medium leading-snug mb-6 ${poppins.className}`}
