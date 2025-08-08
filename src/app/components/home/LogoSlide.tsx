@@ -2,20 +2,19 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    { src: "/logos/Kemenkess.png", name: "Kementerian Kesehatan" },
-    { src: "/logos/Komisi.png", name: "Komisi" },
-    { src: "/logos/kementrian.png", name: "Kementerian" },
+    { image: "/logos/Kemenkess.png", name: "Kementerian Kesehatan" },
+    { image: "/logos/Komisi.png", name: "Komisi" },
+    { image: "/logos/kementrian.png", name: "Kementerian" },
     {
-      src: "/logos/Kemendikbud.webp",
+      image: "/logos/Kemendikbud.webp",
       name: "Kementerian Pendidikan dan Kebudayaan",
     },
-    { src: "/logos/Selatan.png", name: "Selatan" },
-    { src: "/logos/waykanan.png", name: "Way Kanan" },
-    { src: "/logos/komdigi.png", name: "Komdigi" },
-    { src: "/logos/kadinn.png", name: "KADINN" },
+    { image: "/logos/Selatan.png", name: "Selatan" },
+    { image: "/logos/waykanan.png", name: "Way Kanan" },
+    { image: "/logos/komdigi.png", name: "Komdigi" },
+    { image: "/logos/kadinn.png", name: "KADINN" },
   ];
 
-  // Duplikat array untuk looping mulus
   const duplicatedLogos = [...logos, ...logos];
 
   return (
@@ -25,7 +24,7 @@ export default function LogoSlide() {
           {duplicatedLogos.map((logo, index) => (
             <img
               key={index}
-              src={logo.src}
+              src={logo.image}
               alt={logo.name}
               className="h-16 w-auto md:h-32 flex-shrink-0 object-contain"
             />
