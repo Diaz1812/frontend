@@ -6,13 +6,13 @@ import Image from "next/image";
 import { Image as LucideImage } from "lucide-react";
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // <- sudah benar
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       {/* Header (Navigasi) */}
       <header
-        className="w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
+        className="sticky top-0 z-50 w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
         style={{
           background:
             "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
@@ -27,10 +27,10 @@ const Header: React.FC = () => {
           />
         </div>
 
-        {/* Hamburger Icon (mobile) */}
+        {/* Hamburger Icon (Mobile) */}
         <div className="md:hidden">
           <button
-            onClick={() => setIsMenuOpen(true)} // ✅ fix
+            onClick={() => setIsMenuOpen(true)}
             className="text-gray-700 focus:outline-none"
           >
             <svg
@@ -84,40 +84,56 @@ const Header: React.FC = () => {
         >
           {/* Close Button */}
           <button
-            onClick={() => setIsMenuOpen(false)} // ✅ fix
+            onClick={() => setIsMenuOpen(false)}
             className="absolute top-4 right-4 text-orange-500 text-2xl"
           >
             &times;
           </button>
 
           {/* Menu Items */}
-          <nav className="mt-16 flex flex-col space-y-6 px-6 text-orange-500 text-lg">
-            {[
-              "/",
-              "/service",
-              "/portofolio",
-              "/career",
-              "/blog",
-              "/contact",
-            ].map((link, i) => (
-              <Link
-                key={link}
-                href={link}
-                onClick={() => setIsMenuOpen(false)} // ✅ fix
-                className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition font-bold"
-              >
-                {
-                  [
-                    "Home",
-                    "Our Service",
-                    "Portofolio",
-                    "Career",
-                    "Blog",
-                    "Contact Us",
-                  ][i]
-                }
-              </Link>
-            ))}
+          <nav className="mt-16 flex flex-col space-y-6 px-6">
+            <Link
+              href="/"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-orange-500 text-white rounded-full px-6 py-2 text-lg font-medium"
+            >
+              Home
+            </Link>
+            <Link
+              href="/service"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
+            >
+              Our Service
+            </Link>
+            <Link
+              href="/portofolio"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
+            >
+              Portofolio
+            </Link>
+            <Link
+              href="/career"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
+            >
+              Career
+            </Link>
+            <Link
+              href="/blog"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
+            >
+              Contact Us
+            </Link>
           </nav>
         </div>
       </header>
@@ -146,13 +162,13 @@ const Header: React.FC = () => {
             </p>
           </div>
 
-          {/* Placeholder Gambar Desktop */}
+          {/* Gambar Desktop Placeholder */}
           <div className="hidden md:flex flex-shrink-0 w-[150px] h-[137.69px] rounded-lg items-center justify-center ml-auto">
             <LucideImage className="w-full h-full text-gray-500" />
           </div>
         </div>
 
-        {/* Gambar mobile (absolute) */}
+        {/* Gambar Mobile Placeholder */}
         <div className="absolute top-[16px] right-4 sm:right-6 lg:hidden w-[50px] h-[45.9px] p-2">
           <LucideImage className="w-full h-full text-gray-500" />
         </div>

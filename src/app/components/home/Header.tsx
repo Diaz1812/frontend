@@ -21,7 +21,7 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-gray-700 focus:outline-none"
+          className="text-white-300 focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -81,46 +81,46 @@ const Header = () => {
         </button>
 
         {/* Menu Items */}
-        <nav className="mt-16 flex flex-col space-y-6 px-6 text-orange-500 text-lg">
+        <nav className="mt-16 flex flex-col space-y-6 px-6">
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            className="bg-orange-500 text-white rounded-full px-6 py-2 text-lg font-medium"
           >
             Home
           </Link>
           <Link
             href="/service"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Our Service
           </Link>
           <Link
             href="/portofolio"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Portofolio
           </Link>
           <Link
             href="/career"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Career
           </Link>
           <Link
             href="/blog"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Blog
           </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition font-bold"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
           >
             Contact Us
           </Link>

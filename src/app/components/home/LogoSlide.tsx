@@ -2,27 +2,32 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    { src: "/logos/Kemenkess.png" },
-    { src: "/logos/Komisi.png" },
-    { src: "/logos/kementrian.png" },
-    { src: "/logos/Kemendikbud.webp" },
-    { src: "/logos/Selatan.png" },
-    { src: "/logos/waykanan.png" },
-    { src: "/logos/komdigi.png" },
-    { src: "/logos/kadinn.png" },
+    { src: "/logos/Kemenkess.png", name: "Kementerian Kesehatan" },
+    { src: "/logos/Komisi.png", name: "Komisi" },
+    { src: "/logos/kementrian.png", name: "Kementerian" },
+    {
+      src: "/logos/Kemendikbud.webp",
+      name: "Kementerian Pendidikan dan Kebudayaan",
+    },
+    { src: "/logos/Selatan.png", name: "Selatan" },
+    { src: "/logos/waykanan.png", name: "Way Kanan" },
+    { src: "/logos/komdigi.png", name: "Komdigi" },
+    { src: "/logos/kadinn.png", name: "KADINN" },
   ];
+
+  // Duplikat array untuk looping mulus
+  const duplicatedLogos = [...logos, ...logos];
 
   return (
     <section className="bg-white w-full py-8 px-4">
-      {/* Desktop scroll, Mobile wrap */}
-      <div className="overflow-x-auto md:overflow-x-auto overflow-hidden">
-        <div className="flex md:flex-nowrap flex-wrap justify-center items-center gap-6">
-          {logos.map((logo, index) => (
+      <div className="relative overflow-hidden">
+        <div className="carousel-track flex animate-scroll gap-6">
+          {duplicatedLogos.map((logo, index) => (
             <img
               key={index}
               src={logo.src}
-              alt={`Logo ${index}`}
-              className="h-16 w-auto md:h-32 flex-shrink-0"
+              alt={logo.name}
+              className="h-16 w-auto md:h-32 flex-shrink-0 object-contain"
             />
           ))}
         </div>

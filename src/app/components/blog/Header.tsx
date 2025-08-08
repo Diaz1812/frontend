@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center border-b border-gray-500 box-border">
+    <header className="sticky top-0 z-50 w-full bg-[#1A1A1A] shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border">
       {/* Logo */}
       <div className="flex items-center">
         <img
@@ -20,8 +20,8 @@ const Header = () => {
       {/* Hamburger Icon (mobile) */}
       <div className="md:hidden">
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-300 focus:outline-none"
+          onClick={() => setIsOpen(true)}
+          className="text-white-300 focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -30,27 +30,18 @@ const Header = () => {
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            )}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       </div>
 
       {/* Menu (Desktop) */}
-      <nav className="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+      <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
         <Link href="/" className="hover:text-orange-500 transition">
           Home
         </Link>
@@ -71,59 +62,70 @@ const Header = () => {
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
         <Link href="/contact">
-          <span className="text-gray-300 hover:text-orange-500 transition font-medium">
-            Contact Us
-          </span>
+          <span className="text-gray-700">Contact Us</span>
         </Link>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="absolute top-16 right-6 bg-gray-100 shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden text-gray-700">
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          className="absolute top-4 right-4 text-orange-500 text-2xl"
+        >
+          &times;
+        </button>
+
+        {/* Menu Items */}
+        <nav className="mt-16 flex flex-col space-y-6 px-6">
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="hover:text-orange-500 font-medium"
+            className="bg-orange-500 text-white rounded-full px-6 py-2 text-lg font-medium"
           >
             Home
           </Link>
           <Link
             href="/service"
             onClick={() => setIsOpen(false)}
-            className="hover:text-orange-500 font-medium"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Our Service
           </Link>
           <Link
             href="/portofolio"
             onClick={() => setIsOpen(false)}
-            className="hover:text-orange-500 font-medium"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Portofolio
           </Link>
           <Link
             href="/career"
             onClick={() => setIsOpen(false)}
-            className="hover:text-orange-500 font-medium"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Career
           </Link>
           <Link
             href="/blog"
             onClick={() => setIsOpen(false)}
-            className="hover:text-orange-500 font-medium"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition"
           >
             Blog
           </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="text-orange-600 font-semibold"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
           >
             Contact Us
           </Link>
-        </div>
-      )}
+        </nav>
+      </div>
     </header>
   );
 };

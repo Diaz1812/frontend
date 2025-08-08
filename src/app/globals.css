@@ -45,14 +45,13 @@ body {
   animation-play-state: paused;
 }
 
-/* Adjust for mobile: show 3 items at a time, cycle all 5 */
 @media (max-width: 767px) {
   .carousel-track {
     animation: scroll 12s linear infinite;
-    width: 100%; /* 3 times the width to show 3 items */
+    width: 100%;
   }
 
   .carousel-track > div {
-    min-width: calc(50% / 20); /* Each item takes 1/3 of the visible width */
+    min-width: calc(50% / 20);
   }
 }
