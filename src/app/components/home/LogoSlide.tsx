@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    { image: "/Logos/Kemenkess.png", name: "Kementerian Kesehatan" },
+    { image: "/Logos/kemenkess.png", name: "Kementerian Kesehatan" },
     { image: "/Logos/Komisi.png", name: "Komisi" },
     { image: "/Logos/kementrian.png", name: "Kementerian" },
     { image: "/Logos/Kemenkes.png", name: "Kemenkes" },
