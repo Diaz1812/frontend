@@ -5,13 +5,10 @@ export default function LogoSlide() {
     { image: "/Logos/Kemenkess.png", name: "Kementerian Kesehatan" },
     { image: "/Logos/Komisi.png", name: "Komisi" },
     { image: "/Logos/kementrian.png", name: "Kementerian" },
-    {
-      image: "/Logos/Kemendikbud.webp",
-      name: "Kementerian Pendidikan dan Kebudayaan",
-    },
+    { image: "/Logos/Kemenkes.png", name: "Kemenkes" },
     { image: "/Logos/Selatan.png", name: "Selatan" },
     { image: "/Logos/waykanan.png", name: "Way Kanan" },
-    { image: "/Logos/komdigi.png", name: "Komdigi" },
+    { image: "/Logos/Komdigi.png", name: "Komdigi" },
     { image: "/Logos/kadinn.png", name: "KADINN" },
   ];
 
