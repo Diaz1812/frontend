@@ -1,19 +1,19 @@
 // src/app/components/portofolio/TechnologySection.tsx
-import { Database, Code, Smartphone, Palette, Globe, LucideIcon } from 'lucide-react'
+import Image from "next/image";
 
 type Technology = {
-  icon: LucideIcon
-  name: string
-}
+  image: string;
+  name: string;
+};
 
 const TechnologySection: React.FC = () => {
   const technologies: Technology[] = [
-    { icon: Code, name: "Development" },
-    { icon: Database, name: "MySQL" },
-    { icon: Globe, name: "Node.js" },
-    { icon: Smartphone, name: "React" },
-    { icon: Palette, name: "Design" },
-  ]
+    { image: "/images/flutter.png", name: "Flutter" },
+    { image: "/images/mysql.png", name: "MySQL" },
+    { image: "/images/nodejs.png", name: "Node.js" },
+    { image: "/images/Group.png", name: "React" },
+    { image: "/images/laravel.png", name: "Laravel" },
+  ];
 
   return (
     <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -29,7 +29,13 @@ const TechnologySection: React.FC = () => {
               className="flex flex-col items-center group cursor-pointer"
             >
               <div className="w-16 h-16 bg-white rounded-lg shadow-md flex items-center justify-center group-hover:shadow-lg transition-shadow">
-                <tech.icon className="w-8 h-8 text-gray-700 group-hover:text-orange-500 transition-colors" />
+                <Image
+                  src={tech.image}
+                  alt={tech.name}
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 object-contain"
+                />
               </div>
               <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
                 {tech.name}
@@ -39,7 +45,7 @@ const TechnologySection: React.FC = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TechnologySection
+export default TechnologySection;

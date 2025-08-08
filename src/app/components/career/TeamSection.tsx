@@ -13,9 +13,10 @@ const teamMembers = [
 export default function TeamSection() {
   return (
     <section
-      className="w-full py-12 px-4 sm:px-6 bg-gradient-to-r from-[#FFE9DF] to-white"
+      className="w-full py-12 px-4 sm:px-6"
       style={{
-        background: "linear-gradient(to left, #FFFFFF, #f8e4d9ff)",
+        background:
+          "linear-gradient(to right bottom, #fbe3d6ff 0%, #fbe3d6ff 10%, #ffffff 30%, #ffffff 0%)",
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -56,8 +57,10 @@ export default function TeamSection() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-sm font-medium mt-2">{member.name}</p>
-              <p className="text-xs text-gray-500">{member.position}</p>
+              <p className="text-sm font-medium mt-2 text-black">
+                {member.name}
+              </p>
+              <p className="text-xs text-black">{member.position}</p>
             </div>
           ))}
         </div>

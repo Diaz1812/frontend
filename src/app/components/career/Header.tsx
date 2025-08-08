@@ -9,7 +9,10 @@ const Header = () => {
   return (
     <header
       className="w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
-      style={{ background: "linear-gradient(to right, #fbe3d6ff, #FFFFFF)" }}
+      style={{
+        background:
+          "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
+      }}
     >
       {/* Logo */}
       <div className="flex items-center">
