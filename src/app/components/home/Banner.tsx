@@ -35,13 +35,14 @@ const HeroBanner: React.FC = () => {
           </h1>
 
           <p
-            className={`text-gray-300 max-w-6xl mb-30 text-base md:text-lg ${poppins.className}`}
+            className={`text-gray-300 max-w-6xl mb-15 text-base md:text-lg ${poppins.className}`}
           >
             Layanan konsultasi IT dan pengembangan sistem terintegrasi yang
             dirancang untuk efisiensi, inovasi, dan dampak nyata
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-row flex-wrap gap-4 justify-start">
+
             <Link href="/contact">
               <button className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-5 rounded-full transition w-full sm:w-auto">
                 Hubungi Kami

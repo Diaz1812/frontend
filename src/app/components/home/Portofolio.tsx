@@ -133,7 +133,7 @@ const HomeSection = () => {
             </motion.div>
 
             {/* Tombol navigasi */}
-            <div className="flex justify-end gap-2 mt-4">
+            <div className="flex justify-center gap-2 mt-4">
               <Button
                 onClick={handlePrev}
                 variant="outline"

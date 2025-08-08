@@ -7,7 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center border-b border-gray-500 box-border">
+    <header className="sticky top-0 z-50 w-full bg-gray-900 md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 text-white shadow-md py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center border-b border-gray-500 box-border">
       {/* Logo */}
       <div className="flex items-center">
         <img

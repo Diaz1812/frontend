@@ -1,80 +1,103 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
+import { Poppins } from "next/font/google";
+import { Dancing_Script } from "next/font/google";
 
-interface Service {
-  id: string;
-  title: string;
-  description: string;
-}
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
 
-const services: Service[] = [
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const services = [
   {
-    id: '01',
-    title: 'Mobile Technology',
+    id: 1,
+    title: "Software Developer",
     description:
-      'Mengembangkan aplikasi mobile yang responsif dan user-friendly untuk mendukung kemudahan akses bisnis Anda di berbagai perangkat.'
+      "Menyediakan layanan riset dan pengembangan software yang customize, termasuk perancangan aplikasi, pengembangan, hingga pelatihan operasional.",
   },
   {
-    id: '02',
-    title: 'Digital Marketing',
+    id: 2,
+    title: "IT Consulting",
     description:
-      'Strategi pemasaran digital yang terukur untuk meningkatkan visibilitas, menjangkau audiens yang tepat, dan mendorong penjualan.'
+      "Pendampingan teknis yang rutin untuk menjaga performa sistem tetap stabil, mendeteksi potensi gangguan sejak dini, dan meminimalkan risiko kerugian bagi perusahaan.",
   },
   {
-    id: '03',
-    title: 'Desktop Technology',
+    id: 3,
+    title: "IT Infrastructure",
     description:
-      'Pembuatan perangkat lunak desktop yang andal dan aman untuk mendukung kebutuhan operasional bisnis secara maksimal.'
+      "Fondasi teknologi yang menopang sistem operasional, mencakup perangkat fisik dan virtual yang memungkinkan alur data, penyimpanan, pengolahan, hingga analisis berjalan secara efisien.",
   },
   {
-    id: '04',
-    title: 'Graphic Design',
+    id: 4,
+    title: "Multimedia & Graphic Design",
     description:
-      'Desain grafis kreatif dan profesional untuk memperkuat identitas visual dan citra brand Anda.'
+      "Solusi desain dan multimedia yang strategis untuk membangun identitas merek yang kuat, mendukung pertumbuhan bisnis, dan siap bersaing di era digital yang kompetitif.",
   },
   {
-    id: '05',
-    title: 'Interior Design',
+    id: 5,
+    title: "UI/UX Design",
     description:
-      'Perencanaan interior yang fungsional dan estetik untuk menciptakan ruang kerja yang nyaman dan produktif.'
+      "Menciptakan antarmuka yang menarik dan pengalaman pengguna yang optimal demi meningkatkan kepuasan dan retensi pelanggan.",
   },
   {
-    id: '06',
-    title: 'Commercial Photography',
+    id: 6,
+    title: "Cloud Services",
     description:
-      'Fotografi komersial berkualitas tinggi untuk mendukung promosi produk, profil perusahaan, dan kebutuhan branding visual.'
-  }
+      "Penyediaan layanan cloud untuk skalabilitas, fleksibilitas, dan efisiensi infrastruktur TI perusahaan.",
+  },
 ];
 
-const OurServices: React.FC = () => {
+export default function ServicesSection() {
+  const [showAll, setShowAll] = useState(false);
+  const displayedServices = showAll ? services : services.slice(0, 4);
+
   return (
-    <section className="py-16 px-6 md:px-16 bg-orange-50 text-gray-900">
-      <div className="max-w-7xl mx-auto text-center">
-        <h4 className="text-2xl text-orange-500 italic" style={{ fontFamily: 'Dancing Script' }}>
+    <section className="py-16 px-6 md:px-16 bg-white text-gray-800">
+      {/* Judul bagian atas */}
+      <div className="mb-10 md:text-center text-left px-2">
+        <span
+          className={`text-orange-400 text-2xl italic ${dancingScript.className}`}
+        >
           Our Service
-        </h4>
-        <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-10">
+        </span>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
           Kami Hadirkan Teknologi yang Membuat <br /> Bisnis Anda Berkembang
         </h2>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px border-t border-l border-gray-300">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="p-6 border-b border-r border-gray-300 text-left space-y-2 "
-            >
-              <p className="text-sm font-semibold text-gray-500">{service.id}</p>
-              <h3 className="text-lg font-semibold">{service.title}</h3>
-              <p className="text-sm text-gray-600">{service.description}</p>
+      {/* Daftar layanan */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 border-gray-200 relative">
+        {displayedServices.map((service, index) => (
+          <div
+            key={service.id}
+            className={`p-6 md:p-10 border-b border-gray-200
+              ${index % 2 === 0 ? "md:border-r" : ""}
+              ${index >= 2 ? "" : "md:border-b"}
+            `}
+          >
+            <div className="text-sm text-gray-400 mb-1">
+              {String(service.id).padStart(2, "0")}
             </div>
-          ))}
-        </div>
+            <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
+            <p className="text-sm text-gray-600">{service.description}</p>
+          </div>
+        ))}
+      </div>
 
-        <button className="mt-10 bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">
-          Lihat Selengkapnya
+      {/* Tombol Lihat Selengkapnya */}
+      <div className="text-center mt-10">
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="bg-orange-500 text-white font-semibold py-2 px-6 rounded-full hover:bg-orange-600 transition"
+        >
+          {showAll ? "Tutup" : "Lihat Selengkapnya"}
         </button>
       </div>
     </section>
   );
-};
-
-export default OurServices;
+}

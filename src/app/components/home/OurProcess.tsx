@@ -30,14 +30,14 @@ const ProcessSection: React.FC = () => {
     <section className="bg-orange-50 flex justify-center items-center px-4 py-16">
       <div className="w-full max-w-7xl">
         {/* Judul */}
-        <div className="mb-12">
+        <div className="mb-12 text-left">
           <p
             className="text-2xl text-orange-500 italic font-medium"
             style={{ fontFamily: "Dancing Script" }}
           >
             Our Proses
           </p>
-          <h2 className="text-2xl sm:text-3xl text-gray-800 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl text-gray-800">
             Proses Yang <span className="font-bold">Mudah dan Cepat</span>
           </h2>
         </div>
@@ -45,8 +45,12 @@ const ProcessSection: React.FC = () => {
         {/* Langkah-langkah */}
         <div className="flex flex-col gap-8 sm:grid sm:grid-cols-3 sm:gap-12">
           {steps.map((step, i) => (
-            <div key={i} className="flex gap-4 items-start text-left">
-              <div>{step.icon}</div>
+            <div
+              key={i}
+              className="flex flex-col sm:flex-row sm:items-start gap-2 text-left"
+            >
+              {/* Icon di atas pada mobile, kiri pada desktop */}
+              <div className="mb-2 sm:mb-0">{step.icon}</div>
               <div>
                 <h4 className="font-semibold text-gray-900 text-sm mb-1">
                   {step.title}

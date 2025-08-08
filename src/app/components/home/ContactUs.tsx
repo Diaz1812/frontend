@@ -4,7 +4,7 @@ import React from "react";
 const ContactSection: React.FC = () => {
   return (
     <section className="bg-white flex justify-center items-center">
-      <div className="w-full max-w-7xl py-16 flex flex-col-reverse sm:flex-row items-center justify-between gap-12 sm:gap-0">
+      <div className="w-full max-w-7xl px-4 sm:px-8 lg:px-16 py-16 flex flex-col-reverse sm:flex-row items-center justify-between gap-12 sm:gap-0">
         {/* Form */}
         <form className="w-full sm:w-1/2 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

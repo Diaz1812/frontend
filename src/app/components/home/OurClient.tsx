@@ -1,123 +1,114 @@
-"use client"
-import { useState, useEffect } from "react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+"use client";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
-type Testimonial = {
-  id: number
-  message: string
-  name: string
-  position: string
-}
-
-const testimonials: Testimonial[] = [
+const testiData = [
   {
-    id: 1,
+    name: "Udin Kasbon",
+    job: "Jabatan",
     message:
       "Lorem ipsum dolor sit amet consectetur. Arcu justo dolor curabitur facilisis. Malesuada fames magna cursus ultrices sit amet ultricies.",
-    name: "Udin Kasbon",
-    position: "Jabatan",
   },
   {
-    id: 2,
+    name: "Dian Anggara",
+    job: "Staff IT",
     message:
-      "Pelayanan sangat baik dan profesional. Sangat puas dengan hasil kerjanya!",
-    name: "Siti Joko",
-    position: "Manager",
+      "Sangat terbantu dengan sistem yang dibangun oleh tim profesional ini. Pekerjaan jadi lebih cepat dan efisien!",
   },
   {
-    id: 3,
+    name: "Eka Prasetya",
+    job: "Manajer Proyek",
     message:
-      "Layanan sangat memuaskan, saya pasti akan kembali.",
-    name: "Rudi Hartono",
-    position: "Direktur",
+      "Kolaborasi yang luar biasa! Tim sangat responsif dan solusi yang diberikan sangat tepat sasaran.",
   },
   {
-    id: 4,
+    name: "Budi Hartono",
+    job: "CEO Perusahaan X",
     message:
-      "Timnya sangat responsif dan cepat dalam menyelesaikan masalah.",
-    name: "Tini Wulandari",
-    position: "Customer",
+      "Pengalaman bekerja sama yang sangat menyenangkan. Proyek selesai tepat waktu dan hasil memuaskan.",
   },
-]
+];
 
 export default function OurClient() {
-  const [startIndex, setStartIndex] = useState(0)
-  const [itemsPerPage, setItemsPerPage] = useState(2)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setItemsPerPage(1)
-      } else {
-        setItemsPerPage(2)
-      }
+  const nextTesti = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex + (isDesktop() ? 2 : 1)) % testiData.length
+    );
+  };
+
+  const prevTesti = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - (isDesktop() ? 2 : 1) + testiData.length) % testiData.length
+    );
+  };
+
+  const isDesktop = () => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth >= 768;
     }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  const handleNext = () => {
-    setStartIndex((prev) =>
-      prev + itemsPerPage < testimonials.length ? prev + itemsPerPage : 0
-    )
-  }
-
-  const handlePrev = () => {
-    setStartIndex((prev) =>
-      prev - itemsPerPage >= 0
-        ? prev - itemsPerPage
-        : testimonials.length - itemsPerPage
-    )
-  }
-
-  const visibleTestimonials = testimonials.slice(startIndex, startIndex + itemsPerPage)
+    return false;
+  };
 
   return (
-    <section className="bg-white pt-[160px] pr-[120px] pb-[160px] pl-[120px]">
-      <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <div className="mb-10">
-          <p className="text-2xl text-orange-500 italic font-medium" style={{ fontFamily: "Dancing Script" }}>
-            Our Client
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Pengalaman Klien</h2>
-          <p className="text-gray-500 text-lg">Bersama Kami</p>
+    <section className="py-24 px-4 md:px-20 text-left">
+      <div className="max-w-7xl mx-auto flex flex-col gap-8">
+        {/* Title */}
+        <div>
+          <p className="text-orange-500 italic text-lg">Our Client</p>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight text-gray-900">
+            Pengalaman <br className="hidden md:block" />
+            Klien
+          </h2>
+          <p className="text-gray-500 text-xl mt-1">Bersama Kami</p>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-[120px]">
-          {visibleTestimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white">
-              <p className="text-gray-700 text-sm leading-relaxed">
-                {testimonial.message}
-              </p>
-              <div className="mt-6">
-                <h4 className="font-semibold text-sm text-gray-800">{testimonial.name}</h4>
-                <p className="text-xs text-gray-500">{testimonial.position}</p>
-                <hr className="mt-2 border-gray-200" />
-              </div>
-            </div>
-          ))}
+        {/* MOBILE: 1 testimonial */}
+        <div className="block md:hidden">
+          <TestimonialCard data={testiData[currentIndex]} />
         </div>
 
-        {/* Tombol Navigasi */}
-        <div className="mt-10 flex justify-end md:justify-end gap-4 md:gap-4 sm:justify-end sm:mt-8">
+        {/* DESKTOP: 2 testimonial */}
+        <div className="hidden md:grid md:grid-cols-2 md:gap-12">
+          <TestimonialCard data={testiData[currentIndex]} />
+          <TestimonialCard
+            data={testiData[(currentIndex + 1) % testiData.length]}
+          />
+        </div>
+
+        {/* Navigation */}
+        <div className="flex gap-4 mt-6 justify-center">
+
           <button
-            onClick={handlePrev}
-            className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            onClick={prevTesti}
+            className="w-12 h-12 rounded-full border border-o range-500 text-orange-500 hover:bg-orange-500 hover:text-white transition duration-300 flex items-center justify-center"
           >
-            <ArrowLeft size={18} />
+            <ArrowLeft size={20} />
           </button>
           <button
-            onClick={handleNext}
-            className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition"
+            onClick={nextTesti}
+            className="w-12 h-12 rounded-full border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition duration-300 flex items-center justify-center"
           >
-            <ArrowRight size={18} />
+            <ArrowRight size={20} />
           </button>
         </div>
       </div>
     </section>
-  )
+  );
+}
+
+function TestimonialCard({ data }: { data: { name: string; job: string; message: string } }) {
+  return (
+    <div className="text-left">
+      <p className="text-md md:text-lg text-gray-800 leading-relaxed mb-4">
+        {data.message}
+      </p>
+      <h4 className="text-md md:text-lg font-semibold text-gray-900">
+        {data.name}
+      </h4>
+      <p className="text-sm text-gray-500">{data.job}</p>
+      <hr className="mt-2 w-full border-gray-200" />
+    </div>
+  );
 }
