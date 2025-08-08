@@ -1,4 +1,3 @@
-// src/app/components/portofolio/Header.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -12,7 +11,13 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header (Navigasi) */}
-      <header className="w-full bg-gradient-to-r from-orange-100 to-white relative z-20">
+      <header
+        className="w-full relative z-20"
+        style={{
+          background:
+            "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto py-[14px] px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
@@ -65,7 +70,10 @@ const Header: React.FC = () => {
             <Link href="/service" className="hover:text-orange-500 transition">
               Our Service
             </Link>
-            <Link href="/portofolio" className="hover:text-orange-500 transition">
+            <Link
+              href="/portofolio"
+              className="hover:text-orange-500 transition"
+            >
               Portofolio
             </Link>
             <Link href="/career" className="hover:text-orange-500 transition">
@@ -117,10 +125,15 @@ const Header: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="w-full bg-gradient-to-r from-orange-100 to-white flex items-center justify-center relative md:min-h-[486px]">
+      <section
+        className="w-full flex items-center justify-center relative md:min-h-[486px]"
+        style={{
+          background:
+            "linear-gradient(to right bottom, #fbe3d6ff 0%, #fbe3d6ff 10%, #ffffff 30%, #ffffff 0%)",
+        }}
+      >
         <div className="max-w-7xl mx-auto py-[40px] px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center w-full md:justify-between">
           {/* Konten Kiri (Teks) */}
-          {/* Mengatur lebar agar teks 2 baris di desktop dan 3 baris di mobile */}
           <div className="flex flex-col text-gray-900 w-full sm:w-[350px] md:w-[448px] mb-8 md:mb-0">
             <h1 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl mb-4 leading-tight text-orange-500">
               Portofolio
@@ -134,16 +147,16 @@ const Header: React.FC = () => {
               klien.
             </p>
           </div>
-          
+
           {/* Placeholder Gambar Desktop */}
           <div className="hidden md:flex flex-shrink-0 w-[150px] h-[137.69px] rounded-lg items-center justify-center ml-auto">
             <LucideImage className="w-full h-full text-gray-500" />
           </div>
         </div>
 
-        {/* Gambar mobile yang diposisikan absolut */}
+        {/* Gambar mobile (absolute) */}
         <div className="absolute top-[16px] right-4 sm:right-6 lg:hidden w-[50px] h-[45.9px] p-2">
-            <LucideImage className="w-full h-full text-gray-500" />
+          <LucideImage className="w-full h-full text-gray-500" />
         </div>
       </section>
     </>
