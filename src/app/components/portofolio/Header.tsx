@@ -6,122 +6,120 @@ import Image from "next/image";
 import { Image as LucideImage } from "lucide-react";
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // <- sudah benar
 
   return (
     <>
       {/* Header (Navigasi) */}
       <header
-        className="w-full relative z-20"
+        className="w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
         style={{
           background:
             "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
         }}
       >
-        <div className="max-w-7xl mx-auto py-[14px] px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Image
-              src="/microdata.png"
-              alt="Microdata Logo"
-              width={112}
-              height={42}
-              className="w-28 h-auto"
-            />
-          </div>
-
-          {/* Hamburger Icon (mobile) */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
-
-          {/* Menu (Desktop) */}
-          <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
-            <Link href="/" className="hover:text-orange-500 transition">
-              Home
-            </Link>
-            <Link href="/service" className="hover:text-orange-500 transition">
-              Our Service
-            </Link>
-            <Link
-              href="/portofolio"
-              className="hover:text-orange-500 transition"
-            >
-              Portofolio
-            </Link>
-            <Link href="/career" className="hover:text-orange-500 transition">
-              Career
-            </Link>
-            <Link href="/blog" className="hover:text-orange-500 transition">
-              Blog
-            </Link>
-          </nav>
-
-          {/* Contact Us (Desktop) */}
-          <div className="hidden md:block">
-            <Link href="/contact">
-              <span className="text-gray-700 hover:text-orange-500 transition font-medium">
-                Contact Us
-              </span>
-            </Link>
-          </div>
+        {/* Logo */}
+        <div className="flex items-center">
+          <img
+            src="/microdata.png"
+            alt="Microdata Logo"
+            className="w-28 h-auto"
+          />
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="absolute top-[68px] right-4 bg-white shadow-lg rounded-lg w-48 p-4 flex flex-col space-y-4 md:hidden z-10">
+        {/* Hamburger Icon (mobile) */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsMenuOpen(true)} // ✅ fix
+            className="text-gray-700 focus:outline-none"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Menu (Desktop) */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-[#686D76]">
+          <Link href="/" className="hover:text-orange-500 transition">
+            Home
+          </Link>
+          <Link href="/service" className="hover:text-orange-500 transition">
+            Our Service
+          </Link>
+          <Link href="/portofolio" className="hover:text-orange-500 transition">
+            Portofolio
+          </Link>
+          <Link href="/career" className="hover:text-orange-500 transition">
+            Career
+          </Link>
+          <Link href="/blog" className="hover:text-orange-500 transition">
+            Blog
+          </Link>
+        </nav>
+
+        {/* Contact Us (Desktop) */}
+        <div className="hidden md:block">
+          <Link href="/contact">
+            <span className="text-gray-700">Contact Us</span>
+          </Link>
+        </div>
+
+        {/* Mobile Menu Drawer */}
+        <div
+          className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
+            isMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setIsMenuOpen(false)} // ✅ fix
+            className="absolute top-4 right-4 text-orange-500 text-2xl"
+          >
+            &times;
+          </button>
+
+          {/* Menu Items */}
+          <nav className="mt-16 flex flex-col space-y-6 px-6 text-orange-500 text-lg">
             {[
-              { href: "/", text: "Home" },
-              { href: "/service", text: "Our Service" },
-              { href: "/portofolio", text: "Portofolio" },
-              { href: "/career", text: "Career" },
-              { href: "/blog", text: "Blog" },
-            ].map((item, idx) => (
+              "/",
+              "/service",
+              "/portofolio",
+              "/career",
+              "/blog",
+              "/contact",
+            ].map((link, i) => (
               <Link
-                key={idx}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 hover:text-orange-500 font-medium"
+                key={link}
+                href={link}
+                onClick={() => setIsMenuOpen(false)} // ✅ fix
+                className="hover:bg-orange-500 hover:text-white rounded-full px-4 py-2 transition font-bold"
               >
-                {item.text}
+                {
+                  [
+                    "Home",
+                    "Our Service",
+                    "Portofolio",
+                    "Career",
+                    "Blog",
+                    "Contact Us",
+                  ][i]
+                }
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-orange-600 font-semibold mt-4 pt-4 border-t border-gray-200"
-            >
-              Contact Us
-            </Link>
-          </div>
-        )}
+          </nav>
+        </div>
       </header>
 
       {/* Hero Section */}

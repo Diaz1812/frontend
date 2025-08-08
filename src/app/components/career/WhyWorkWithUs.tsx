@@ -10,7 +10,7 @@ const items = Array(4).fill({
 
 const WhyWorkWithUs = () => {
   return (
-    <section className="py-20 px-4" style={{ background: "#ffffff" }}>
+    <section className="py-20 pb-20 px-4" style={{ background: "#ffffff" }}>
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-12">
           Why Work With Us?

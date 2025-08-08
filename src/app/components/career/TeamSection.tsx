@@ -11,6 +11,9 @@ const teamMembers = [
 ];
 
 export default function TeamSection() {
+  // Duplicate array for smooth looping
+  const duplicated = [...teamMembers, ...teamMembers];
+
   return (
     <section
       className="w-full py-12 px-4 sm:px-6"
@@ -42,12 +45,37 @@ export default function TeamSection() {
         </div>
 
         {/* Scroll Horizontal untuk Mobile */}
-        <div className="flex space-x-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 md:space-x-0 md:gap-6">
+        <div className="relative overflow-hidden md:hidden">
+          <div className="carousel-track flex animate-scroll gap-6">
+            {duplicated.map((member, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 flex flex-col items-center justify-center min-w-[100px]"
+              >
+                <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
+                  <Image
+                    src={member.img}
+                    alt={member.name}
+                    width={96}
+                    height={96}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <p className="mt-2 text-sm text-black text-center">
+                  {member.name}
+                </p>
+                <p className="text-xs text-black text-center">
+                  {member.position}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Grid Layout untuk Desktop */}
+        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 md:gap-6">
           {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 text-center w-28 md:w-auto"
-            >
+            <div key={index} className="flex-shrink-0 text-center w-full">
               <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
                 <Image
                   src={member.img}
@@ -57,10 +85,12 @@ export default function TeamSection() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <p className="text-sm font-medium mt-2 text-black">
+              <p className="mt-2 text-sm text-black text-center">
                 {member.name}
               </p>
-              <p className="text-xs text-black">{member.position}</p>
+              <p className="text-xs text-black text-center">
+                {member.position}
+              </p>
             </div>
           ))}
         </div>

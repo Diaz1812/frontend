@@ -1,4 +1,3 @@
-// src/app/components/portofolio/TechnologySection.tsx
 import Image from "next/image";
 
 type Technology = {
@@ -22,19 +21,19 @@ const TechnologySection: React.FC = () => {
           Teknologi Yang Digunakan
         </h2>
 
-        <div className="flex justify-center items-center gap-x-6 sm:gap-x-12 lg:gap-x-[60px] flex-wrap gap-y-8">
+        <div className="flex justify-center items-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
           {technologies.map((tech, index) => (
             <div
               key={index}
               className="flex flex-col items-center group cursor-pointer"
             >
-              <div className="w-16 h-16 bg-white rounded-lg shadow-md flex items-center justify-center group-hover:shadow-lg transition-shadow">
+              <div className="w-16 h-16 flex items-center justify-center">
                 <Image
                   src={tech.image}
                   alt={tech.name}
                   width={32}
                   height={32}
-                  className="w-8 h-8 object-contain"
+                  className="w-12 h-12 object-contain"
                 />
               </div>
               <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
