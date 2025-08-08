@@ -9,7 +9,7 @@ export default function LogoSlide() {
       image: "/logos/Kemendikbud.webp",
       name: "Kementerian Pendidikan dan Kebudayaan",
     },
-    { image: "/logos/Selatan.png", name: "Selatan" },
+    { image: "/Logos/Selatan.png", name: "Selatan" },
     { image: "/logos/waykanan.png", name: "Way Kanan" },
     { image: "/logos/komdigi.png", name: "Komdigi" },
     { image: "/logos/kadinn.png", name: "KADINN" },
