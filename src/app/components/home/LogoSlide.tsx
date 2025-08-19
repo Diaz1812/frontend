@@ -2,17 +2,14 @@ import React from "react";
 
 export default function LogoSlide() {
   const logos = [
-    { image: "/logos/Kemenkess.png", name: "Kementerian Kesehatan" },
-    { image: "/logos/Komisi.png", name: "Komisi" },
-    { image: "/logos/kementrian.png", name: "Kementerian" },
-    {
-      image: "/logos/Kemendikbud.webp",
-      name: "Kementerian Pendidikan dan Kebudayaan",
-    },
+    { image: "/Logos/kemenkess.png", name: "Kementerian Kesehatan" },
+    { image: "/Logos/Komisi.png", name: "Komisi" },
+    { image: "/Logos/kementrian.png", name: "Kementerian" },
+    { image: "/Logos/Kemenkes.png", name: "Kemenkes" },
     { image: "/Logos/Selatan.png", name: "Selatan" },
-    { image: "/logos/waykanan.png", name: "Way Kanan" },
-    { image: "/logos/komdigi.png", name: "Komdigi" },
-    { image: "/logos/kadinn.png", name: "KADINN" },
+    { image: "/Logos/waykanan.png", name: "Way Kanan" },
+    { image: "/Logos/Komdigi.png", name: "Komdigi" },
+    { image: "/Logos/kadinn.png", name: "KADINN" },
   ];
 
   const duplicatedLogos = [...logos, ...logos];
