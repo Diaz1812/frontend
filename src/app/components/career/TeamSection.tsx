@@ -1,17 +1,37 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import api from "../../lib/api";
 
-const teamMembers = [
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-  { name: "Nama Orang", position: "Jabatan/Posisi", img: "/images/image.jpg" },
-];
+type TeamMember = {
+  id: number;
+  name: string;
+  position: string;
+  photo?: string;
+  photo_url?: string;
+};
 
 export default function TeamSection() {
-  // Duplicate array for smooth looping
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    try {
+      const res = await api.get("/teams");
+      const data = res.data.data || res.data;
+      setTeamMembers(data);
+    } catch (error) {
+      console.error("Error fetching team:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // Gandakan untuk animasi scroll di mobile
   const duplicated = [...teamMembers, ...teamMembers];
 
   return (
@@ -44,56 +64,74 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Scroll Horizontal untuk Mobile */}
-        <div className="relative overflow-hidden md:hidden">
-          <div className="carousel-track flex animate-scroll gap-6">
-            {duplicated.map((member, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 flex flex-col items-center justify-center min-w-[100px]"
-              >
-                <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
-                  <Image
-                    src={member.img}
-                    alt={member.name}
-                    width={96}
-                    height={96}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <p className="mt-2 text-sm text-black text-center">
-                  {member.name}
-                </p>
-                <p className="text-xs text-black text-center">
-                  {member.position}
-                </p>
+        {loading ? (
+          <p className="text-gray-500">Loading team...</p>
+        ) : (
+          <>
+            {/* Scroll Horizontal untuk Mobile */}
+            <div className="relative overflow-hidden md:hidden">
+              <div className="carousel-track flex animate-scroll gap-6">
+                {duplicated.map((member, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 flex flex-col items-center justify-center min-w-[100px]"
+                  >
+                    <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
+                      {member.photo_url ? (
+                        <Image
+                          src={member.photo_url}
+                          alt={member.name}
+                          width={96}
+                          height={96}
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500 text-xs">
+                          No Photo
+                        </div>
+                      )}
+                    </div>
+                    <p className="mt-2 text-sm text-black text-center">
+                      {member.name}
+                    </p>
+                    <p className="text-xs text-black text-center">
+                      {member.position}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Grid Layout untuk Desktop */}
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 md:gap-6">
-          {teamMembers.map((member, index) => (
-            <div key={index} className="flex-shrink-0 text-center w-full">
-              <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
-                <Image
-                  src={member.img}
-                  alt={member.name}
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <p className="mt-2 text-sm text-black text-center">
-                {member.name}
-              </p>
-              <p className="text-xs text-black text-center">
-                {member.position}
-              </p>
             </div>
-          ))}
-        </div>
+
+            {/* Grid Layout untuk Desktop */}
+            <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 md:gap-6">
+              {teamMembers.map((member) => (
+                <div key={member.id} className="flex-shrink-0 text-center w-full">
+                  <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
+                    {member.photo_url ? (
+                      <Image
+                        src={member.photo_url}
+                        alt={member.name}
+                        width={96}
+                        height={96}
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500 text-xs">
+                        No Photo
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm text-black text-center">
+                    {member.name}
+                  </p>
+                  <p className="text-xs text-black text-center">
+                    {member.position}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

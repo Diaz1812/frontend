@@ -1,18 +1,38 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import api from "../../lib/api"; 
 
 type Technology = {
-  image: string;
+  id: number;
   name: string;
+  image_url?: string;
 };
 
 const TechnologySection: React.FC = () => {
-  const technologies: Technology[] = [
-    { image: "/images/flutter.png", name: "Flutter" },
-    { image: "/images/mysql.png", name: "MySQL" },
-    { image: "/images/nodejs.png", name: "Node.js" },
-    { image: "/images/Group.png", name: "React" },
-    { image: "/images/laravel.png", name: "Laravel" },
-  ];
+  const [technologies, setTechnologies] = useState<Technology[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchTechnologies = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.get("/technologies");
+      const data: Technology[] = res.data.data || res.data;
+      setTechnologies(data);
+    } catch (err) {
+      console.error("Error fetching technologies:", err);
+      setError("Gagal memuat data teknologi");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTechnologies();
+  }, []);
 
   return (
     <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gray-50">
@@ -21,27 +41,45 @@ const TechnologySection: React.FC = () => {
           Teknologi Yang Digunakan
         </h2>
 
-        <div className="flex justify-center items-center gap-x-4 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
-          {technologies.map((tech, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center group cursor-pointer"
-            >
-              <div className="w-16 h-16 flex items-center justify-center">
-                <Image
-                  src={tech.image}
-                  alt={tech.name}
-                  width={32}
-                  height={32}
-                  className="w-12 h-12 object-contain"
-                />
+        {loading && (
+          <p className="text-center text-gray-500">Memuat teknologi...</p>
+        )}
+
+        {error && (
+          <p className="text-center text-red-500">{error}</p>
+        )}
+
+        {!loading && !error && technologies.length > 0 && (
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            {technologies.map((tech) => (
+              <div
+                key={tech.id}
+                className="flex flex-col items-center group cursor-pointer"
+              >
+                <div className="w-16 h-16 flex items-center justify-center">
+                  {tech.image_url ? (
+                    <Image
+                      src={tech.image_url}
+                      alt={tech.name}
+                      width={48}
+                      height={48}
+                      className="w-12 h-12 object-contain"
+                    />
+                  ) : (
+                    <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
+                  )}
+                </div>
+                <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
+                  {tech.name}
+                </span>
               </div>
-              <span className="mt-2 text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
-                {tech.name}
-              </span>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {!loading && !error && technologies.length === 0 && (
+          <p className="text-center text-gray-500">Belum ada teknologi</p>
+        )}
       </div>
     </section>
   );

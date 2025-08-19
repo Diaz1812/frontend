@@ -1,77 +1,131 @@
+"use client";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import api from "../../lib/api"; 
+
+type CareerOpportunityItem = {
+  id: number;
+  title: string;
+  description: string;
+  requirements?: string | string[] | null;
+  _career_requirements?: string | string[] | null;
+};
+
+function normalizeRequirements(raw: unknown): string[] {
+  if (!raw) return [];
+  if (Array.isArray(raw)) {
+    return raw.map((x) => String(x).trim()).filter(Boolean);
+  }
+
+  const str = String(raw);
+  return str
+    .split(/[\r\n]+|[•–-]|,|;|\u2022/g)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
 
 export default function CareerSection() {
+  const [data, setData] = useState<CareerOpportunityItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.get("/career-opportunities");
+      const careerData = res.data?.data ?? res.data ?? [];
+      setData(Array.isArray(careerData) ? careerData : []);
+    } catch (err) {
+      console.error("Error fetching career opportunities:", err);
+      setError("Failed to fetch career opportunities.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className="w-full bg-black text-white py-20 px-6 relative overflow-hidden">
-      {/* Gradasi terang di tengah bawah */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(circle at 40% 40%, rgba(255, 160, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%)",
         }}
-      ></div>
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* === Desktop Layout === */}
-        <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
-          {/* Konten Kiri */}
-          <div>
-            <h2 className="text-4xl font-bold text-orange-500 mb-2">
-              Peluang Karier{" "}
-              <span className="text-white font-normal">Di PT. Microdata</span>
-            </h2>
-            <p className="text-base text-gray-300 mb-10 max-w-xl">
-              Kami membuka kesempatan bagi individu bertalenta yang ingin tumbuh
-              dan berkontribusi di dunia teknologi. Temukan peran yang sesuai
-              dengan minat dan keahlianmu!
-            </p>
+        <h2 className="text-4xl font-bold text-orange-500 mb-8">
+          Peluang Karier <span className="text-white font-normal">Di PT. Microdata</span>
+        </h2>
 
-            <h3 className="text-2xl font-semibold text-orange-500 mb-2">
-              Program Magang
-            </h3>
-            <p className="text-sm text-gray-300 mb-4 max-w-xl">
-              Bagi kamu siswa atau mahasiswa yang ingin merasakan pengalaman
-              langsung di industri teknologi, program magang di PT. Microdata
-              Indonesia adalah langkah awal yang tepat. Di sini, kamu akan
-              belajar, berkolaborasi, dan terlibat dalam proyek nyata bersama
-              tim profesional.
-            </p>
+        {loading && <p className="text-gray-400">Loading career opportunities...</p>}
+        {error && <p className="text-red-400">{error}</p>}
+        {!loading && !error && data.length === 0 && (
+          <p className="text-gray-400">Belum ada peluang karier tersedia.</p>
+        )}
 
-            <h4 className="text-md font-semibold text-orange-400 mb-2">
-              Requirements
-            </h4>
-            <ul className="list-disc pl-5 text-sm text-gray-300 space-y-1 mb-6">
-              <li>Pendidikan di bidang IT atau sejenis.</li>
-              <li>Menguasai minimal satu bahasa pemrograman.</li>
-              <li>Memiliki semangat belajar dan berkembang.</li>
-              <li>Bersedia magang secara WFO di kantor.</li>
-            </ul>
+        {data.map((career) => {
+          const reqs = normalizeRequirements(
+            career.requirements ?? career._career_requirements
+          );
 
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full flex items-center gap-2 transition">
-              Daftar Magang <ArrowRight size={18} />
-            </button>
-          </div>
+          return (
+            <div key={career.id} className="mb-12">
+              {/* === Desktop Layout === */}
+              <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
+                <div>
+                  <p className="text-base text-gray-300 mb-10 max-w-xl">
+                    {career.title}
+                 </p>
 
-          {/* Gambar Kanan */}
-          <div className="flex justify-center items-center">
-            <div className="w-64 h-64 bg-gray-900/20 border border-dashed border-gray-700 rounded-xl flex items-center justify-center">
-              <span className="text-sm text-gray-500">[Gambar Ilustrasi]</span>
-            </div>
-          </div>
-        </div>
+                   <h3 className="text-2xl font-semibold text-orange-500 mb-2">
+                     Program Magang
+                  </h3>
 
-        {/* === Mobile Layout === */}
-        <div className="block md:hidden">
-          <h2 className="text-3xl font-bold text-orange-500 mb-2">
-            Peluang Karier{" "}
-            <span className="text-white font-normal">Di PT. Microdata</span>
-          </h2>
-          <p className="text-sm text-gray-300 mb-6">
-            Kami membuka kesempatan bagi individu bertalenta yang ingin tumbuh
-            dan berkontribusi di dunia teknologi. Temukan peran yang sesuai
-            dengan minat dan keahlianmu!
-          </p>
+                  <p className="text-sm text-gray-300 mb-4 max-w-xl">
+                    {career.description}
+                  </p>
+
+                  {reqs.length > 0 && (
+                    <>
+                      <h4 className="text-md font-semibold text-orange-400 mb-2">
+                        Requirements
+                      </h4>
+                      <ul className="list-disc pl-5 text-sm text-gray-300 space-y-1 mb-6">
+                        {reqs.map((r, i) => (
+                          <li key={i}>{r}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+
+                  <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full flex items-center gap-2 transition">
+                    Daftar Sekarang <ArrowRight size={18} />
+                  </button>
+                </div>
+
+                {/* Placeholder gambar */}
+                <div className="flex justify-center items-center">
+                  <div className="w-64 h-64 bg-gray-900/20 border border-dashed border-gray-700 rounded-xl flex items-center justify-center">
+                    <span className="text-sm text-gray-500">[Gambar Ilustrasi]</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* === Mobile Layout === */}
+               <div className="block md:hidden">
+              <h2 className="text-3xl font-bold text-orange-500 mb-2">
+                  Peluang Karier{" "}
+                <span className="text-white font-normal">Di PT. Microdata</span>
+              </h2>
+              <p className="text-sm text-gray-300 mb-6">
+                {career.title}
+              </p>
 
           <div className="flex gap-4 items-start mb-6">
             <div className="flex-1">
@@ -79,31 +133,35 @@ export default function CareerSection() {
                 Program Magang
               </h3>
               <p className="text-sm text-gray-300 mb-4">
-                Bagi kamu siswa atau mahasiswa yang ingin merasakan pengalaman
-                langsung di industri teknologi, program magang di PT. Microdata
-                Indonesia adalah langkah awal yang tepat.
+                {career.description}
               </p>
             </div>
 
-            <div className="w-24 h-24 bg-gray-900/20 border border-dashed border-gray-700 rounded-lg flex items-center justify-center">
-              <span className="text-xs text-gray-500">[Gambar]</span>
+                  <div className="w-24 h-24 bg-gray-900/20 border border-dashed border-gray-700 rounded-lg flex items-center justify-center">
+                    <span className="text-xs text-gray-500">[Gambar]</span>
+                  </div>
+                </div>
+
+                {reqs.length > 0 && (
+                  <>
+                    <h4 className="text-md font-semibold text-orange-400 mb-2">
+                      Requirements
+                    </h4>
+                    <ul className="list-disc pl-5 text-sm text-gray-300 space-y-1 mb-6">
+                      {reqs.map((r, i) => (
+                        <li key={i}>{r}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full flex items-center gap-2 transition">
+                  Daftar Sekarang <ArrowRight size={18} />
+                </button>
+              </div>
             </div>
-          </div>
-
-          <h4 className="text-md font-semibold text-orange-400 mb-2">
-            Requirements
-          </h4>
-          <ul className="list-disc pl-5 text-sm text-gray-300 space-y-1 mb-6">
-            <li>Pendidikan di bidang IT atau sejenis.</li>
-            <li>Menguasai minimal satu bahasa pemrograman.</li>
-            <li>Memiliki semangat belajar dan berkembang.</li>
-            <li>Bersedia magang secara WFO di kantor.</li>
-          </ul>
-
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full flex items-center gap-2 transition">
-            Daftar Magang <ArrowRight size={18} />
-          </button>
-        </div>
+          );
+        })}
       </div>
     </section>
   );

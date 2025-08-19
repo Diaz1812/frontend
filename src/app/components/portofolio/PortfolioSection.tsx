@@ -1,82 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { Dancing_Script } from "next/font/google";
+import api from "../../lib/api";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"], weight: ["600"] });
 
-type Project = {
+type Category = {
+  id: number;
+  name: string;
+};
+
+type Portofolio = {
   id: number;
   title: string;
-  company: string;
-  category: string;
+  name_project: string;
+  company_name: string;
+  image_portofolio_url?: string;
+  category?: Category;
 };
 
 const PortfolioSection = () => {
   const [activeFilter, setActiveFilter] = useState<string>("Semua");
+  const [projects, setProjects] = useState<Portofolio[]>([]);
+  const [filters, setFilters] = useState<string[]>(["Semua"]);
 
-  const filters: string[] = ["Semua", "Mobile", "Web", "Graphic Design"];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await api.get("/portofolios");
+        const data: Portofolio[] = res.data.data || res.data;
+        setProjects(data);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Mobile",
-    },
-    {
-      id: 2,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Web",
-    },
-    {
-      id: 3,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Mobile",
-    },
-    {
-      id: 4,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Graphic Design",
-    },
-    {
-      id: 5,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Web",
-    },
-    {
-      id: 6,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Mobile",
-    },
-    {
-      id: 7,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Graphic Design",
-    },
-    {
-      id: 8,
-      title: "Application Name",
-      company: "Company Name",
-      category: "Web",
-    },
-  ];
+        // Ambil kategori unik dari API
+        const categories = Array.from(
+          new Set(data.map((p) => p.category?.name).filter(Boolean))
+        ) as string[];
+        setFilters(["Semua", ...categories]);
+      } catch (err) {
+        console.error("Gagal fetch data portofolio", err);
+      }
+    };
+    fetchData();
+  }, []);
 
   const filteredProjects =
     activeFilter === "Semua"
       ? projects
-      : projects.filter((project) => project.category === activeFilter);
+      : projects.filter((p) => p.category?.name === activeFilter);
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-[10px] pb-[100px] bg-white">
-      {/* Title + Filter Buttons */}
+      {/* Title + Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-12 sm:mb-8 gap-4 items-start">
         <h2
           className={`${dancingScript.className} text-3xl text-gray-800 font-semibold`}
@@ -107,8 +83,9 @@ const PortfolioSection = () => {
         {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}
-            title={project.title}
-            company={project.company}
+            title={project.name_project}
+            company={project.company_name}
+            image={project.image_portofolio_url}
           />
         ))}
       </div>

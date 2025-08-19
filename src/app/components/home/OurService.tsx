@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { Poppins } from "next/font/google";
-import { Dancing_Script } from "next/font/google";
+import React, { useState, useEffect } from "react";
+import { Poppins, Dancing_Script } from "next/font/google";
+import api from "../../lib/api"; 
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,47 +13,34 @@ const dancingScript = Dancing_Script({
   weight: ["400", "700"],
 });
 
-const services = [
-  {
-    id: 1,
-    title: "Software Developer",
-    description:
-      "Menyediakan layanan riset dan pengembangan software yang customize, termasuk perancangan aplikasi, pengembangan, hingga pelatihan operasional.",
-  },
-  {
-    id: 2,
-    title: "IT Consulting",
-    description:
-      "Pendampingan teknis yang rutin untuk menjaga performa sistem tetap stabil, mendeteksi potensi gangguan sejak dini, dan meminimalkan risiko kerugian bagi perusahaan.",
-  },
-  {
-    id: 3,
-    title: "IT Infrastructure",
-    description:
-      "Fondasi teknologi yang menopang sistem operasional, mencakup perangkat fisik dan virtual yang memungkinkan alur data, penyimpanan, pengolahan, hingga analisis berjalan secara efisien.",
-  },
-  {
-    id: 4,
-    title: "Multimedia & Graphic Design",
-    description:
-      "Solusi desain dan multimedia yang strategis untuk membangun identitas merek yang kuat, mendukung pertumbuhan bisnis, dan siap bersaing di era digital yang kompetitif.",
-  },
-  {
-    id: 5,
-    title: "UI/UX Design",
-    description:
-      "Menciptakan antarmuka yang menarik dan pengalaman pengguna yang optimal demi meningkatkan kepuasan dan retensi pelanggan.",
-  },
-  {
-    id: 6,
-    title: "Cloud Services",
-    description:
-      "Penyediaan layanan cloud untuk skalabilitas, fleksibilitas, dan efisiensi infrastruktur TI perusahaan.",
-  },
-];
+type ServiceItem = {
+  id: number;
+  name_service: string;
+  description: string;
+};
 
 export default function ServicesSection() {
+  const [services, setServices] = useState<ServiceItem[]>([]);
   const [showAll, setShowAll] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchServices = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get("/services-landing-pages");
+      const serviceData = response.data.data || response.data;
+      setServices(Array.isArray(serviceData) ? serviceData : [serviceData]);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
   const displayedServices = showAll ? services : services.slice(0, 4);
 
   return (
@@ -70,6 +57,11 @@ export default function ServicesSection() {
         </h2>
       </div>
 
+      {/* Loading */}
+      {loading && (
+        <div className="text-center text-gray-500">Loading services...</div>
+      )}
+
       {/* Daftar layanan */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 border-gray-200 relative">
         {displayedServices.map((service, index) => (
@@ -83,21 +75,23 @@ export default function ServicesSection() {
             <div className="text-sm text-gray-400 mb-1">
               {String(service.id).padStart(2, "0")}
             </div>
-            <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
+            <h3 className="font-semibold text-lg mb-2">{service.name_service}</h3>
             <p className="text-sm text-gray-600">{service.description}</p>
           </div>
         ))}
       </div>
 
       {/* Tombol Lihat Selengkapnya */}
-      <div className="text-center mt-10">
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="bg-orange-500 text-white font-semibold py-2 px-6 rounded-full hover:bg-orange-600 transition"
-        >
-          {showAll ? "Tutup" : "Lihat Selengkapnya"}
-        </button>
-      </div>
+      {services.length > 4 && (
+        <div className="text-center mt-10">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="bg-orange-500 text-white font-semibold py-2 px-6 rounded-full hover:bg-orange-600 transition"
+          >
+            {showAll ? "Tutup" : "Lihat Selengkapnya"}
+          </button>
+        </div>
+      )}
     </section>
   );
 }

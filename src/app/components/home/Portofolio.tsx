@@ -3,63 +3,21 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import api from "../../lib/api";
 
 type Project = {
   id: number;
-  title: string;
-  company: string;
-  category: string;
-  image: string;
+  name_project: string;
+  company_name: string;
+  image_portofolio_url?: string;
+  category?: { id: number; name: string };
 };
 
 const HomeSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Mobile App 1",
-      company: "Company A",
-      category: "Mobile",
-      image: "/projects/mobile1.jpg",
-    },
-    {
-      id: 2,
-      title: "Web App 1",
-      company: "Company B",
-      category: "Web",
-      image: "/projects/web1.jpg",
-    },
-    {
-      id: 3,
-      title: "Mobile App 2",
-      company: "Company C",
-      category: "Mobile",
-      image: "/projects/mobile2.jpg",
-    },
-    {
-      id: 4,
-      title: "Graphic Design",
-      company: "Company D",
-      category: "Graphic Design",
-      image: "/projects/design1.jpg",
-    },
-    {
-      id: 5,
-      title: "Web App 2",
-      company: "Company E",
-      category: "Web",
-      image: "/projects/web2.jpg",
-    },
-    {
-      id: 6,
-      title: "Mobile App 3",
-      company: "Company F",
-      category: "Mobile",
-      image: "/projects/mobile3.jpg",
-    },
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,6 +26,22 @@ const HomeSection = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      setLoading(true);
+      try {
+        const res = await api.get("/portofolios");
+        setProjects(res.data.data || res.data);
+      } catch (err) {
+        console.error("Gagal fetch project", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
   const handleNext = () => {
@@ -95,7 +69,6 @@ const HomeSection = () => {
             </h2>
           </div>
 
-          {/* Tombol desktop saja */}
           {!isMobile && (
             <div className="flex-shrink-0">
               <Button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium py-2 px-5 rounded-full transition">
@@ -106,7 +79,11 @@ const HomeSection = () => {
         </div>
 
         {/* Konten */}
-        {isMobile ? (
+        {loading ? (
+          <p className="text-center text-gray-500">Memuat proyek...</p>
+        ) : projects.length === 0 ? (
+          <p className="text-center text-gray-500">Belum ada proyek</p>
+        ) : isMobile ? (
           <div className="relative max-w-md mx-auto">
             <motion.div
               key={projects[activeIndex].id}
@@ -117,17 +94,17 @@ const HomeSection = () => {
             >
               <div className="aspect-[4/3] bg-gray-100 rounded-md overflow-hidden">
                 <img
-                  src={projects[activeIndex].image}
-                  alt={projects[activeIndex].title}
+                  src={projects[activeIndex].image_portofolio_url || "/placeholder.jpg"}
+                  alt={projects[activeIndex].name_project}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="mt-4 text-center">
                 <h3 className="font-semibold text-base text-gray-800">
-                  {projects[activeIndex].title}
+                  {projects[activeIndex].name_project}
                 </h3>
                 <p className="text-sm text-gray-500">
-                  {projects[activeIndex].company}
+                  {projects[activeIndex].company_name}
                 </p>
               </div>
             </motion.div>
@@ -150,7 +127,6 @@ const HomeSection = () => {
               </Button>
             </div>
 
-            {/* Tombol mobile di bawah */}
             <div className="mt-8 flex justify-center">
               <Button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium py-2 px-5 rounded-full transition">
                 Lihat lainnya
@@ -158,7 +134,6 @@ const HomeSection = () => {
             </div>
           </div>
         ) : (
-          // Tampilan Desktop
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <motion.div
@@ -171,16 +146,16 @@ const HomeSection = () => {
               >
                 <div className="aspect-square bg-gray-100 rounded-md overflow-hidden">
                   <img
-                    src={project.image}
-                    alt={project.title}
+                    src={project.image_portofolio_url || "/placeholder.jpg"}
+                    alt={project.name_project}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="mt-4 text-center">
                   <h3 className="font-semibold text-base text-gray-800">
-                    {project.title}
+                    {project.name_project}
                   </h3>
-                  <p className="text-sm text-gray-500">{project.company}</p>
+                  <p className="text-sm text-gray-500">{project.company_name}</p>
                 </div>
               </motion.div>
             ))}
