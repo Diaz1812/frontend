@@ -17,7 +17,7 @@ const Header = () => {
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src="/microdata.png"
+          src="/microdata1.png"
           alt="Microdata Logo"
           className="w-28 h-auto"
         />
@@ -126,7 +126,7 @@ const Header = () => {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text -lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
           >
             Contact Us
           </Link>
