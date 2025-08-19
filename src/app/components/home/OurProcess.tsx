@@ -20,7 +20,7 @@ const steps: Step[] = [
   },
   {
     icon: <Rocket className="w-8 h-8 text-gray-500" />,
-    title: "Testing & Implementasii",
+    title: "Testing & Implementasi",
     desc: "Proses Testing, Pembayaran dan Implementasi",
   },
 ];
