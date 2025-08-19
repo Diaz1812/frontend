@@ -21,7 +21,7 @@ const Header: React.FC = () => {
         {/* Logo */}
         <div className="flex items-center">
           <img
-            src="/microdata.png"
+            src="/microdata1.png"
             alt="Microdata Logo"
             className="w-28 h-auto"
           />
