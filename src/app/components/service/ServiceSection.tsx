@@ -44,7 +44,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Konten untuk desktop */}
       <div className="text-left mt-2 px-2 hidden md:block">
         <h3 className="text-white text-xl font-normal mb-2">{title}</h3>
-        <p className="text-white/70 text-sm leading-relaxed mb-4">
+        <p className="text-zinc-500 text-sm leading-relaxed mb-4">
           {description}
         </p>
         <button className="px-5 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
@@ -66,7 +66,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <h3 className="text-white text-xl font-normal mb-2">
             {number}. {title}
           </h3>
-          <p className="text-white/70 text-sm leading-relaxed mb-4">
+          <p className="text-zinc-500 text-sm leading-relaxed mb-4">
             {description}
           </p>
           <button className="px-5 py-2 border border-orange-500 text-orange-500 rounded-full text-sm hover:bg-orange-500 hover:text-white transition">
@@ -144,18 +144,18 @@ const Page: React.FC = () => {
           {/* Garis Vertikal Tengah */}
           <div
             className="absolute right-1/2 w-px bg-transparent border-l border-solid border-white/10 transform translate-x-1/2 md:block hidden"
-            style={{ top: "150px", height: "300px" }}
+            style={{ top: "268px", height: "330px" }}
           />
           <div
             className="absolute right-1/2 w-px bg-transparent border-l border-solid border-white/10 transform translate-x-1/2 md:block hidden"
-            style={{ top: "714px", height: "400px" }}
+            style={{ top: "880px", height: "310px" }}
           />
           <div
             className="absolute right-1/2 w-px bg-transparent border-l border-solid border-white/10 transform translate-x-1/2 md:block hidden"
-            style={{ top: "1350px", height: "300px" }}
+            style={{ top: "1460px", height: "320px" }}
           />
 
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
+        <div className="max-w-6xl mx-auto px-8 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-24 relative z-10">
             {loading && <p className="text-white">Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {!loading &&
@@ -176,6 +176,7 @@ const Page: React.FC = () => {
                     ) : undefined
                   }
                   isEven={index % 2 === 0}
+                  className={index % 2 === 0 ? "md:mr-4" : "md:ml-4"}
                 />
               ))}
           </div>

@@ -1,4 +1,5 @@
-import { Mail, Instagram, Twitter, Globe } from "lucide-react";
+// Hapus import lucide-react jika sudah tidak diperlukan
+// import { Mail, Instagram, Twitter, Globe } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -49,24 +50,39 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
-                <Mail className="w-5 h-5 text-white" />
+                <img 
+                  src="/logos/email.png" 
+                  alt="Email" 
+                  className="w-5 h-5" 
+                />
                 <span className="text-white text-sm">
                   microdataindonesia@gmail.com
                 </span>
               </div>
               <div className="flex items-center space-x-2">
-                <Instagram className="w-5 h-5 text-white" />
+                <img 
+                  src="/logos/instagram.png" 
+                  alt="Instagram" 
+                  className="w-5 h-5" 
+                />
                 <span className="text-white text-sm">microdataindonesia</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Twitter className="w-5 h-5 text-white" />
+                <img 
+                  src="/logos/tiktok.png" 
+                  alt="Twitter" 
+                  className="w-5 h-5" 
+                />
                 <span className="text-white text-sm">microdataindonesia</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Globe className="w-5 h-5 text-white" />
+                <img 
+                  src="/logos/linkedin.png" 
+                  alt="Website" 
+                  className="w-5 h-5" 
+                />
                 <span className="text-white text-sm">microdataindonesia</span>
               </div>
             </div>
