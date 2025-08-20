@@ -1,47 +1,65 @@
-import React, { JSX } from "react";
+"use client";
 
-interface WhyItem {
-  title: string;
+import React, { useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import api from "../../lib/api";
+
+interface MicrodataOptionItem {
+  id: number;
+  name_title: string;
   description: string;
 }
 
-export default function WhyMicrodata(): JSX.Element {
-  const reasons: WhyItem[] = [
-    {
-      title: "Berpengalaman & Terpercaya",
-      description:
-        "Bertahun–tahun menangani berbagai proyek di sektor industri berbeda dengan hasil yang teruji.",
-    },
-    {
-      title: "Tim Profesional",
-      description:
-        "Didukung profesional berpengalaman di bidang integrasi sistem, software development, dan konsultasi IT.",
-    },
-    {
-      title: "Komitmen Pada Kualitas",
-      description:
-        "Setiap proyek dikerjakan dengan standar terbaik untuk mendukung pertumbuhan bisnis klien.",
-    },
-  ];
+export default function WhyMicrodata(): ReactElement {
+  const [reasons, setReasons] = useState<MicrodataOptionItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchReasons = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get("/microdata-options");
+      const data = response.data.data || response.data;
+      if (Array.isArray(data)) {
+        setReasons(data);
+      } else {
+        setReasons([]);
+      }
+    } catch (err: unknown) {
+      console.error("Error fetching microdata options:", err);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Gagal memuat data microdata options");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReasons();
+  }, []);
 
   return (
-    <section className="bg-black flex justify-center items-center px-6 md:px-[120px] py-16 md:py-[120px]">
-      <div className="w-full max-w-[1513px] min-h-[673px] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[80px]">
+    <section className="bg-black flex justify-center items-center px-4 py-16">
+      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Kiri: Judul dan tombol */}
         <div className="flex flex-col justify-center text-left md:text-left">
-          <h2 className="text-2xl md:text-5xl font-bold text-orange-500 mb-3 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-orange-500 mb-2">
             Mengapa Microdata
           </h2>
-          <h3 className="text-xl md:text-4xl font-semibold text-white mb-5 leading-snug">
+          <h3 className="text-2xl md:text-4xl font-medium text-white mb-4">
             Jadi Pilihan Tepat
           </h3>
-          <p className="text-sm md:text-lg text-gray-400 mb-7 max-w-[90%]">
+          <p className="text-sm text-gray-400 mb-6">
             Microdata hadir sebagai partner teknologi yang mengutamakan
             kualitas, ketepatan waktu, dan solusi yang benar-benar sesuai
             kebutuhan Anda.
           </p>
-          <div className="flex md:justify-start">
-            <button className="text-sm md:text-base font-medium text-white border border-white rounded-full px-6 py-2.5 hover:bg-orange-500 transition">
+          <div className="flex md:justify-start justify-left">
+            <button className="text-white border border-white rounded-full px-6 py-2 text-sm hover:bg-orange-500 transition">
               Hubungi Kami
             </button>
           </div>
@@ -49,24 +67,28 @@ export default function WhyMicrodata(): JSX.Element {
 
         {/* Kanan: List Alasan */}
         <div className="flex flex-col justify-center space-y-8">
-          {reasons.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start space-x-5 border-b border-gray-700 pb-5"
-            >
-              <div className="text-lg md:text-2xl font-bold text-orange-500 w-7">
-                {index + 1}
+          {loading && <p className="text-gray-400">Memuat alasan...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {!loading && !error && reasons.length > 0 ? (
+            reasons.map((item, index) => (
+              <div
+                key={item.id}
+                className="flex items-start space-x-4 border-b border-gray-700 pb-4"
+              >
+                <div className="text-xl font-medium text-white w-6">
+                  {index + 1}
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white">{item.name_title}</h4>
+                  <p className="text-sm text-gray-400">{item.description}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-base md:text-xl font-semibold text-white mb-1.5">
-                  {item.title}
-                </h4>
-                <p className="text-sm md:text-base text-gray-400 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            !loading && !error && (
+              <p className="text-gray-400">Belum ada data alasan</p>
+            )
+          )}
         </div>
       </div>
     </section>
