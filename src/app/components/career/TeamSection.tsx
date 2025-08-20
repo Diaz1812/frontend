@@ -48,13 +48,13 @@ export default function TeamSection() {
           <h2 className="text-2xl sm:text-4xl font-bold text-orange-500">
             Jadilah Bagian{" "}
             <span
-              className="text-500 italic"
+              className="text-500 italic text-gray-500 font-light"
               style={{ fontFamily: "Dancing Script" }}
             >
               Dari
             </span>
           </h2>
-          <h3 className="text-xl sm:text-3xl text-gray-800 font-light">
+          <h3 className="text-xl sm:text-3xl text-gray-500 font-light">
             Tim Kami
           </h3>
           <p className="text-gray-600 mt-3 max-w-lg text-sm sm:text-base">
@@ -105,7 +105,10 @@ export default function TeamSection() {
             {/* Grid Layout untuk Desktop */}
             <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 md:gap-6">
               {teamMembers.map((member) => (
-                <div key={member.id} className="flex-shrink-0 text-center w-full">
+                <div
+                  key={member.id}
+                  className="flex-shrink-0 text-center w-full"
+                >
                   <div className="w-24 h-24 mx-auto overflow-hidden rounded-full bg-gray-200">
                     {member.photo_url ? (
                       <Image
