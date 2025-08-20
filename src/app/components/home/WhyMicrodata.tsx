@@ -1,28 +1,46 @@
-import React, { JSX } from "react";
+"use client";
 
-interface WhyItem {
-  title: string;
+import React, { useEffect, useState } from "react";
+import type { ReactElement } from "react";
+import api from "../../lib/api";
+
+interface MicrodataOptionItem {
+  id: number;
+  name_title: string;
   description: string;
 }
 
-export default function WhyMicrodata(): JSX.Element {
-  const reasons: WhyItem[] = [
-    {
-      title: "Berpengalaman & Terpercaya",
-      description:
-        "Bertahun–tahun menangani berbagai proyek di sektor industri berbeda dengan hasil yang teruji.",
-    },
-    {
-      title: "Tim Profesional",
-      description:
-        "Didukung profesional berpengalaman di bidang integrasi sistem, software development, dan konsultasi IT.",
-    },
-    {
-      title: "Komitmen Pada Kualitas",
-      description:
-        "Setiap proyek dikerjakan dengan standar terbaik untuk mendukung pertumbuhan bisnis klien.",
-    },
-  ];
+export default function WhyMicrodata(): ReactElement {
+  const [reasons, setReasons] = useState<MicrodataOptionItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchReasons = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await api.get("/microdata-options");
+      const data = response.data.data || response.data;
+      if (Array.isArray(data)) {
+        setReasons(data);
+      } else {
+        setReasons([]);
+      }
+    } catch (err: unknown) {
+      console.error("Error fetching microdata options:", err);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Gagal memuat data microdata options");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReasons();
+  }, []);
 
   return (
     <section className="bg-black flex justify-center items-center px-4 py-16">
@@ -49,20 +67,28 @@ export default function WhyMicrodata(): JSX.Element {
 
         {/* Kanan: List Alasan */}
         <div className="flex flex-col justify-center space-y-8">
-          {reasons.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start space-x-4 border-b border-gray-700 pb-4"
-            >
-              <div className="text-xl font-medium text-white w-6">
-                {index + 1}
+          {loading && <p className="text-gray-400">Memuat alasan...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {!loading && !error && reasons.length > 0 ? (
+            reasons.map((item, index) => (
+              <div
+                key={item.id}
+                className="flex items-start space-x-4 border-b border-gray-700 pb-4"
+              >
+                <div className="text-xl font-medium text-white w-6">
+                  {index + 1}
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white">{item.name_title}</h4>
+                  <p className="text-sm text-gray-400">{item.description}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-white">{item.title}</h4>
-                <p className="text-sm text-gray-400">{item.description}</p>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            !loading && !error && (
+              <p className="text-gray-400">Belum ada data alasan</p>
+            )
+          )}
         </div>
       </div>
     </section>
