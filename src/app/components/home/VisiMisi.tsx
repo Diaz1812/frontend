@@ -16,7 +16,7 @@ export default function VisiMisi() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/admin/about-us');
+      const response = await api.get('/about-us');
       const aboutUsData = response.data.data || response.data;
       // asumsi hanya ada 1 entry about-us
       setData(Array.isArray(aboutUsData) ? aboutUsData[0] : aboutUsData);
