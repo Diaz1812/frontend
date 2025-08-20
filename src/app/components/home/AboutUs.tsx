@@ -1,8 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../../lib/api';
+
+type AboutUsData = {
+  id: number;
+  title: string;
+  description: string;
+  vision: string;
+  mission: string;
+};
 
 const AboutAction: React.FC = () => {
+  const [data, setData] = useState<AboutUsData | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get('/admin/about-us');
+      const aboutUsData = response.data.data || response.data;
+      // ambil hanya 1 record (asumsi isi cuma 1 di DB)
+      setData(Array.isArray(aboutUsData) ? aboutUsData[0] : aboutUsData);
+    } catch (error) {
+      console.error('Error fetching about us:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
@@ -14,21 +44,36 @@ const AboutAction: React.FC = () => {
           >
             About Us
           </h4>
-          <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-4">
-            Kami Ada untuk Membantu Bisnis <br />
-            Anda Bertumbuh
-          </h2>
-          <p className="text-gray-600 max-w-2xl">
-            Microdata Indonesia adalah perusahaan teknologi informasi yang
-            berfokus pada integrasi sistem, konsultasi IT, dan pengembangan
-            perangkat lunak untuk berbagai perusahaan dan sektor industri. Kami
-            hadir untuk membantu bisnis Anda lebih efisien dan bertumbuh melalui
-            layanan profesional, mulai dari perancangan hingga pengembangan
-            software yang tepat dan inovatif.
-          </p>
+
+          {loading ? (
+            <>
+              <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-4">
+                Loading title...
+              </h2>
+              <p className="text-gray-600 max-w-2xl">Loading description...</p>
+            </>
+          ) : data ? (
+            <>
+              <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-4 whitespace-pre-line">
+                {data.title}
+              </h2>
+              <p className="text-gray-600 max-w-2xl whitespace-pre-line">
+                {data.description}
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="text-2xl md:text-3xl font-bold leading-snug mb-4">
+                Title belum tersedia
+              </h2>
+              <p className="text-gray-600 max-w-2xl">
+                Description belum tersedia
+              </p>
+            </>
+          )}
         </div>
 
-        {/* Right Content - Statistik Selalu Sebaris & Tengah */}
+        {/* Right Content - Statistik */}
         <div className="overflow-x-auto flex justify-center">
           <div className="flex items-center gap-10 min-w-[500px]">
             <div className="text-center">

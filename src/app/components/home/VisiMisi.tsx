@@ -1,15 +1,53 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../lib/api';
+
+type AboutUsData = {
+  id: number;
+  vision: string;
+  mission: string;
+};
 
 export default function VisiMisi() {
   const [tab, setTab] = useState<'visi' | 'misi'>('visi');
+  const [data, setData] = useState<AboutUsData | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const misiList = [
-    "Memberikan kualitas layanan terbaik yang didukung dengan berbagai solusi dan inovasi jaringan telekomunikasi dalam meningkatkan pelayanan bagi pelanggan.",
-    "Membangun dan mengembangkan infrastruktur jaringan di seluruh kota-kota di Indonesia dengan teknologi terbaru.",
-    "Selalu mengembangkan Sumber Daya Manusia secara konsisten untuk mencapai kesuksesan.",
-    "Selalu Menciptakan Produk-Produk Terbaru di Bidang Teknologi Informasi.",
-  ];
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get('/admin/about-us');
+      const aboutUsData = response.data.data || response.data;
+      // asumsi hanya ada 1 entry about-us
+      setData(Array.isArray(aboutUsData) ? aboutUsData[0] : aboutUsData);
+    } catch (err) {
+      console.error('Error fetching about us:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900 text-center">
+        <p>Loading visi & misi...</p>
+      </section>
+    );
+  }
+
+  if (!data) {
+    return (
+      <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900 text-center">
+        <p>Data visi & misi belum tersedia.</p>
+      </section>
+    );
+  }
+
+  const misiList = data.mission ? data.mission.split('\n').filter(Boolean) : [];
 
   return (
     <section className="px-6 md:px-[120px] py-16 bg-white text-gray-900">
@@ -33,9 +71,8 @@ export default function VisiMisi() {
       {/* Mobile content */}
       <div className="md:hidden">
         {tab === 'visi' && (
-          <p className="text-sm leading-relaxed">
-            Memberikan pelanggan solusi layanan jasa dan produk terbaik dengan mengutamakan kepuasan pelanggan, 
-            yang menjadikan PT. Micro Data Indonesia sebagai pilihan utama dalam layanan jasa Teknologi Informasi.
+          <p className="text-sm leading-relaxed whitespace-pre-line">
+            {data.vision}
           </p>
         )}
 
@@ -58,9 +95,8 @@ export default function VisiMisi() {
         {/* Visi */}
         <div className="flex-1">
           <h2 className="text-xl font-serif italic mb-4">Visi</h2>
-          <p className="text-sm leading-relaxed">
-            Memberikan pelanggan solusi layanan jasa dan produk terbaik dengan mengutamakan kepuasan pelanggan, 
-            yang menjadikan PT. Micro Data Indonesia sebagai pilihan utama dalam layanan jasa Teknologi Informasi.
+          <p className="text-sm leading-relaxed whitespace-pre-line">
+            {data.vision}
           </p>
         </div>
 
