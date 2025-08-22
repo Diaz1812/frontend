@@ -1,17 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [useBlackLogo, setUseBlackLogo] = useState(false);
-
-  const headerRef = useRef(null);
 
   useEffect(() => {
-    // Handle scroll for glassmorphism effect
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
@@ -20,55 +16,26 @@ const Header = () => {
       }
     };
 
-    // Observe elements with white background
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const headerBottom =
-              headerRef.current.getBoundingClientRect().bottom;
-            const sectionTop = entry.target.getBoundingClientRect().top;
-            // Check if header overlaps with white background section
-            if (headerBottom > sectionTop && sectionTop >= 0) {
-              setUseBlackLogo(true);
-            } else {
-              setUseBlackLogo(false);
-            }
-          }
-        });
-      },
-      { threshold: [0, 0.1, 1.0] }
-    );
-
-    // Target sections with white background
-    const whiteSections = document.querySelectorAll(".bg-white, .bg-gray-100");
-    whiteSections.forEach((section) => observer.observe(section));
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      whiteSections.forEach((section) => observer.unobserve(section));
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      ref={headerRef}
-      className={`sticky top-0 z-50 w-full transition-all duration-500 
+      className={`fixed top-0 z-50 w-full transition-all duration-500 
         ${
           isScrolled
-            ? "bg-transparent backdrop-blur-lg border-b border-white/10 shadow-lg"
-            : "bg-transparent md:bg-gradient-to-r md:from-[#0f0f0f] md:via-[#0f0f0f] md:to-orange-900 border-b border-gray-500"
+            ? "bg-black/40 backdrop-blur-md border-b border-white/10 shadow-lg"
+            : "bg-transparent"
         }
         text-white py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center box-border`}
     >
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src={useBlackLogo ? "/microdata-black.png" : "/microdata.png"}
+          src="/microdata.png"
           alt="Microdata Logo"
-          className="w-28 h-auto transition-all duration-300"
+          className="w-28 h-auto"
         />
       </div>
 
@@ -76,7 +43,7 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-white focus:outline-none"
+          className="text-white-300 focus:outline-none"
         >
           <svg
             className="w-6 h-6"
