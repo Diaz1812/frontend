@@ -11,6 +11,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const bannerSection = document.querySelector("section.bg-gradient-to-r");
+      const whyMicrodataSection = document.querySelector("section.bg-black");
       const scrollTop = window.scrollY;
 
       if (scrollTop > 10) {
@@ -19,16 +20,22 @@ const Header = () => {
         setIsScrolled(false);
       }
 
-      if (bannerSection) {
+      if (bannerSection && whyMicrodataSection) {
         const bannerSectionTop = bannerSection.getBoundingClientRect().top;
         const bannerSectionBottom = bannerSection.getBoundingClientRect().bottom;
+        const whyMicrodataSectionTop = whyMicrodataSection.getBoundingClientRect().top;
+        const whyMicrodataSectionBottom = whyMicrodataSection.getBoundingClientRect().bottom;
         const isWithinBanner = bannerSectionTop <= 0 && bannerSectionBottom > 0;
+        const isWithinWhyMicrodata = whyMicrodataSectionTop <= 0 && whyMicrodataSectionBottom > 0;
         const isPastBanner = bannerSectionBottom <= 0;
+        const isPastWhyMicrodata = whyMicrodataSectionBottom <= 0;
 
-        if (isWithinBanner || bannerSectionTop > 0) {
-          setIsAlternateLogo(false); // Reset to microdata.png when back in or above banner
-        } else if (isPastBanner) {
-          setIsAlternateLogo(true); // Switch to microdata1.png when past banner
+        if (isWithinBanner || isWithinWhyMicrodata || bannerSectionTop > 0) {
+          setIsAlternateLogo(false); // Kembali ke microdata.png saat di dalam atau di atas Banner atau WhyMicrodata
+        } else if (isPastBanner && !isWithinWhyMicrodata) {
+          setIsAlternateLogo(true); // Ganti ke microdata1.png saat melewati Banner dan sebelum WhyMicrodata
+        } else if (isPastWhyMicrodata) {
+          setIsAlternateLogo(true); // Tetap microdata1.png setelah melewati WhyMicrodata
         }
       }
     };

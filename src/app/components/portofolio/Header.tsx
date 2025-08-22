@@ -12,11 +12,7 @@ const Header: React.FC = () => {
     <>
       {/* Header (Navigasi) */}
       <header
-        className="sticky top-0 z-50 w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
-        style={{
-          background:
-            "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
-        }}
+        className="fixed top-0 z-50 w-full bg-white/10 backdrop-blur-sm border-b border-white/20 shadow-lg py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
       >
         {/* Logo */}
         <div className="flex items-center">
@@ -31,7 +27,7 @@ const Header: React.FC = () => {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="text-gray-700 focus:outline-none"
+            className="text-white focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -72,7 +68,9 @@ const Header: React.FC = () => {
         {/* Contact Us (Desktop) */}
         <div className="hidden md:block">
           <Link href="/contact">
-            <span className="text-gray-700">Contact Us</span>
+            <span className="text-gray-300 hover:text-orange-500 transition">
+              Contact Us
+            </span>
           </Link>
         </div>
 

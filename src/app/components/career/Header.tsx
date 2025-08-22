@@ -1,18 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header
-      className="sticky top-0 z-50 w-full shadow-md py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
-      style={{
-        background:
-          "linear-gradient(135deg, #fbe3d6 0%, #fbe3d6 14%, #ffffff 70%, #ffffff 100%)",
-      }}
+      className="fixed top-0 z-50 w-full bg-white/10 backdrop-blur-sm border-b border-white/20 shadow-lg py-4 px-4 sm:px-6 lg:px-[120px] flex justify-between items-center box-border"
     >
       {/* Logo */}
       <div className="flex items-center">
@@ -27,7 +23,7 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-gray-700 focus:outline-none"
+          className="text-white focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -68,7 +64,9 @@ const Header = () => {
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
         <Link href="/contact">
-          <span className="text-gray-700">Contact Us</span>
+          <span className="text-gray-300 hover:text-orange-500 transition">
+            Contact Us
+          </span>
         </Link>
       </div>
 
@@ -126,7 +124,7 @@ const Header = () => {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="bg-white text-orange-500 rounded-full px-6 py-2 text -lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
+            className="bg-white text-orange-500 rounded-full px-6 py-2 text-lg font-medium hover:bg-orange-500 hover:text-white transition font-bold"
           >
             Contact Us
           </Link>
