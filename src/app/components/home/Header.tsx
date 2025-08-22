@@ -6,13 +6,30 @@ import Link from "next/link";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAlternateLogo, setIsAlternateLogo] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      const bannerSection = document.querySelector("section.bg-gradient-to-r");
+      const scrollTop = window.scrollY;
+
+      if (scrollTop > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+
+      if (bannerSection) {
+        const bannerSectionTop = bannerSection.getBoundingClientRect().top;
+        const bannerSectionBottom = bannerSection.getBoundingClientRect().bottom;
+        const isWithinBanner = bannerSectionTop <= 0 && bannerSectionBottom > 0;
+        const isPastBanner = bannerSectionBottom <= 0;
+
+        if (isWithinBanner || bannerSectionTop > 0) {
+          setIsAlternateLogo(false); // Reset to microdata.png when back in or above banner
+        } else if (isPastBanner) {
+          setIsAlternateLogo(true); // Switch to microdata1.png when past banner
+        }
       }
     };
 
@@ -25,7 +42,7 @@ const Header = () => {
       className={`fixed top-0 z-50 w-full transition-all duration-500 
         ${
           isScrolled
-            ? "bg-black/40 backdrop-blur-md border-b border-white/10 shadow-lg"
+            ? "bg-white/10 backdrop-blur-sm border-b border-white/20 shadow-lg"
             : "bg-transparent"
         }
         text-white py-4 px-4 sm:px-6 lg:px-[110px] flex justify-between items-center box-border`}
@@ -33,7 +50,7 @@ const Header = () => {
       {/* Logo */}
       <div className="flex items-center">
         <img
-          src="/microdata.png"
+          src={isAlternateLogo ? "/microdata1.png" : "/microdata.png"}
           alt="Microdata Logo"
           className="w-28 h-auto"
         />
@@ -43,7 +60,7 @@ const Header = () => {
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-white-300 focus:outline-none"
+          className="text-white focus:outline-none"
         >
           <svg
             className="w-6 h-6"

@@ -18,7 +18,7 @@ const AboutAction: React.FC = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/admin/about-us');
+      const response = await api.get('/about-us');
       const aboutUsData = response.data.data || response.data;
       // ambil hanya 1 record (asumsi isi cuma 1 di DB)
       setData(Array.isArray(aboutUsData) ? aboutUsData[0] : aboutUsData);

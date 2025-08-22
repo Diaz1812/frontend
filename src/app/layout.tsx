@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// Impor font Poppins dan font Geist dari next/font/google
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 
