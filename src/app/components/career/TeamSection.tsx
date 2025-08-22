@@ -36,7 +36,7 @@ export default function TeamSection() {
 
   return (
     <section
-      className="w-full py-12 px-4 sm:px-6"
+      className="w-full py-12 px-4 sm:px-6 pt-40" // Tambah pt-16 di sini
       style={{
         background:
           "linear-gradient(to right bottom, #fbe3d6ff 0%, #fbe3d6ff 10%, #ffffff 30%, #ffffff 0%)",
