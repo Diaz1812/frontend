@@ -93,7 +93,7 @@ const Footer = () => {
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-4 md:mb-0">
             <img
-              src="microdata.png"
+              src="/microdata.png"
               alt="Microdata Logo"
               width={100}
               height={100}
