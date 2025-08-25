@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { Save, ArrowLeft, Upload, AlertCircle } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
+<<<<<<< HEAD
 import api from "../../../../../lib/api";
 import toast from "react-hot-toast";
+=======
+import api from "../../../../lib/api";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function CareerEditPage() {
   const router = useRouter();
@@ -130,6 +136,7 @@ export default function CareerEditPage() {
 
       toast.success("Career updated successfully!");
       router.push("/admin/career");
+<<<<<<< HEAD
     } catch (error: any) {
       const message =
         error?.response?.data?.message || "An unexpected error occurred";
@@ -138,6 +145,16 @@ export default function CareerEditPage() {
     } finally {
       setIsSubmitting(false);
     }
+=======
+   } catch (error: unknown) {
+    const err = error as AxiosError<{ message: string }>;
+    const message = err.response?.data?.message || "An unexpected error occurred";
+    setError(message);
+    toast.error(message);
+  } finally {
+    setIsSubmitting(false);
+  }
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
   };
 
   const handleCancel = () => {

@@ -3,9 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { Save, ArrowLeft, Upload, AlertCircle, Handshake } from "lucide-react";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
 import api from "../../../../lib/api";
 import toast from "react-hot-toast";
 
+=======
+import api from "../../../lib/api";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 export default function PartnershipCreatePage() {
   const router = useRouter();
 
@@ -83,8 +89,17 @@ export default function PartnershipCreatePage() {
     try {
       const submitData = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
+<<<<<<< HEAD
         if (value !== null) {
           submitData.append(key, value as any);
+=======
+        if (value !== null && value !== undefined) {
+          if (value instanceof File || value instanceof Blob) {
+            submitData.append(key, value);
+          } else {
+            submitData.append(key, String(value));
+          }
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
         }
       });
 
@@ -96,6 +111,7 @@ export default function PartnershipCreatePage() {
 
       toast.success("Partnership added successfully!");
       router.push("/admin/partnership");
+<<<<<<< HEAD
     } catch (error: any) {
       const message =
         error?.response?.data?.message || "An unexpected error occurred";
@@ -105,6 +121,17 @@ export default function PartnershipCreatePage() {
       setIsSubmitting(false);
     }
   };
+=======
+    } catch (error: unknown) {
+        const err = error as AxiosError<{ message: string }>;
+        const message = err.response?.data?.message || "An unexpected error occurred";
+        setError(message);
+        toast.error(message);
+    } finally {
+        setIsSubmitting(false);
+    }
+
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
   const handleCancel = () => {
     router.back();
@@ -230,4 +257,8 @@ export default function PartnershipCreatePage() {
       </div>
     </div>
   );
+<<<<<<< HEAD
+=======
+ }
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 }

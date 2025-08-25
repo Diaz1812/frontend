@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { Save, ArrowLeft, Upload, AlertCircle, Briefcase } from "lucide-react";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
 import api from "../../../../lib/api";
 import toast from "react-hot-toast";
+=======
+import api from "../../../lib/api";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios"; 
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function BusinessLineCreatePage() {
   const router = useRouter();
@@ -70,7 +76,10 @@ export default function BusinessLineCreatePage() {
   };
 
   const validateForm = () => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
     if (!formData.title_business.trim()) {
       setError("Title Business is required");
       return false;
@@ -94,7 +103,11 @@ export default function BusinessLineCreatePage() {
       const submitData = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         if (value !== null) {
+<<<<<<< HEAD
           submitData.append(key, value as any);
+=======
+          submitData.append(key, value);
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
         }
       });
 
@@ -106,9 +119,16 @@ export default function BusinessLineCreatePage() {
 
       toast.success("Business line added successfully!");
       router.push("/admin/business-line");
+<<<<<<< HEAD
     } catch (error: any) {
       const message =
         error?.response?.data?.message || "An unexpected error occurred";
+=======
+    } catch (err: unknown) {
+      const axiosError = err as AxiosError<{ message?: string }>;
+      const message =
+        axiosError.response?.data?.message || "An unexpected error occurred";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setError(message);
       toast.error(message);
     } finally {

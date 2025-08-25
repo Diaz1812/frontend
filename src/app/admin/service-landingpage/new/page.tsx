@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { Save, ArrowLeft, AlertCircle, Layers } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+<<<<<<< HEAD
 import api from '../../../../lib/api';
 import toast from 'react-hot-toast';
+=======
+import api from '../../../lib/api';
+import toast from 'react-hot-toast';
+import { AxiosError } from 'axios';
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function ServiceCreatePage() {
   const router = useRouter();
@@ -66,8 +72,14 @@ export default function ServiceCreatePage() {
 
       toast.success('Layanan berhasil ditambahkan!');
       router.push('/admin/services-landing-pages');
+<<<<<<< HEAD
     } catch (error: any) {
       const message = error?.response?.data?.message || 'Terjadi kesalahan tak terduga';
+=======
+    } catch (error: unknown) {
+      const err = error as AxiosError<{ message: string }>;
+      const message = err.response?.data?.message || "An unexpected error occurred";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setError(message);
       toast.error(message);
     } finally {

@@ -1,18 +1,17 @@
-import Header from "../components/home/Header";
-import HeroBanner from "../components/home/Banner";
-import AboutSection from "../components/home/AboutUs";
-import OurService from "../components/home/OurService";
-import Footer from "../components/home/Footer";
-import HomeSection from "../components/home/Portofolio";
-import WhyMicrodata from "../components/home/WhyMicrodata";
-import ClientExperience from "../components/home/OurClient";
-import ProcessSection from "../components/home/OurProcess";
-import VisiMisi from "../components/home/VisiMisi";
-import LogoSlide from "../components/home/LogoSlide";
-import Teknologi from "../components/home/Teknologi";
-import ContactUs from "../components/home/ContactUs";
-import "../../app/globals.css";
-import LiniBisnis from "../components/home/LiniBisnis";
+import Header from "./Header";
+import HeroBanner from "./Banner";
+import AboutSection from "./AboutUs";
+import OurService from "./OurService";
+import Footer from "./Footer";
+import HomeSection from "./Portofolio";
+import WhyMicrodata from "./WhyMicrodata";
+import ClientExperience from "./OurClient";
+import ProcessSection from "./OurProcess";
+import VisiMisi from "./VisiMisi";
+import LogoSlide from "./LogoSlide";
+import Teknologi from "./Teknologi";
+import ContactUs from "./ContactUs";
+import LiniBisnis from "./LiniBisnis";
 
 function HomePage() {
   return (

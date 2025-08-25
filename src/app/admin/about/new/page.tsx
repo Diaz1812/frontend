@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { Save, ArrowLeft, AlertCircle, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+<<<<<<< HEAD
 import api from '../../../../lib/api';
 import toast from 'react-hot-toast';
+=======
+import api from '../../../lib/api';
+import toast from 'react-hot-toast';
+import { AxiosError } from "axios";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function AboutCreatePage() {
   const router = useRouter();
@@ -73,11 +79,21 @@ export default function AboutCreatePage() {
       await api.post('/admin/about-us', formData);
       toast.success('About info added successfully!');
       router.push('/admin/about');
+<<<<<<< HEAD
     } catch (error: any) {
       const message = error?.response?.data?.message || 'An unexpected error occurred';
       setError(message);
       toast.error(message);
     } finally {
+=======
+    }  catch (err: unknown) {
+       const axiosErr = err as AxiosError<{ message: string }>;
+       const message =
+        axiosErr.response?.data?.message || "An unexpected error occurred";
+        setError(message);
+        toast.error(message);
+   } finally {
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setIsSubmitting(false);
     }
   };

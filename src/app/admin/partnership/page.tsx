@@ -11,7 +11,11 @@ import {
   Handshake,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+<<<<<<< HEAD
 import api from "../../../lib/api";
+=======
+import api from "../../lib/api";
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 import toast from "react-hot-toast";
 
 type Partnership = {
@@ -246,7 +250,11 @@ export default function PartnershipPage() {
               Delete {confirmDeleteItem.name}?
             </h2>
             <p className="text-sm text-gray-400 mb-4">
+<<<<<<< HEAD
               Are you sure you want to delete "{confirmDeleteItem.name}"? This
+=======
+              Are you sure you want to {`Delete "${confirmDeleteItem.name}"?`} This
+>>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
               action cannot be undone.
             </p>
             <div className="flex justify-end space-x-2">
