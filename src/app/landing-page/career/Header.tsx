@@ -47,16 +47,16 @@ const Header: React.FC = () => {
         <Link href="/" className="hover:text-orange-500 transition">
           Home
         </Link>
-        <Link href="/service" className="hover:text-orange-500 transition">
+        <Link href="../service" className="hover:text-orange-500 transition">
           Our Service
         </Link>
-        <Link href="/portofolio" className="hover:text-orange-500 transition">
+        <Link href="../portofolio" className="hover:text-orange-500 transition">
           Portofolio
         </Link>
-        <Link href="/career" className="hover:text-orange-500 transition">
+        <Link href="../career" className="hover:text-orange-500 transition">
           Career
         </Link>
-        <Link href="/blog" className="hover:text-orange-500 transition">
+        <Link href="../blog" className="hover:text-orange-500 transition">
           Blog
         </Link>
       </nav>

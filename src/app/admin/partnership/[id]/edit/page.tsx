@@ -3,14 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { Save, ArrowLeft, Upload, AlertCircle, Handshake } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-<<<<<<< HEAD
-import api from "../../../../../lib/api";
-import toast from "react-hot-toast";
-=======
 import api from "../../../../lib/api";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function PartnershipUpdatePage() {
   const router = useRouter();
@@ -113,16 +108,9 @@ export default function PartnershipUpdatePage() {
 
       toast.success("Partnership updated successfully!");
       router.push("/admin/partnership");
-<<<<<<< HEAD
-    } catch (err: any) {
-      console.error(err);
-      const message =
-        err?.response?.data?.message || "An unexpected error occurred";
-=======
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       const message = err.response?.data?.message || "An unexpected error occurred";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setError(message);
       toast.error(message);
     } finally {

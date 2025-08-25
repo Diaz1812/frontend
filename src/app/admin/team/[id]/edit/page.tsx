@@ -3,14 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { Save, ArrowLeft, Upload, AlertCircle, User } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-<<<<<<< HEAD
-import api from "../../../../../lib/api";
-import toast from "react-hot-toast";
-=======
 import api from "../../../../lib/api";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 export default function TeamUpdatePage() {
   const router = useRouter();
@@ -119,17 +114,10 @@ export default function TeamUpdatePage() {
 
     try {
       const submitData = new FormData();
-<<<<<<< HEAD
-      submitData.append("_method", "PUT"); // kalau pakai Laravel
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null) {
-          submitData.append(key, value as any);
-=======
       submitData.append("_method", "PUT"); 
       Object.entries(formData).forEach(([key, value]) => {
         if (value !== null) {
           submitData.append(key, value);
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
         }
       });
 
@@ -141,15 +129,9 @@ export default function TeamUpdatePage() {
 
       toast.success("Team member updated successfully!");
       router.push("/admin/team");
-<<<<<<< HEAD
-    } catch (error: any) {
-      const message =
-        error?.response?.data?.message || "An unexpected error occurred";
-=======
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       const message = err.response?.data?.message || "An unexpected error occurred";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setError(message);
       toast.error(message);
     } finally {

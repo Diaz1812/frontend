@@ -10,11 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
-import api from "../../../lib/api";
-=======
 import api from "../../lib/api";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 import toast from "react-hot-toast";
 
 type ClientItem = {
@@ -286,11 +282,7 @@ export default function ClientPage() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-gray-900 border border-gray-700 p-6 rounded-xl shadow-xl w-full max-w-md">
             <h2 className="text-lg font-semibold text-white mb-2">
-<<<<<<< HEAD
-              Delete "{confirmDeleteItem.name_client}"?
-=======
                {`Delete "${confirmDeleteItem.name_client}"?`}
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
             </h2>
             <p className="text-sm text-gray-400 mb-4">
               Are you sure you want to delete this content? This action cannot

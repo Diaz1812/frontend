@@ -1,11 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import { Plus, Edit, Trash2, Search, RefreshCw,FileText, AlertCircle, Info } from "lucide-react";
-import { useRouter } from "next/navigation";
-import api from "../../../lib/api";
-import toast from "react-hot-toast";
-=======
 import {
   Plus,
   Edit,
@@ -19,7 +13,6 @@ import { useRouter } from "next/navigation";
 import api from "../../lib/api";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 type MicrodataOptionItem = {
   id: number;
@@ -27,47 +20,28 @@ type MicrodataOptionItem = {
   description: string;
 };
 
-<<<<<<< HEAD
-export default function microdataOptionPage() {
-=======
 export default function MicrodataOptionPage() {
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState<MicrodataOptionItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-<<<<<<< HEAD
-  const [confirmDeleteItem, setConfirmDeleteItem] = useState<MicrodataOptionItem | null>(null);
-=======
   const [confirmDeleteItem, setConfirmDeleteItem] =
     useState<MicrodataOptionItem | null>(null);
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-<<<<<<< HEAD
-    try {
-      const response = await api.get("admin/microdata-options");
-    
-=======
 
     try {
       const response = await api.get("admin/microdata-options");
 
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       const microdataOptionData = response.data.data || response.data;
       if (Array.isArray(microdataOptionData)) {
         setData(microdataOptionData);
       } else {
         setData([]);
       }
-<<<<<<< HEAD
-    } catch (error: any) {
-      console.error("Error fetching microdata options:", error);
-      const errorMessage = error?.response?.data?.message || "Failed to fetch microdata options data.";
-=======
     } catch (error: unknown) {
       console.error("Error fetching microdata options:", error);
 
@@ -76,7 +50,6 @@ export default function MicrodataOptionPage() {
         errorMessage = error.response?.data?.message || errorMessage;
       }
 
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
       setError(errorMessage);
       setData([]);
       toast.error(errorMessage);
@@ -108,14 +81,6 @@ export default function MicrodataOptionPage() {
     setLoading(true);
     try {
       await api.delete(`admin/microdata-options/${confirmDeleteItem.id}`);
-<<<<<<< HEAD
-      setData((prev) => prev.filter((option) => option.id !== confirmDeleteItem.id));
-      toast.success(`${confirmDeleteItem.name_title} deleted successfully.`);
-    } catch (error: any) {
-      console.error("Error deleting microdata option:", error);
-      const errorMessage = error?.response?.data?.message || "Failed to delete microdata option.";
-      toast.error(errorMessage);
-=======
       setData((prev) =>
         prev.filter((option) => option.id !== confirmDeleteItem.id)
       );
@@ -126,7 +91,6 @@ export default function MicrodataOptionPage() {
         err.response?.data?.message || "An unexpected error occurred";
       setError(message);
       toast.error(message);
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
     } finally {
       setLoading(false);
       setConfirmDeleteItem(null);
@@ -137,11 +101,7 @@ export default function MicrodataOptionPage() {
     fetchData();
   };
 
-<<<<<<< HEAD
-return (
-=======
   return (
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
     <div className="p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
@@ -159,18 +119,6 @@ return (
             </button>
           </div>
 
-<<<<<<< HEAD
-{/* Add button - stays right on desktop, full width on mobile */}
-<button
-  onClick={handleAdd}
-  disabled={loading}
-  className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 transition-all sm:self-auto self-start"
->
-  <Plus size={16} />
-  <span>Add Content</span>
-</button>
-
-=======
           {/* Add button */}
           <button
             onClick={handleAdd}
@@ -180,7 +128,6 @@ return (
             <Plus size={16} />
             <span>Add Content</span>
           </button>
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
         </div>
 
         {/* Error */}
@@ -238,97 +185,6 @@ return (
               </button>
             )}
           </div>
-<<<<<<< HEAD
-        ) : !loading && (
-          <>
-            {/* Table for desktop, cards for mobile */}
-            <div className="hidden sm:block overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-700 bg-gray-800 rounded-xl overflow-hidden">
-                <thead className="bg-gray-900">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
-                      Nama
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
-                      Position
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
-                      Description
-                    </th>
-                    <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-700">
-                  {filteredData.map((item) => (
-                    <tr key={item.id} className="hover:bg-gray-750 transition">
-                      <td className="px-4 py-3 text-sm text-gray-100">
-                        {item.id}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-200 whitespace-pre-line">
-                        {item.name_title}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-200 whitespace-pre-line">
-                        {item.description}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-center">
-                        <div className="flex justify-center space-x-3">
-                          <button
-                            onClick={() => handleEdit(item)}
-                            disabled={loading}
-                            className="bg-blue-600 hover:bg-blue-700 text-white py-1 px-4 rounded-lg flex items-center justify-center text-sm disabled:opacity-50"
-                          >
-                            <Edit size={14} className="mr-1" />
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => setConfirmDeleteItem(item)}
-                            disabled={loading}
-                            className="bg-red-600 hover:bg-red-700 text-white py-1 px-4 rounded-lg flex items-center justify-center text-sm disabled:opacity-50"
-                          >
-                            <Trash2 size={14} className="mr-1" />
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Card view for mobile */}
-            <div className="sm:hidden space-y-4">
-              {filteredData.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-gray-800 p-4 rounded-lg space-y-2"
-                >
-                  <p className="text-gray-100 font-semibold">{item.id}</p>
-                  <p className="text-gray-400 text-sm">{item.name_title}</p>
-                  <p className="text-gray-300 text-sm">{item.description}</p>
-                  <div className="flex gap-2 pt-2">
-                    <button
-                      onClick={() => handleEdit(item)}
-                      disabled={loading}
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-1 px-2 rounded-lg flex items-center justify-center text-sm disabled:opacity-50"
-                    >
-                      <Edit size={14} className="mr-1" /> Edit
-                    </button>
-                    <button
-                      onClick={() => setConfirmDeleteItem(item)}
-                      disabled={loading}
-                      className="flex-1 bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded-lg flex items-center justify-center text-sm disabled:opacity-50"
-                    >
-                      <Trash2 size={14} className="mr-1" /> Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-=======
         ) : (
           !loading && (
             <>
@@ -420,7 +276,6 @@ return (
               </div>
             </>
           )
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
         )}
 
         {/* Stats */}
@@ -441,11 +296,7 @@ return (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-gray-900 border border-gray-700 p-6 rounded-xl shadow-xl w-full max-w-md">
             <h2 className="text-lg font-semibold text-white mb-2">
-<<<<<<< HEAD
-              Delete "{confirmDeleteItem.id}"?
-=======
               {`Delete "${confirmDeleteItem.id}"?`}
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
             </h2>
             <p className="text-sm text-gray-400 mb-4">
               Are you sure you want to delete this content? This action cannot

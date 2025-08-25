@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { LogIn, Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import api from '../../../lib/api';
-import { setAuthToken } from '../../../lib/auth';
+import api from '../lib/api';
+import { setAuthToken } from '../lib/auth';
+import { AxiosError } from 'axios';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -37,9 +38,10 @@ export default function LoginPage() {
     setAuthToken(token);
 
     router.push('/admin');
-  } catch (error: any) {
-    console.error('Login error:', error);
-    setError(error.response?.data?.message || 'Login failed');
+  } catch (error: unknown) {
+    const err = error as AxiosError<{ message: string }>;
+    const message = err.response?.data?.message || "An unexpected error occurred";
+    setError(message);
   } finally {
     setLoading(false);
   }

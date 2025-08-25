@@ -10,8 +10,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // kalau sudah login, cegah buka halaman login
-  if (pathname.startsWith("/login") && token) {
+  // kalau sudah login, cegah buka halaman login (hanya jika tepat "/login")
+  if (pathname === "/login" && token) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 

@@ -1,5 +1,6 @@
 // src/app/lib/api.ts
 import axios, { InternalAxiosRequestConfig } from "axios";
+import { getAuthToken } from "./auth"; // <-- pakai helper cookies
 
 const api = axios.create({
   baseURL:
@@ -11,12 +12,9 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      config.headers.set("Authorization", `Bearer ${token}`);
-    }
+  const token = getAuthToken(); // ambil dari cookies
+  if (token) {
+    config.headers.set("Authorization", `Bearer ${token}`);
   }
   return config;
 });

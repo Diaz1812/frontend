@@ -1,9 +1,9 @@
 "use client";
-import React from 'react';
-import { Menu, LogOut, User } from 'lucide-react';
-// Update the import path if your api file is located elsewhere, for example:
-import api from '../lib/api'; // adjust the path as needed
-import { useRouter } from 'next/navigation';
+import React from "react";
+import { Menu, LogOut, User } from "lucide-react";
+import api from "../lib/api"; 
+import { useRouter } from "next/navigation";
+import { removeAuthToken } from "../lib/auth"; 
 
 interface HeaderProps {
   setSidebarOpen: (open: boolean) => void;
@@ -12,19 +12,16 @@ interface HeaderProps {
 export default function Header({ setSidebarOpen }: HeaderProps) {
   const router = useRouter();
 
- const handleLogout = async () => {
-  try {
-     await api.post('/logout');
-    // Clear token from localStorage
-    localStorage.removeItem('authToken');
-    router.push('/login');
-  } catch (error) {
-    console.error('Logout failed:', error);
-    // Even if logout fails on server, clear local token
-    localStorage.removeItem('authToken');
-    router.push('/login');
-  }
-};
+  const handleLogout = async () => {
+    try {
+      await api.post("/logout");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      removeAuthToken();
+      router.push("/login");
+    }
+  };
 
   return (
     <header className="bg-gray-800 border-b border-gray-700 h-16 flex items-center justify-between px-4">
@@ -54,5 +51,3 @@ export default function Header({ setSidebarOpen }: HeaderProps) {
     </header>
   );
 }
-
-

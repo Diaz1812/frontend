@@ -65,25 +65,25 @@ const Header = () => {
           Home
         </Link>
         <Link
-          href="/service"
+          href="../service"
           className="text-gray-300 hover:text-orange-500 transition"
         >
           Our Service
         </Link>
         <Link
-          href="/portofolio"
+          href="../portofolio"
           className="text-gray-300 hover:text-orange-500 transition"
         >
           Portofolio
         </Link>
         <Link
-          href="/career"
+          href="../career"
           className="text-gray-300 hover:text-orange-500 transition"
         >
           Career
         </Link>
         <Link
-          href="/blog"
+          href="../blog"
           className="text-gray-300 hover:text-orange-500 transition"
         >
           Blog
