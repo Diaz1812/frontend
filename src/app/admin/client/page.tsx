@@ -34,7 +34,7 @@ export default function ClientPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/clients");
+      const response = await api.get("/admin/clients");
       const clientData = response.data.data || response.data;
       setData(clientData);
     } catch (error) {

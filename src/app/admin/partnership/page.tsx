@@ -35,7 +35,7 @@ export default function PartnershipPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/partnerships");
+      const response = await api.get("/admin/partnerships");
       const partnershipData = response.data.data || response.data;
       setData(partnershipData);
     } catch (error) {

@@ -36,7 +36,7 @@ export default function CareerOpportunitiesPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/career-opportunities");
+      const response = await api.get("/admin/career-opportunities");
       const careerData = response.data.data || response.data;
       setData(careerData);
     } catch (error) {

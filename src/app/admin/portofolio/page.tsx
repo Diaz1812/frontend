@@ -45,7 +45,7 @@ export default function PortofolioPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/portofolios");
+      const response = await api.get("/admin/portofolios");
       const portofolioData = response.data.data || response.data;
       setData(portofolioData);
     } catch (error) {

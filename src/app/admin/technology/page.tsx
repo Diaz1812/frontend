@@ -25,7 +25,7 @@ export default function TechnologyPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/technologies');
+      const response = await api.get('/admin/technologies');
       const techData = response.data.data || response.data;
       setData(techData);
     } catch (error) {

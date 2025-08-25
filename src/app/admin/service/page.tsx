@@ -36,7 +36,7 @@ export default function ServicePage() {
     setError(null);
 
     try {
-      const response = await api.get("/services");
+      const response = await api.get("/admin/services");
       const serviceData = response.data.data || response.data;
       setData(serviceData);
     } catch (error) {

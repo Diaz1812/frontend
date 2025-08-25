@@ -35,7 +35,7 @@ export default function PositionPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/positions");
+      const response = await api.get("/admin/positions");
       const positionData = response.data.data || response.data;
       setData(positionData);
     } catch (error) {

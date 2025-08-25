@@ -107,7 +107,7 @@ const Header = () => {
 
       {/* Contact Us (Desktop) */}
       <div className="hidden md:block">
-        <Link href="/contact">
+        <Link href="../contact">
           <span className="text-gray-300 hover:text-orange-500 transition">
             Contact Us
           </span>

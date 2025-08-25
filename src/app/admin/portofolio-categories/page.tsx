@@ -24,7 +24,7 @@ export default function PortofolioCategoriesPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get("/portofolio-categories");
+      const response = await api.get("/admin/portofolio-categories");
       const data = response.data.data || response.data;
       setCategories(data);
     } catch (err) {

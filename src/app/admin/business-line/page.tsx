@@ -25,7 +25,7 @@ export default function BussinesLinePage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/business-lines');
+      const response = await api.get('/admin/business-lines');
       const teamData = response.data.data || response.data;
       setData(teamData);
     } catch (error) {

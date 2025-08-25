@@ -24,7 +24,7 @@ export default function ServicePage() {
     setError(null);
     
     try {
-      const response = await api.get('/services-landing-pages');
+      const response = await api.get('/admin/services-landing-pages');
       const serviceData = response.data.data || response.data;
       setData(Array.isArray(serviceData) ? serviceData : [serviceData]);
     } catch (error) {

@@ -25,7 +25,7 @@ export default function ProcessPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/process');
+      const response = await api.get('/admin/process');
       const processData = response.data.data || response.data;
       setData(processData);
     } catch (error) {

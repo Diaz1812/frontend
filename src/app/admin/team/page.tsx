@@ -36,7 +36,7 @@ export default function TeamPage() {
     setError(null);
 
     try {
-      const response = await api.get("/teams");
+      const response = await api.get("/admin/teams");
       const teamData = response.data.data || response.data;
       setData(teamData);
     } catch (error) {
