@@ -2,14 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Save, ArrowLeft, Upload } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-<<<<<<< HEAD
-import api from "../../../../../lib/api";
-import toast from "react-hot-toast";
-=======
 import api from "../../../../lib/api";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 
 type BusinessLine = {
   id: number;
@@ -120,19 +115,11 @@ export default function BusinessLineEditPage() {
       toast.success("Business line updated");
       router.push("/admin/business-lines");
       router.push("/admin/business-line");
-<<<<<<< HEAD
-    } catch (err: any) {
-      console.error(err);
-      const message =
-        err?.response?.data?.message || "An unexpected error occurred";
-      setError(message);
-=======
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       const message = err.response?.data?.message || "An unexpected error occurred";
       setError(message);
       toast.error(message);
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
     } finally {
       setIsSubmitting(false);
     }

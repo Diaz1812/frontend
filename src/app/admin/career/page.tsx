@@ -12,11 +12,7 @@ import {
   Info,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
-import api from "../../../lib/api";
-=======
 import api from "../../lib/api";
->>>>>>> 59c5ef4893b228218a7ac44d8eaafc767237ba10
 import toast from "react-hot-toast";
 
 type CareerItem = {
