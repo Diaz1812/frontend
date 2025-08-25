@@ -1,4 +1,4 @@
-export default function HomePage() {
+export default function Loading() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
       <div className="text-center">
@@ -8,3 +8,4 @@ export default function HomePage() {
     </div>
   );
 }
+
