@@ -13,3 +13,5 @@ export default function HomeRedirect() {
 
   return null; // Tidak render apapun, langsung redirect
 }
+
+
