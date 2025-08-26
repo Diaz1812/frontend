@@ -127,7 +127,7 @@ export default function PortfolioCreatePage() {
         }
       });
 
-      await api.post("/admin/portfolios", submitData, {
+      await api.post("/admin/portofolios", submitData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

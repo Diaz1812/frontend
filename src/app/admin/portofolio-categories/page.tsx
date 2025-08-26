@@ -50,7 +50,7 @@ export default function PortofolioCategoriesPage() {
     if (!confirmDeleteItem) return;
     setLoading(true);
     try {
-      await api.delete(`/admin/Portofolio-categories/${confirmDeleteItem.id}`);
+      await api.delete(`/admin/portofolio-categories/${confirmDeleteItem.id}`);
       setCategories((prev) => prev.filter((item) => item.id !== confirmDeleteItem.id));
       toast.success(`"${confirmDeleteItem.name}" deleted successfully.`);
     } catch (err) {

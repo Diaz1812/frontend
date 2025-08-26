@@ -66,7 +66,7 @@ export default function ServiceCreatePage() {
       await api.post('/admin/services-landing-pages', submitData);
 
       toast.success('Layanan berhasil ditambahkan!');
-      router.push('/admin/services-landing-pages');
+      router.push('/admin/service-landingpage');
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string }>;
       const message = err.response?.data?.message || "An unexpected error occurred";

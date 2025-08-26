@@ -114,44 +114,45 @@ export default function ProcessEditPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    setIsSubmitting(true);
-    setError(null);
+  setIsSubmitting(true);
+  setError(null);
 
-    try {
-      const submitData = new FormData();
-      submitData.append('title', formData.title);
-      submitData.append('description_title', formData.description_title);
-      if (formData.icon) {
-        submitData.append('icon', formData.icon);
-      }
-
-      // Use PUT method properly
-      await api.put(`/admin/process/${processId}`, submitData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      toast.success('Process updated successfully!');
-      setTimeout(() => {
-        router.push('/admin/process');
-      }, 1500);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      if (typeof error === 'object' && error !== null && 'response' in error) {
-        const err = error as { response?: { data?: { message?: string } } };
-        setError(err.response?.data?.message || 'An unexpected error occurred');
-      } else {
-        setError('An unexpected error occurred');
-      }
-    } finally {
-      setIsSubmitting(false);
+  try {
+    const submitData = new FormData();
+    submitData.append('_method', 'PUT'); 
+    submitData.append('title', formData.title);
+    submitData.append('description_title', formData.description_title);
+    if (formData.icon) {
+      submitData.append('icon', formData.icon);
     }
-  };
+
+    await api.post(`/admin/process/${processId}`, submitData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    toast.success('Process updated successfully!');
+    setTimeout(() => {
+      router.push('/admin/process');
+    }, 1500);
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    if (typeof error === 'object' && error !== null && 'response' in error) {
+      const err = error as { response?: { data?: { message?: string } } };
+      setError(err.response?.data?.message || 'An unexpected error occurred');
+    } else {
+      setError('An unexpected error occurred');
+    }
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const handleCancel = () => {
     router.back();
