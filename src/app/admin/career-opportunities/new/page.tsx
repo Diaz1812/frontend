@@ -1,16 +1,15 @@
 // File: app/admin/career-opportunities/new/page.tsx
 "use client";
 import React, { useState, useEffect } from "react";
-import { Save, ArrowLeft, Upload, AlertCircle } from "lucide-react";
+import { Save, ArrowLeft, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import api from "../../../lib/api";
 import toast from "react-hot-toast";
 
 interface CareerFormData {
-  image: File | null;
   title: string;
   description: string;
-  requirements: string;
+  requirements: string; 
 }
 
 export default function NewCareerOpportunityPage() {
@@ -24,13 +23,11 @@ export default function NewCareerOpportunityPage() {
   }, [router]);
 
   const [formData, setFormData] = useState<CareerFormData>({
-    image: null,
     title: "",
     description: "",
     requirements: "",
   });
 
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,33 +37,6 @@ export default function NewCareerOpportunityPage() {
       [field]: value,
     }));
     if (error) setError(null);
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        setError("Please select a valid image file");
-        return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        setError("Image size should be less than 5MB");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result;
-        if (typeof result === "string") {
-          setImagePreview(result);
-        }
-        setFormData((prev) => ({
-          ...prev,
-          image: file,
-        }));
-      };
-      reader.readAsDataURL(file);
-      setError(null);
-    }
   };
 
   const validateForm = () => {
@@ -93,16 +63,11 @@ export default function NewCareerOpportunityPage() {
     setError(null);
 
     try {
-      const submitData = new FormData();
-      submitData.append("title", formData.title);
-      submitData.append("description", formData.description);
-      submitData.append("requirements", formData.requirements);
-      
-      if (formData.image) {
-        submitData.append("image", formData.image);
-      }
-
-      await api.post("/admin/career-opportunities", submitData);
+      await api.post("/admin/career-opportunities", {
+        title: formData.title,
+        description: formData.description,
+        requirements: formData.requirements,
+      });
 
       toast.success("Career opportunity created successfully!");
       setTimeout(() => {
@@ -149,46 +114,7 @@ export default function NewCareerOpportunityPage() {
 
       <div className="bg-gray-800 rounded-xl p-4 md:p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Image
-            </label>
-            <div className="flex items-center space-x-4">
-              <div className="w-24 h-24 bg-gray-700 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden">
-                {imagePreview ? (
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <Upload size={24} className="text-gray-400" />
-                )}
-              </div>
-              <div className="flex-1">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  disabled={isSubmitting}
-                  className="hidden"
-                  id="image-upload"
-                />
-                <label
-                  htmlFor="image-upload"
-                  className={`bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg cursor-pointer transition-colors inline-block text-white ${
-                    isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                >
-                  Upload Image
-                </label>
-                <p className="text-sm text-gray-400 mt-1">
-                  Upload an image (max 5MB)
-                </p>
-              </div>
-            </div>
-          </div>
-
+          {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Title *
@@ -203,6 +129,7 @@ export default function NewCareerOpportunityPage() {
             />
           </div>
 
+          {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Description *
@@ -215,20 +142,25 @@ export default function NewCareerOpportunityPage() {
               placeholder="Enter career description"
             />
           </div>
-          
+
+          {/* Requirements */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Requirements *
+              Requirements * (satu per baris)
             </label>
             <textarea
               value={formData.requirements}
               onChange={(e) => handleInputChange("requirements", e.target.value)}
               disabled={isSubmitting}
               className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white h-32 resize-none placeholder-gray-400"
-              placeholder="Enter career requirements"
+              placeholder={`Contoh:\n- Minimal 2 tahun pengalaman\n- Bisa kerja tim\n- Menguasai React.js`}
             />
+            <p className="text-xs text-gray-400 mt-2">
+              Tekan Enter untuk menulis requirement baru.
+            </p>
           </div>
 
+          {/* Buttons */}
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 pt-4">
             <button
               type="submit"

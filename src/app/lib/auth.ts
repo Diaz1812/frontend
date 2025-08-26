@@ -1,22 +1,23 @@
-// src/lib/auth.ts
-import Cookies from "js-cookie";
-
 export const getAuthToken = (): string | null => {
-  return Cookies.get("authToken") || null;
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('authToken');
+  }
+  return null;
 };
 
 export const setAuthToken = (token: string): void => {
-  Cookies.set("authToken", token, {
-    expires: 7, // 7 hari
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-  });
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('authToken', token);
+  }
 };
 
 export const removeAuthToken = (): void => {
-  Cookies.remove("authToken");
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('authToken');
+  }
 };
 
 export const isAuthenticated = (): boolean => {
   return getAuthToken() !== null;
 };
+

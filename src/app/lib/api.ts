@@ -1,20 +1,21 @@
-// src/app/lib/api.ts
-import axios, { InternalAxiosRequestConfig } from "axios";
-import { getAuthToken } from "./auth"; // <-- pakai helper cookies
+// api.ts
+import axios, { AxiosRequestHeaders } from "axios";
 
 const api = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://127.0.0.1:8000/api",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000/api",
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json",
   },
 });
 
-api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = getAuthToken(); // ambil dari cookies
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("authToken");
   if (token) {
-    config.headers.set("Authorization", `Bearer ${token}`);
+    
+    config.headers = {
+      ...config.headers,
+      Authorization: `Bearer ${token}`,
+    } as AxiosRequestHeaders;
   }
   return config;
 });
