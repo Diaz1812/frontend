@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import api from "../../../lib/api";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
+
 export default function PartnershipCreatePage() {
   const router = useRouter();
 
@@ -83,12 +84,8 @@ export default function PartnershipCreatePage() {
     try {
       const submitData = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null && value !== undefined) {
-          if (value instanceof File || value instanceof Blob) {
-            submitData.append(key, value);
-          } else {
-            submitData.append(key, String(value));
-          }
+        if (value !== null) {
+          submitData.append(key, value);
         }
       });
 
@@ -101,14 +98,14 @@ export default function PartnershipCreatePage() {
       toast.success("Partnership added successfully!");
       router.push("/admin/partnership");
     } catch (error: unknown) {
-        const err = error as AxiosError<{ message: string }>;
-        const message = err.response?.data?.message || "An unexpected error occurred";
-        setError(message);
-        toast.error(message);
+      const err = error as AxiosError<{ message: string }>;
+      const message = err.response?.data?.message || "An unexpected error occurred";
+      setError(message);
+      toast.error(message);
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
     }
-
+  };
 
   const handleCancel = () => {
     router.back();
@@ -234,5 +231,4 @@ export default function PartnershipCreatePage() {
       </div>
     </div>
   );
- }
 }

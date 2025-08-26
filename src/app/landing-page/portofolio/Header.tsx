@@ -159,16 +159,26 @@ const Header: React.FC = () => {
               klien.
             </p>
           </div>
+            <div className="hidden md:flex flex-shrink-0 w-[150px] h-[137.69px] rounded-lg items-center justify-center ml-auto">
+              <Image
+                src="/images/gambar 1.JPG"
+                alt="Portfolio Image"
+                width={150}
+                height={138}
+                className="object-contain"
+              />
+            </div>
 
-          {/* Gambar Desktop Placeholder */}
-          <div className="hidden md:flex flex-shrink-0 w-[150px] h-[137.69px] rounded-lg items-center justify-center ml-auto">
-            <LucideImage className="w-full h-full text-gray-500" />
-          </div>
-        </div>
-
-        {/* Gambar Mobile Placeholder */}
-        <div className="absolute top-[16px] right-4 sm:right-6 lg:hidden w-[50px] h-[45.9px] p-2">
-          <LucideImage className="w-full h-full text-gray-500" />
+           
+            <div className="absolute top-[16px] right-4 sm:right-6 lg:hidden w-[50px] h-[45.9px] p-2">
+              <Image
+                src="/images/gambar 1.JPG"
+                alt="Portfolio Image"
+                width={50}
+                height={46}
+                className="object-contain"
+              />
+            </div>
         </div>
       </section>
     </>

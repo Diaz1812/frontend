@@ -119,11 +119,11 @@ export default function PortfolioCreatePage() {
     setIsSubmitting(true);
     setError(null);
 
-   try {
+    try {
       const submitData = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null && value !== undefined) {
-          submitData.append(key, value as string | Blob);
+        if (value !== null) {
+          submitData.append(key, value);
         }
       });
 
@@ -136,14 +136,14 @@ export default function PortfolioCreatePage() {
       toast.success("Portfolio added successfully!");
       router.push("/admin/portfolio");
     } catch (error: unknown) {
-        const err = error as AxiosError<{ message: string }>;
-        const message = err.response?.data?.message || "An unexpected error occurred";
-        setError(message);
-        toast.error(message);
+      const err = error as AxiosError<{ message: string }>;
+      const message = err.response?.data?.message || "An unexpected error occurred";
+      setError(message);
+      toast.error(message);
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
     }
-
+  };
 
   const handleCancel = () => {
     router.back();
@@ -316,5 +316,4 @@ export default function PortfolioCreatePage() {
       </div>
     </div>
   );
- }
 }

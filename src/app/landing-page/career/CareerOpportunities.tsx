@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import api from "../../lib/api"; 
+import Image from "next/image"; // ✅ Import Image
+import api from "../../lib/api";
 
 type CareerOpportunityItem = {
   id: number;
@@ -60,7 +61,8 @@ export default function CareerSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-orange-500 mb-8">
-          Peluang Karier <span className="text-white font-normal">Di PT. Microdata</span>
+          Peluang Karier{" "}
+          <span className="text-white font-normal">Di PT. Microdata</span>
         </h2>
 
         {loading && <p className="text-gray-400">Loading career opportunities...</p>}
@@ -81,10 +83,10 @@ export default function CareerSection() {
                 <div>
                   <p className="text-base text-gray-300 mb-10 max-w-xl">
                     {career.title}
-                 </p>
+                  </p>
 
-                   <h3 className="text-2xl font-semibold text-orange-500 mb-2">
-                     Program Magang
+                  <h3 className="text-2xl font-semibold text-orange-500 mb-2">
+                    Program Magang
                   </h3>
 
                   <p className="text-sm text-gray-300 mb-4 max-w-xl">
@@ -109,37 +111,44 @@ export default function CareerSection() {
                   </button>
                 </div>
 
-                {/* Placeholder gambar */}
+                {/* Gambar Desktop */}
                 <div className="flex justify-center items-center">
-                  <div className="w-64 h-64 bg-gray-900/20 border border-dashed border-gray-700 rounded-xl flex items-center justify-center">
-                    <span className="text-sm text-gray-500">[Gambar Ilustrasi]</span>
-                  </div>
+                  <Image
+                    src="/images/gambar 2.JPG"
+                    alt="Gambar Ilustrasi"
+                    width={256} // sesuai w-64
+                    height={256} // sesuai h-64
+                    className="rounded-xl object-contain border border-gray-200"
+                  />
                 </div>
               </div>
 
               {/* === Mobile Layout === */}
-               <div className="block md:hidden">
-              <h2 className="text-3xl font-bold text-orange-500 mb-2">
+              <div className="block md:hidden">
+                <h2 className="text-3xl font-bold text-orange-500 mb-2">
                   Peluang Karier{" "}
-                <span className="text-white font-normal">Di PT. Microdata</span>
-              </h2>
-              <p className="text-sm text-gray-300 mb-6">
-                {career.title}
-              </p>
+                  <span className="text-white font-normal">Di PT. Microdata</span>
+                </h2>
+                <p className="text-sm text-gray-300 mb-6">{career.title}</p>
 
-          <div className="flex gap-4 items-start mb-6">
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-orange-500 mb-2">
-                Program Magang
-              </h3>
-              <p className="text-sm text-gray-300 mb-4">
-                {career.description}
-              </p>
-            </div>
-
-                  <div className="w-24 h-24 bg-gray-900/20 border border-dashed border-gray-700 rounded-lg flex items-center justify-center">
-                    <span className="text-xs text-gray-500">[Gambar]</span>
+                <div className="flex gap-4 items-start mb-6">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-orange-500 mb-2">
+                      Program Magang
+                    </h3>
+                    <p className="text-sm text-gray-300 mb-4">
+                      {career.description}
+                    </p>
                   </div>
+
+                  {/* Gambar Mobile */}
+                  <Image
+                    src="/images/gambar 2.JPG"
+                    alt="Gambar Ilustrasi"
+                    width={96} // sesuai w-24
+                    height={96} // sesuai h-24
+                    className="rounded-lg object-contain border border-gray-200"
+                  />
                 </div>
 
                 {reqs.length > 0 && (

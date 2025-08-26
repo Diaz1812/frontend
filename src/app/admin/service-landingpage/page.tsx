@@ -179,9 +179,6 @@ export default function ServicePage() {
                 <thead className="bg-gray-900">
                   <tr>
                     <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
-                      Nama
-                    </th>
-                    <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
                       Position
                     </th>
                     <th className="px-4 py-3 text-left text-sm font-semibold text-gray-300">
@@ -195,9 +192,6 @@ export default function ServicePage() {
                 <tbody className="divide-y divide-gray-700">
                   {filteredData.map((item) => (
                     <tr key={item.id} className="hover:bg-gray-750 transition">
-                      <td className="px-4 py-3 text-sm text-gray-100">
-                        {item.id}
-                      </td>
                       <td className="px-4 py-3 text-sm text-gray-200 whitespace-pre-line">
                         {item.name_service}
                       </td>
