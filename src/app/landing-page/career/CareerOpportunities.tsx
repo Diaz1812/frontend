@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image"; // ✅ Import Image
+import Image from "next/image"; 
 import api from "../../lib/api";
 
 type CareerOpportunityItem = {
