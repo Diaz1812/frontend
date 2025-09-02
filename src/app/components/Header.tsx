@@ -14,7 +14,7 @@ export default function Header({ setSidebarOpen }: HeaderProps) {
 
   const handleLogout = async () => {
     try {
-      await api.post("/logout");
+      await api.post("/admin/logout");
     } catch (error) {
       console.error("Logout failed:", error);
     } finally {
