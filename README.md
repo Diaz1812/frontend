@@ -1,8 +1,8 @@
 ## Instalasi
 
-git clone https://github.com/Diaz1812/frontend.git
-cd frontend
-npm install
+    git clone https://github.com/Diaz1812/frontend.git
+    cd frontend
+    npm install
 
 ## Getting Started
 
